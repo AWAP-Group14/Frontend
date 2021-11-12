@@ -1,12 +1,11 @@
+import { render } from '@testing-library/react';
 import './App.css';
-
+import NavigationBar from './components/NavigationBar';
 
 
 function App() {
   return (
-    <div className= "App">
-          Search <input type="text"/>
-        </div>
+    <NavigationBar/>
   );
 }
 
