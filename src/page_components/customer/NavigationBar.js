@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './NavigationBar.module.css'
+import styles from './css_modules/NavigationBar.module.css'
 
 const NavigationBar = props => {
     return(
@@ -9,4 +9,4 @@ const NavigationBar = props => {
     )
   }
   
-  export default NavigationBar;
+  export default NavigationBar; 

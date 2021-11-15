@@ -1,11 +1,12 @@
 import { render } from '@testing-library/react';
 import './App.css';
-import NavigationBar from './components/NavigationBar';
+import LandingPage from './pages/customer/LandingPage';
 
+// This script is responsible for shoowing all the different pages
 
 function App() {
   return (
-    <NavigationBar/>
+    <LandingPage/>
   );
 }
 
