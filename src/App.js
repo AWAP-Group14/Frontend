@@ -12,16 +12,19 @@ class App extends React.Component {
   {
     super(props);
     this.state = {
-      restaurants: [],
+      restaurants: [
+
+      ],
       productSearchString: ""
     }
   }
   
+
   componentDidMount(){
   axios.get('https://voulutora-backend.herokuapp.com/restaurants')
     .then(response => {
-      this.setState({restaurants: response.restaurants})
       console.log(response);
+      this.setState({restaurants: response.data})
     })
     .catch(err => console.log(err));
 

@@ -5,13 +5,15 @@ import RestaurantCard from '../../page_components/customer/RestaurantCard';
 
 export default function BrowsePage(props) {
 
-  const restaurantlist = props.restaurants.map(restaurant => <RestaurantCard key={restaurant.id} {...restaurant} />)
+  
   return (
     <div>
+      <div className={ styles.container }>
+        <NavigationBar/>
       {
-        restaurantlist
+        props.restaurants.map(restaurant => <RestaurantCard key={restaurant.id} {...restaurant} />)
       }
-      
+      </div>
     </div>
   )
 }
