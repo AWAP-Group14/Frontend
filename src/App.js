@@ -37,7 +37,7 @@ class App extends React.Component {
 
   }
   render() {
-    let output = <BrowsePage />
+    let output = <BrowsePage restaurants={this.state.restaurants}/>
     return (
       <>
         { output }

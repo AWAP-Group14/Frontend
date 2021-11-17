@@ -4,15 +4,13 @@ import NavigationBar from "../../page_components/customer/NavigationBar";
 import RestaurantCard from '../../page_components/customer/RestaurantCard';
 
 const BrowsePage = props => {
+  console.log(props.restaurants);
     return(
-        <div className={styles.container}>
-            <NavigationBar/>
-            <div>
-        {
-          props.restaurants.map(restaurant => <RestaurantCard key={restaurant.restaurant_name} {...restaurant} /> )
-        }
+      <div>
+        <NavigationBar/>
+        <RestaurantCard restaurants={props} />
         </div>
-        </div>
+        
     )
   }
   
