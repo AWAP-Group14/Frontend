@@ -1,3 +1,22 @@
 .navigationBar{
-    background-color: red;
+    background-color: #EB550A;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.navigationBarHeader{
+    color:#041F42;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.navigationBarUserAccount{
+    float:right;
+}
+
+.navigationBarButton{
+    background-color: #324323;
 }
