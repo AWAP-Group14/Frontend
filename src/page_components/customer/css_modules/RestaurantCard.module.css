@@ -1,0 +1,17 @@
+.restCardContainer {
+   width: 225px;
+   height: 250px;
+   padding: 15px;
+   margin: 15px;
+   background-color: #f3f3f3;
+}
+
+.restCardContainer img {
+    width: 150px;
+    height: 150px;
+    margin-left: 37px;
+}
+
+.restCardContainer p {
+    margin: 7px;
+}

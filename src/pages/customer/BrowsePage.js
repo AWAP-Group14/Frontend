@@ -7,7 +7,11 @@ const BrowsePage = props => {
     return(
         <div className={styles.container}>
             <NavigationBar/>
-            <RestaurantCard/>
+            <div>
+        {
+          props.restaurants.map(restaurant => <RestaurantCard key={restaurant.restaurant_name} {...restaurant} /> )
+        }
+        </div>
         </div>
     )
   }
