@@ -7,7 +7,11 @@ const BrowsePage = props => {
     return(
         <div className={styles.container}>
             <NavigationBar/>
-            <div>
+            <div className={styles.filterContainer}>
+                <p>Restaurants in your area</p>
+                <input type="text" placeholder="FILTER"></input>
+            </div>
+            <div className={styles.RestaurantCard}>
         {
           props.restaurants.map(restaurant => <RestaurantCard key={restaurant.restaurant_name} {...restaurant} /> )
         }
