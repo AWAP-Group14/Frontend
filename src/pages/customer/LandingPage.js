@@ -1,10 +1,12 @@
 import React from "react";
 import styles from './css_modules/LandingPage.module.css'
 import NavigationBar from "../../page_components/customer/NavigationBar";
+
+import Footer from "../../page_components/customer/Footer";
+
 import AdDisplay from "../../page_components/customer/AdDisplay";
 import FeaturedRestaurant from "../../page_components/customer/FeturedRestaurants";
 import FeaturedRestaurants from "../../page_components/customer/FeturedRestaurants";
-// import Footer
 
 const LandingPage = props => {
     return(
@@ -13,6 +15,7 @@ const LandingPage = props => {
             <AdDisplay/>
             <FeaturedRestaurants/>
             
+
         </div>
     )
   }
