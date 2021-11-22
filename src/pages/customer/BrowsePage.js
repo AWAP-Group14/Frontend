@@ -22,4 +22,4 @@ const BrowsePage = props => {
     )
   }
   
-  export default BrowsePage; 
+
