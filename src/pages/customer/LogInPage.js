@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import NavigationBar from "../../page_components/customer/NavigationBar";
+import Footer from "../../page_components/customer/Footer";
 import styles from './css_modules/LogInPage.module.css';
+import axios from 'axios';
 
 export default function LogInPage(props) {
   const [state, setState] = useState({
@@ -18,13 +20,23 @@ export default function LogInPage(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(state);
+    axios.post('https://voulutora-backend.herokuapp.com/customer/login', {}, {
+      auth: {
+        username: state.email,
+        password: state.password
+      }
+    })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => console.log(err));
   };
 
   return (
     <div>
       <NavigationBar/>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.form}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div >
           <label>Email</label>
           <input
             type="text"
@@ -33,7 +45,7 @@ export default function LogInPage(props) {
             onChange={handleInputChange}
           />
         </div>
-        <div className={styles.form}>
+        <div >
           <label>Password</label>
           <input
             type="password"
@@ -42,11 +54,16 @@ export default function LogInPage(props) {
             onChange={handleInputChange}
           />
         </div>
-        <div className={styles.form}>
+        <div >
           <label></label>
           <button type="submit">Login</button>
         </div>
+        <div>
+          <p>Do not have account yet?</p>
+          <button style={{width: 'auto'}}>Create account</button>
+        </div>
       </form>
+      <Footer />
     </div>
   );
 }
