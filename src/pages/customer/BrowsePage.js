@@ -4,7 +4,8 @@ import NavigationBar from "../../page_components/customer/NavigationBar";
 import RestaurantCard from '../../page_components/customer/RestaurantCard';
 import Footer from '../../page_components/customer/Footer';
 
-const BrowsePage = props => {
+export default function BrowsePage(props) 
+{
     return(
         <div className={styles.container}>
             <NavigationBar/>
