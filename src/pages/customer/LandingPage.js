@@ -14,6 +14,7 @@ const LandingPage = props => {
             <NavigationBar/>
             <AdDisplay/>
             <FeaturedRestaurants/>
+            <Footer/>
             
 
         </div>

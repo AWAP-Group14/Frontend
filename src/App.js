@@ -29,7 +29,7 @@ class App extends React.Component {
   }
   render() {
 
-    let output = <LogInPage />
+    let output = <LandingPage/>
    // let output = <BrowsePage restaurants={this.state.restaurants}/> 
 
     return (

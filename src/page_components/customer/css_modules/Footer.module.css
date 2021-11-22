@@ -1,9 +1,9 @@
 .footerContainer {
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
+
     bottom: 0;
     width: 100%;
 }
