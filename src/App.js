@@ -4,6 +4,7 @@ import './App.css';
 import LandingPage from './pages/customer/LandingPage';
 import BrowsePage from './pages/customer/BrowsePage';
 import LogInPage from './pages/customer/LogInPage';
+import SignUpPage from './pages/customer/SignUpPage';
 import axios from 'axios';
 
 // This script is responsible for shoowing all the different pages
@@ -28,7 +29,8 @@ class App extends React.Component {
 
   }
   render() {
-    let output = <LogInPage />
+    let output = <SignUpPage />
+    //let output = <LogInPage />
    // let output = <BrowsePage restaurants={this.state.restaurants}/> 
     return (
       <>
