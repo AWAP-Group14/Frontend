@@ -1,0 +1,23 @@
+.root{
+    background-color: grey;
+    height: 400px;
+}
+
+.imageContainer{
+    
+}
+
+.currentImage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+    height: 400px;
+    width: 120%;
+    max-width: 100%;
+}
+
+.seeAllButton{
+    height: 50px;
+    color: brown;
+}
