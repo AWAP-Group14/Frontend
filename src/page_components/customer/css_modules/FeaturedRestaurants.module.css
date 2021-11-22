@@ -1,4 +1,30 @@
 .root{
-    background-color: beige;
-    height: 400px;
+    background-color: #041f42;
+    padding-top: 1px;
+    padding-bottom: 10px;
+}
+
+.headerContainer{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color:white;
+    font-size: 32px;
+    font-weight: 500;
+    width: auto;
+}
+
+.header{
+    margin-left: 20px;
+}
+
+.cardContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.seeAllButton{
+    float: right;
+    height: 35px;
+    margin-top: 5px;
+    margin-right:  20px;
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import styles from './css_modules/AdDisplay.module.css';
 
+// TODO: Make the advert more interactive and implement an image service
+
 export default function AdDisplay(props)
 {
     return (
