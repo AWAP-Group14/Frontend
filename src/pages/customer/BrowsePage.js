@@ -3,15 +3,19 @@ import styles from './css_modules/BrowsePage.module.css'
 import NavigationBar from "../../page_components/customer/NavigationBar";
 import RestaurantCard from '../../page_components/customer/RestaurantCard';
 
-const BrowsePage = props => {
-  console.log(props.restaurants);
-    return(
-      <div>
-        <NavigationBar/>
-        <RestaurantCard restaurants={props} />
-        </div>
-        
-    )
-  }
+
+export default function BrowsePage(props) {
+
+
   
-  export default BrowsePage; 
+  return (
+    <div>
+      <div className={ styles.container }>
+        <NavigationBar/>
+      {
+        props.restaurants.map(restaurant => <RestaurantCard key={restaurant.id} {...restaurant} />)
+      }
+      </div>
+    </div>
+  )
+}
