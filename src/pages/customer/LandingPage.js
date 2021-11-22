@@ -1,12 +1,18 @@
 import React from "react";
 import styles from './css_modules/LandingPage.module.css'
 import NavigationBar from "../../page_components/customer/NavigationBar";
+import AdDisplay from "../../page_components/customer/AdDisplay";
+import FeaturedRestaurant from "../../page_components/customer/FeturedRestaurants";
+import FeaturedRestaurants from "../../page_components/customer/FeturedRestaurants";
+// import Footer
 
 const LandingPage = props => {
     return(
         <div className={styles.container}>
             <NavigationBar/>
-            <p>Hi, I am landing page!</p>
+            <AdDisplay/>
+            <FeaturedRestaurants/>
+            
         </div>
     )
   }
