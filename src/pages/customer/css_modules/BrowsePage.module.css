@@ -1,0 +1,17 @@
+.container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.filterContainer {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+.RestaurantCard {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}

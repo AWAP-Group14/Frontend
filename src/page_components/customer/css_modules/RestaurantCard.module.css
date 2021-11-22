@@ -4,12 +4,14 @@
    padding: 15px;
    margin: 15px;
    background-color: #f3f3f3;
+   border-radius: 5px;
 }
 
 .restCardContainer img {
     width: 150px;
     height: 150px;
     margin-left: 37px;
+    margin-right: auto;
 }
 
 .restCardContainer p {

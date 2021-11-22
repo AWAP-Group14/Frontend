@@ -13,9 +13,7 @@ class App extends React.Component {
   {
     super(props);
     this.state = {
-      restaurants: [
-
-      ],
+      restaurants: [],
       productSearchString: ""
     }
   }
@@ -24,18 +22,13 @@ class App extends React.Component {
   componentDidMount(){
   axios.get('https://voulutora-backend.herokuapp.com/restaurants')
     .then(response => {
-      console.log(response);
-      console.log("Hello World")
       this.setState({restaurants: response.data})
     })
     .catch(err => console.log(err));
 
   }
   render() {
-
-    // let output = <BrowsePage restaurants={this.state.restaurants} />
-    let output = <LogInPage/>
-
+    let output = <BrowsePage restaurants={this.state.restaurants}/>
     return (
       <>
         { output }
