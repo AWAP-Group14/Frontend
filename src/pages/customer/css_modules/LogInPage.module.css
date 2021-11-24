@@ -1,9 +1,29 @@
-.form {
+
+  .App {
+      color: #f21e08
+
+  }
+  .container {
+      color: #f21e08;
+      background-color: #f21e08;
+
+  }
+  
+  .errorMsg {
+    max-width: 350px;
+    color: #f21e08;
+    padding: 2px 0;
+    margin-top: 2px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+  
+  .form {
     display: flex;
     flex-direction: column;
     border: 1px solid #aaa;
-    height: 500px;
-    width: 400px;
+    height: 400px;
+    width: 300px;
     margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
@@ -15,36 +35,34 @@
 
     .form div {
       display: flex;
-      flex-direction: row;
+    flex-direction: column;
     align-self: center;
-    margin: 15px;
+    margin: 5px;
     }
   
   .form label {
     display: flex;
-    width: 100px;
-    padding: 2px;
+    align-self: center;
     margin: 5px;
   }
   
   .form input[type="text"],
   .form input[type="password"] {
-    margin: 15px;
+    margin: 5px;
     height: 28px;
   }
   
   .form button {
-   margin-left: auto;
-   margin-right: auto;
-   margin-top: 15px;
+   margin: 10px;
    height: 40px;
    width: 130px;
    padding: 5px;
    font-family: 'Roboto', sans-serif;
-   font-size: 16px;
+   font-size: 15px;
    cursor: pointer;
    border: none;
    border-radius: 3px;
+
    background-color: #EB550A;
    color: white;
   }  

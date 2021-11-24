@@ -3,6 +3,8 @@ import { render } from '@testing-library/react';
 import './App.css';
 import LandingPage from './pages/customer/LandingPage';
 import BrowsePage from './pages/customer/BrowsePage';
+import LogInPage from './pages/customer/LogInPage';
+import SignUpPage from './pages/customer/SignUpPage';
 import axios from 'axios';
 
 // This script is responsible for shoowing all the different pages
@@ -12,9 +14,7 @@ class App extends React.Component {
   {
     super(props);
     this.state = {
-      restaurants: [
-
-      ],
+      restaurants: [],
       productSearchString: ""
     }
   }
@@ -23,14 +23,15 @@ class App extends React.Component {
   componentDidMount(){
   axios.get('https://voulutora-backend.herokuapp.com/restaurants')
     .then(response => {
-      console.log(response);
       this.setState({restaurants: response.data})
     })
     .catch(err => console.log(err));
 
   }
   render() {
-    let output = <BrowsePage restaurants={this.state.restaurants} />
+    let output = <LandingPage/>
+   // let output = <BrowsePage restaurants={this.state.restaurants}/> 
+
     return (
       <>
         { output }
@@ -39,7 +40,5 @@ class App extends React.Component {
   }
 
 }
-
-
 
 export default App;
