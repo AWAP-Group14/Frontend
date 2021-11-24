@@ -18,7 +18,7 @@ class App extends React.Component {
       productSearchString: ""
     }
   }
-  
+
 
   componentDidMount(){
   axios.get('https://voulutora-backend.herokuapp.com/restaurants')
