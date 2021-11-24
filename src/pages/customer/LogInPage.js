@@ -61,8 +61,7 @@ export default function LogInPage(props) {
         </div>
         <div>
           <p>Do not have account yet?</p>
-          <Link to="/signup"><button style={{width: 'auto'}}>Create account</button></Link>
-          <button style={{width: 'auto'}}>Create account</button>
+          <Link to="/signup"><button  style={{width: 'auto'}}>Create account</button></Link>
         </div>
       </form>
       <Footer />
