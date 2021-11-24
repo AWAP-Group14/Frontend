@@ -1,6 +1,7 @@
 import React from "react";
 import NavigationBar from "../../page_components/customer/NavigationBar";
 import Footer from "../../page_components/customer/Footer";
+import styles from './css_modules/SignUpPage.module.css';
 
 const SignInPage = props => {
     return (

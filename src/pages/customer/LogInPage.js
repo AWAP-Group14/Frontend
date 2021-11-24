@@ -3,6 +3,7 @@ import NavigationBar from "../../page_components/customer/NavigationBar";
 import Footer from "../../page_components/customer/Footer";
 import styles from './css_modules/LogInPage.module.css';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 export default function LogInPage(props) {
   const [state, setState] = useState({
@@ -60,6 +61,7 @@ export default function LogInPage(props) {
         </div>
         <div>
           <p>Do not have account yet?</p>
+          <Link to="/signup"><button style={{width: 'auto'}}>Create account</button></Link>
           <button style={{width: 'auto'}}>Create account</button>
         </div>
       </form>
