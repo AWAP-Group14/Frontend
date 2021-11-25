@@ -8,6 +8,8 @@ import SignUpPage from './pages/customer/SignUpPage';
 import RestaurantLogIn from './pages/manager/RestaurantLogIn';
 import RegistrationForm from './pages/manager/RegistrationForm';
 import axios from 'axios';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import SignInPage from './pages/customer/SignInPage';
 
 // This script is responsible for shoowing all the different pages
 
@@ -20,7 +22,7 @@ class App extends React.Component {
       productSearchString: ""
     }
   }
-  
+
 
   componentDidMount(){
   axios.get('https://voulutora-backend.herokuapp.com/restaurants')
@@ -31,10 +33,20 @@ class App extends React.Component {
 
   }
   render() {
-    let output = <RegistrationForm/>
-    //let output = <RestaurantLogIn/>
-    //let output = <LandingPage/>
-   //let output = <BrowsePage restaurants={this.state.restaurants}/> 
+    
+    let output = <BrowserRouter>
+
+          <Routes>
+            <Route path="/" element={<LandingPage/>} />
+            <Route path="/signup" element={<SignUpPage/>} />
+            <Route path="/login" element={<LogInPage/>} />
+            <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
+
+          </Routes>
+
+    </BrowserRouter>
+    
+    
 
     return (
       <>

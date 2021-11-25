@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './css_modules/FeaturedRestaurants.module.css';
 import RestaurantCard from "./RestaurantCard";
+import { Link } from "react-router-dom";
 
 export default function FeaturedRestaurants(props)
 {
@@ -11,7 +12,7 @@ export default function FeaturedRestaurants(props)
     <div className={styles.root}>
         <div className={styles.headerContainer}>
             <span className={styles.header}>Featured Restaurants</span>
-            <button className={styles.seeAllButton}>See all</button>
+            <Link to="/browse"><button className={styles.seeAllButton}>See all</button></Link>
         </div>
         <div className={styles.cardContainer}>
             <RestaurantCard/>
