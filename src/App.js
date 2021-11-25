@@ -4,6 +4,7 @@ import './App.css';
 import LandingPage from './pages/customer/LandingPage';
 import BrowsePage from './pages/customer/BrowsePage';
 import LogInPage from './pages/customer/LogInPage';
+import RestaurantMenuPage from './pages/customer/RestaurantMenuPage';
 import SignUpPage from './pages/customer/SignUpPage';
 import RestaurantLogIn from './pages/manager/RestaurantLogIn';
 import RegistrationForm from './pages/manager/RegistrationForm';
@@ -46,7 +47,7 @@ class App extends React.Component {
 
     </BrowserRouter>
     
-    
+   
 
     return (
       <>

@@ -1,0 +1,55 @@
+.root{
+
+}
+
+.cardContainer {
+    width: 450px;
+    height: 150px;
+    padding: 15px;
+    margin: 15px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+ }
+
+ .leftColumn{
+    float:left;
+ }
+
+ .rightColumn{
+    float: left;
+    margin-left: 15px;
+    width: auto;
+ }
+
+ .rightColumn p{
+     margin: 2px;
+ }
+
+ .rightColumnLeftColumn{
+    float: left;
+ }
+
+.rightColumnRighColumn{
+    float: right;
+    text-align: right;
+    margin-left: 80px;
+    
+}
+
+.rightColumnRighColumnTop{
+    
+}
+
+
+.rightColumnRighColumnBottom{
+    margin-top: 80px;
+}
+
+ .cardImage{
+     height: 150px;
+     width:150px;
+ }
+ 
+
+ 
+ 
