@@ -21,26 +21,48 @@
   .form {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
-    margin: center;
+    border: 1px solid #aaa;
+    height: 400px;
+    width: 300px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    }
+
+    .form div {
+      display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 5px;
     }
   
   .form label {
-    width: 20%;
-    padding-right: 20px;
-    margin-bottom: 5px;
-    font-size: 20px;
-    font-weight: bold;
-    color: black;
+    display: flex;
+    align-self: center;
+    margin: 5px;
   }
   
   .form input[type="text"],
   .form input[type="password"] {
-    width: 40%;
-    padding: 5px;
+    margin: 5px;
+    height: 28px;
   }
   
   .form button {
-    width: 40%;
-    padding: 5px;
+   margin: 10px;
+   height: 40px;
+   width: 130px;
+   padding: 5px;
+   font-family: 'Roboto', sans-serif;
+   font-size: 15px;
+   cursor: pointer;
+   border: none;
+   border-radius: 3px;
+
+   background-color: #EB550A;
+   color: white;
   }  
