@@ -13,6 +13,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import SignInPage from './pages/customer/SignInPage';
 import Payment from './pages/customer/Payment';
 import CustomerProfile from './pages/customer/CustomerProfile';
+import OrderHistory from './pages/customer/OrderHistory';
 
 // This script is responsible for shoowing all the different pages
 
@@ -45,7 +46,8 @@ class App extends React.Component {
             <Route path="/login" element={<LogInPage/>} />
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
             <Route path="/payment" element={<Payment/>} />
-            <Route path="/customer/profile" element={<CustomerProfile/>} />
+            <Route path="/profile" element={<CustomerProfile/>} />
+            <Route path="/history" element={<OrderHistory/>} />
           </Routes>
 
     </BrowserRouter>
