@@ -5,7 +5,7 @@ import Footer from '../../page_components/customer/Footer';
 import RestaurantInfoBox from "../../page_components/customer/RestaurantInfoBox";
 import RestaurantMenuCategories from "../../page_components/customer/RestaurantMenuCategories";
 import RestaurantItemCard from "../../page_components/shared/RestaurantItemCard";
-
+//import Button from 'react-bootstrap/Button';
 
 export default function RestaurantMenuPage(props) 
 {
@@ -22,6 +22,7 @@ export default function RestaurantMenuPage(props)
 
                 <div className={styles.restaurantCategories}>
                     <RestaurantMenuCategories/>
+                   
                 </div>
 
                 <div className={styles.restaurantMenuCards}>

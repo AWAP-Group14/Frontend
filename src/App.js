@@ -9,6 +9,7 @@ import SignUpPage from './pages/customer/SignUpPage';
 import axios from 'axios';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import SignInPage from './pages/customer/SignInPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // This script is responsible for shoowing all the different pages
 
@@ -40,7 +41,7 @@ class App extends React.Component {
             <Route path="/signup" element={<SignUpPage/>} />
             <Route path="/login" element={<LogInPage/>} />
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
-
+            <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
           </Routes>
 
     </BrowserRouter>

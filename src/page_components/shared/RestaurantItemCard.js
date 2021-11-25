@@ -8,6 +8,7 @@ export default function RestaurantItemCard(props)
 
     // TODO: Add backend functionality
     // TODO: Add manager functionality
+    // TODO: Add shoppingcart functionality
     return(        
         <div className={styles.root}>
             <div className={styles.cardContainer}>
