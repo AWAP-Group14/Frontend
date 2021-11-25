@@ -12,6 +12,7 @@ import axios from 'axios';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import SignInPage from './pages/customer/SignInPage';
 import Payment from './pages/customer/Payment';
+import CustomerProfile from './pages/customer/CustomerProfile';
 
 // This script is responsible for shoowing all the different pages
 
@@ -44,7 +45,7 @@ class App extends React.Component {
             <Route path="/login" element={<LogInPage/>} />
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
             <Route path="/payment" element={<Payment/>} />
-            
+            <Route path="/customer/profile" element={<CustomerProfile/>} />
           </Routes>
 
     </BrowserRouter>
