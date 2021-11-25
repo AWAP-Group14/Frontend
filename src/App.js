@@ -39,7 +39,7 @@ class App extends React.Component {
     let output = <BrowserRouter>
 
           <Routes>
-            <Route path="/" element={<LandingPage/>} />
+            <Route path="/" element={<LandingPage  restaurants={this.state.restaurants}/>} />
             <Route path="/signup" element={<SignUpPage/>} />
             <Route path="/login" element={<LogInPage/>} />
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />

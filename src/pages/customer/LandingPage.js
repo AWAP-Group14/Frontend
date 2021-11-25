@@ -13,7 +13,7 @@ const LandingPage = props => {
         <div className={styles.container}>
             <NavigationBar/>
             <AdDisplay/>
-            <FeaturedRestaurants/>
+            <FeaturedRestaurants  restaurants={props.restaurants}/>
             <Footer/>
             
 
