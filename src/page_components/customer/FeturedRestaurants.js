@@ -15,10 +15,11 @@ export default function FeaturedRestaurants(props)
             <Link to="/browse"><button className={styles.seeAllButton}>See all</button></Link>
         </div>
         <div className={styles.cardContainer}>
+            {props.restaurants.slice(0,4).map(restaurant => <RestaurantCard key={restaurant.restaurant_name} {...restaurant} /> )}
+            {/* <RestaurantCard/>
             <RestaurantCard/>
             <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>
+            <RestaurantCard/> */}
             
         </div>
         
