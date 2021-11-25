@@ -5,6 +5,8 @@ import LandingPage from './pages/customer/LandingPage';
 import BrowsePage from './pages/customer/BrowsePage';
 import LogInPage from './pages/customer/LogInPage';
 import SignUpPage from './pages/customer/SignUpPage';
+import RestaurantLogIn from './pages/manager/RestaurantLogIn';
+import RegistrationForm from './pages/manager/RegistrationForm';
 import axios from 'axios';
 
 // This script is responsible for shoowing all the different pages
@@ -29,8 +31,10 @@ class App extends React.Component {
 
   }
   render() {
-    let output = <LandingPage/>
-   // let output = <BrowsePage restaurants={this.state.restaurants}/> 
+    let output = <RegistrationForm/>
+    //let output = <RestaurantLogIn/>
+    //let output = <LandingPage/>
+   //let output = <BrowsePage restaurants={this.state.restaurants}/> 
 
     return (
       <>
