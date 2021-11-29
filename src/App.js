@@ -37,6 +37,7 @@ class App extends React.Component {
     .catch(err => console.log(err));
 
   }
+  
   render() {
     
     let output = <BrowserRouter>
@@ -46,7 +47,7 @@ class App extends React.Component {
             <Route path="/signup" element={<SignUpPage/>} />
             <Route path="/login" element={<LogInPage/>} />
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
-            <Route path="/payment" element={<Payment/>} />
+            <Route path="/payment/:orderId" element={<Payment/>} />
             <Route path="/profile" element={<CustomerProfile/>} />
             <Route path="/history" element={<OrderHistory/>} />
             <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
