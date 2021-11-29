@@ -6,6 +6,10 @@ import axios from 'axios';
 
 export default function RegistrationForm(props) {
 
+  const uploadImage = (files) => {
+    console.log(files[0])
+  }
+
   return (
     <div>
       <NavigationBar/>
@@ -32,7 +36,9 @@ export default function RegistrationForm(props) {
         </div>
         <div>
           <label>Image</label>
-          <input></input>
+          <input type="file" onChange={(event) => {
+            uploadImage(event.target.files)
+          }}></input>
         </div>
         <div>
           <label>Price range</label>
