@@ -44,6 +44,7 @@ class App extends React.Component {
             <Route path="/login" element={<LogInPage/>} />
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
             <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
+            
           </Routes>
 
     </BrowserRouter>
