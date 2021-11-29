@@ -51,6 +51,9 @@ class App extends React.Component {
             <Route path="/profile" element={<CustomerProfile/>} />
             <Route path="/history" element={<OrderHistory/>} />
             <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
+            <Route path="/manager/signup" element={<RegistrationForm/>}/>
+
+            
           </Routes>
 
     </BrowserRouter>
