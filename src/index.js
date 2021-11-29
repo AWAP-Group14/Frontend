@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import BootstrapGlobals from './page_components/shared/BootstrapGlobals'
 
 ReactDOM.render(
   <React.StrictMode>
+    <BootstrapGlobals/>
     <App />
   </React.StrictMode>,
   document.getElementById('root')

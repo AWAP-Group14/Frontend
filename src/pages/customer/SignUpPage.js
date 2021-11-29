@@ -40,8 +40,16 @@ export default function SignUpPage(props) {
       setProcessState("signupSuccess")
     })
     .catch(err => {
-      console.log(err)
+      if (err.response.status == 409) {
+        console.log(err.response.status)
+      setProcessState("emailInUse")
+      }
+
+      if (err.response.status == 400) {
+        console.log(err.response.status)
       setProcessState("signupFailed")
+      }
+      
     });
   };
 
@@ -55,8 +63,12 @@ export default function SignUpPage(props) {
       signupControls = <span style={{color: "green"}}>Signup Sucess</span>
       break;
     
-    case "signupFailed":
+    case "emailInUse":
       signupControls = <span style={{color: "red"}}>Email already in use</span>
+      break;
+
+    case "signupFailed":
+      signupControls = <span style={{color: "red"}}>Fill all the columns</span>
       break;
   }
 
