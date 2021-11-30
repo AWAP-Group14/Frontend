@@ -8,6 +8,8 @@ import RestaurantMenuPage from './pages/customer/RestaurantMenuPage';
 import SignUpPage from './pages/customer/SignUpPage';
 import RestaurantLogIn from './pages/manager/RestaurantLogIn';
 import RegistrationForm from './pages/manager/RegistrationForm';
+import NavigationBar from "./page_components/customer/NavigationBar";
+
 
 import axios from 'axios';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
@@ -19,6 +21,8 @@ import OrderHistory from './pages/customer/OrderHistory';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const jwtFromLocalStorage = window.localStorage.getItem('appAuthData')
+
 // This script is responsible for shoowing all the different pages
 
 class App extends React.Component {
@@ -27,7 +31,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       restaurants: [],
-      productSearchString: ""
+      productSearchString: "",
+      token: jwtFromLocalStorage
     }
   }
 
@@ -40,21 +45,60 @@ class App extends React.Component {
     .catch(err => console.log(err));
 
   }
+
+
+
   
   render() {
+
+    //what routes are in use without login
+    let authRoutes = <>
+            <Route path="/" element={<LandingPage  restaurants={this.state.restaurants} jwt={this.state.token}/>} />
+            <Route path="/signup" element={<SignUpPage/>} />
+            <Route path="/login" element={<LogInPage login={(newJwt) =>{
+              this.state.token = newJwt;
+              window.localStorage.setItem('appAuthData', newJwt)
+              console.log(this.state.token+" token from the props");
+            }}/>} />
+            <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
+            <Route path="/manager/signup" element={<RegistrationForm/>}/>
+            <Route path="/manager/login" element={<RestaurantLogIn/>}/>
+    </>
+
+    //logged in routes
+    if (this.state.token != null) {
+
+      authRoutes = <>
+            
+            <Route path="/" element={<LandingPage  restaurants={this.state.restaurants} jwt={this.state.token} logout={()=>{
+            this.state.token = null
+            window.localStorage.removeItem('appAuthData')
+            window.location.replace("/")
+            }}/>} />
+            <Route path="/signup" element={<SignUpPage/>} />
+            <Route path="/login" element={<LogInPage login={(newJwt) =>{
+              this.state.token = newJwt;
+              window.localStorage.setItem('appAuthData', newJwt)
+                }}/>} />
+            <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants} jwt={this.state.token} logout={()=>{
+            this.state.token = null
+            window.localStorage.removeItem('appAuthData')
+            window.location.replace("/")
+            }}/>} />
+            <Route path="/profile" element={<CustomerProfile jwt={this.state.token} logout={()=>{
+            this.state.token = null
+            window.localStorage.removeItem('appAuthData')
+            window.location.replace("/")
+            }}/>} />
+            <Route path="/history" element={<OrderHistory/>} />
+            <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
+      </>
+    }
     
     let output = <BrowserRouter>
 
           <Routes>
-            <Route path="/" element={<LandingPage  restaurants={this.state.restaurants}/>} />
-            <Route path="/signup" element={<SignUpPage/>} />
-            <Route path="/login" element={<LogInPage/>} />
-            <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
-            <Route path="/payment/:orderId" element={<Payment/>} />
-            <Route path="/profile" element={<CustomerProfile/>} />
-            <Route path="/history" element={<OrderHistory/>} />
-            <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
-            <Route path="/manager/signup" element={<RegistrationForm/>}/>
+            {authRoutes}
 
             
           </Routes>

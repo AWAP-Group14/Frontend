@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './css_modules/Footer.module.css';
+import { Link } from "react-router-dom";
 
 export default function Footer ()
 {
@@ -10,7 +11,7 @@ export default function Footer ()
             <p>Yliopistokatu 9, Oulu</p>
             <p>1234 4567 789</p>
             <p>contact@voulutora.com</p></div>
-            <button className={styles.ManagerPage}>Restaurant mangement page</button>
+            <Link to="/manager/login"><button className={styles.ManagerPage}>Restaurant mangement page</button></Link>
         </div>
     )
 
