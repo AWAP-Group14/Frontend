@@ -14,6 +14,7 @@ import SignInPage from './pages/customer/SignInPage';
 import Payment from './pages/customer/Payment';
 import CustomerProfile from './pages/customer/CustomerProfile';
 import OrderHistory from './pages/customer/OrderHistory';
+import OrderStatus from './pages/customer/OrderStatus';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // This script is responsible for shoowing all the different pages
@@ -50,6 +51,7 @@ class App extends React.Component {
             <Route path="/profile" element={<CustomerProfile/>} />
             <Route path="/history" element={<OrderHistory/>} />
             <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
+            <Route path="/status" element={<OrderStatus/>} />
           </Routes>
 
     </BrowserRouter>
