@@ -5,7 +5,7 @@ import styles from './css_modules/RestaurantMenuCategories.module.css'
 export default function RestaurantMenuCategories(props) 
 {
     return(        
-        <div className={styles.root}>
+        <div className="">
             <h2>Categories</h2>
             <p>Category 1</p>
             <p>Category 2</p>

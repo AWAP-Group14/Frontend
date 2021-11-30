@@ -8,12 +8,15 @@ import RestaurantMenuPage from './pages/customer/RestaurantMenuPage';
 import SignUpPage from './pages/customer/SignUpPage';
 import RestaurantLogIn from './pages/manager/RestaurantLogIn';
 import RegistrationForm from './pages/manager/RegistrationForm';
+
 import axios from 'axios';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import SignInPage from './pages/customer/SignInPage';
+
 import Payment from './pages/customer/Payment';
 import CustomerProfile from './pages/customer/CustomerProfile';
 import OrderHistory from './pages/customer/OrderHistory';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // This script is responsible for shoowing all the different pages

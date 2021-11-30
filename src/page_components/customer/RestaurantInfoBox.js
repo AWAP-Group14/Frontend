@@ -1,11 +1,11 @@
 import React from "react";
-import styles from './css_modules/RestaurantInfoBox.module.css'
+import styles from './css_modules/RestaurantInfoBox.module.scss'
 
 
 export default function RestaurantInfoBox(props) 
 {
     return(        
-        <div className={styles.root}>
+        <div className="">
             <h2>Restaurant Name</h2>
             <p>Restaurant type</p>
             <p>Restaurant operating hours</p>
