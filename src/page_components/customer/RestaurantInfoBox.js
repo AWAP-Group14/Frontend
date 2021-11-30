@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './css_modules/RestaurantInfoBox.module.css'
+import styles from './css_modules/RestaurantInfoBox.module.scss'
 
 
 export default function RestaurantInfoBox(props) 

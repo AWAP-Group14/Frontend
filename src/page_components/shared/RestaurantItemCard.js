@@ -5,6 +5,9 @@ import { Card } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+import { Image } from "react-bootstrap";
+
 
 export default function RestaurantItemCard(props) 
 {
@@ -15,15 +18,11 @@ export default function RestaurantItemCard(props)
     // TODO: Add manager functionality
     // TODO: Add shoppingcart functionality
     return(     
-        <Col xs={12} md={12} lg={12} xl={6}>   
-        <Card className="">
-            <Card.Body className="">
-                <Container>
-                    <Row>
-                        <Col className="">
-                            <Card.Img className="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1920px-Good_Food_Display_-_NCI_Visuals_Online.jpg"></Card.Img>
-                        </Col>
-                        <Col className="">
+
+        <Col sm={12} lg={6} xl={4}>
+            <Card classname="px-0">
+                <Card.Img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1920px-Good_Food_Display_-_NCI_Visuals_Online.jpg" />
+                    <Card.Body className="g-0">
                             
                                 <Row>
                                     <Col className="">
@@ -32,24 +31,24 @@ export default function RestaurantItemCard(props)
                                         <Card.Text>L,G,V</Card.Text>
                                     </Col>
 
-                                    <Col className="">
-                                        <div className="">
-                                            <button>Delete</button>
+                                    <Col>
+                                        <div className={styles.alignContentRight}>
+                                            <div className="">
+                                                <Button variant="danger">Delete</Button>
+                                            </div>
+                                            <div className="">
+                                                <Card.Title>XXX€</Card.Title>
+                                                <Button>Add to cart</Button>
+                                            </div>
                                         </div>
-                                        <div className="">
-                                            <p>XXX€</p>
-                                            <button>Add to cart</button>
-                                        </div>
-
                                     </Col>
                                 </Row>
                            
-                        </Col>
-                    </Row>
-                </Container>
-            </Card.Body>
-        </Card>
-        </Col>
+
+                    </Card.Body>
+
+            </Card>
+            </Col>
     )
   }
   
