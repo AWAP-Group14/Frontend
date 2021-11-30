@@ -23,10 +23,9 @@ export default function RestaurantMenuPage(props)
 
             <div className={styles.restaurantHeader}>
                 <div className={styles.restaurantBannerFader}>
-                    <Image fluid className={styles.restaurantHeaderImage} src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Restaurant_N%C3%A4sinneula.jpg"/>
+                    <Image className={styles.restaurantHeaderImage} src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Restaurant_N%C3%A4sinneula.jpg"/>
                 </div>
                 <div className={styles.restaurantInfo}>
-                    <h1>Restaurant Name Here</h1>
                     <RestaurantInfoBox/>
                 </div>
             </div>
