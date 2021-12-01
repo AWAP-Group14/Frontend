@@ -8,13 +8,16 @@ import RestaurantMenuPage from './pages/customer/RestaurantMenuPage';
 import SignUpPage from './pages/customer/SignUpPage';
 import RestaurantLogIn from './pages/manager/RestaurantLogIn';
 import RegistrationForm from './pages/manager/RegistrationForm';
+
 import axios from 'axios';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import SignInPage from './pages/customer/SignInPage';
+
 import Payment from './pages/customer/Payment';
 import CustomerProfile from './pages/customer/CustomerProfile';
 import OrderHistory from './pages/customer/OrderHistory';
 import OrderStatus from './pages/customer/OrderStatus';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // This script is responsible for shoowing all the different pages
@@ -38,6 +41,7 @@ class App extends React.Component {
     .catch(err => console.log(err));
 
   }
+  
   render() {
     
     let output = <BrowserRouter>
@@ -47,11 +51,14 @@ class App extends React.Component {
             <Route path="/signup" element={<SignUpPage/>} />
             <Route path="/login" element={<LogInPage/>} />
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
-            <Route path="/payment" element={<Payment/>} />
+            <Route path="/payment/:orderId" element={<Payment/>} />
             <Route path="/profile" element={<CustomerProfile/>} />
             <Route path="/history" element={<OrderHistory/>} />
             <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
             <Route path="/status" element={<OrderStatus/>} />
+            <Route path="/manager/signup" element={<RegistrationForm/>}/>
+
+            
           </Routes>
 
     </BrowserRouter>
