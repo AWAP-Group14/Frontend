@@ -34,7 +34,7 @@ export default function BrowsePage(props)
              }).map(restaurant => <RestaurantCard key={restaurant.restaurant_name} {...restaurant} /> )
              }
             </div>
-            <Footer />
+            <Footer jwt={props.jwt}/>
         </div>
     )
   }

@@ -15,10 +15,10 @@ export default function CustomerProfile(props)
             <div className="customer-profile-container">
            <div className="customer-info">
                <p>user ID {decodedToken.userId}</p>
-               <p>Name {props.name} {props.lastname}</p>
-               <p>adress {props.address}</p>
-               <p>email {props.email}</p>
-               <p>phone {props.phone}</p>
+               <p>Name {decodedToken.userInfo.customer_first_name} {decodedToken.userInfo.customer_last_name}</p>
+               <p>adress {decodedToken.userInfo.customer_address}</p>
+               <p>email {decodedToken.userInfo.customer_email}</p>
+               <p>phone {decodedToken.userInfo.customer_phone_number}</p>
                <button>Edit</button>
            </div>
            <button>My order history</button>
@@ -26,7 +26,7 @@ export default function CustomerProfile(props)
                {props.activeOrders}
            </div>
            </div>
-            <Footer />
+            <Footer jwt={props.jwt}/>
         </div>
     )
   }
