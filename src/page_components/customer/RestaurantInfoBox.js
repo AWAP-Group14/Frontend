@@ -6,11 +6,11 @@ export default function RestaurantInfoBox(props)
 {
     return(        
         <div className="">
-            <h2>Restaurant Name</h2>
-            <p>Restaurant type</p>
-            <p>Restaurant operating hours</p>
-            <p>Restaurant address</p>
-            <p>Restaurant email</p>
+            <h2>{props.restaurantInfo.name}</h2>
+            <p>{props.restaurantInfo.type}</p>
+            <p>{props.restaurantInfo.operating_hours}</p>
+            <p>{props.restaurantInfo.address}</p>
+            <p>{props.restaurantInfo.email}</p>
         </div>
     )
   }
