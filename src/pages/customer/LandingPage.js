@@ -9,9 +9,10 @@ import FeaturedRestaurant from "../../page_components/customer/FeturedRestaurant
 import FeaturedRestaurants from "../../page_components/customer/FeturedRestaurants";
 
 const LandingPage = props => {
+
     return(
         <div className={styles.container}>
-            <NavigationBar/>
+            <NavigationBar jwt={props.jwt} logout={props.logout}/>
             <AdDisplay/>
             <FeaturedRestaurants  restaurants={props.restaurants}/>
             <Footer/>

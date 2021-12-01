@@ -15,7 +15,7 @@ export default function BrowsePage(props)
     
     return(
         <div className={styles.container}>
-            <NavigationBar/>
+            <NavigationBar jwt={props.jwt} logout={props.logout}/>
             <div className={styles.filterContainer}>
                 <p>Restaurants in your area</p>
                 <input type="text" placeholder="SEARCH" onChange={(event =>{

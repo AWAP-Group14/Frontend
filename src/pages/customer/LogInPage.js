@@ -5,7 +5,12 @@ import styles from './css_modules/LogInPage.module.css';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
+
 export default function LogInPage(props) {
+
+  const [loginProcessState, setProcessState] = useState("idle");
+
+
   const [state, setState] = useState({
     email: "",
     password: ""
@@ -28,10 +33,39 @@ export default function LogInPage(props) {
       }
     })
     .then(response => {
+      setProcessState("loginSuccess")
       console.log(response);
+      const receivedJwt = response.data.token;
+      props.login(receivedJwt);
+      setTimeout(() => {
+        window.location.replace("/")
+      },1500)
+      
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      if (err.response.status == 401) {
+        console.log(err.response.status)
+      setProcessState("loginFailed")
+      }
+      
+    });
+    
   };
+
+  let loginControls = null;
+  switch (loginProcessState) {
+    case "idle":
+      loginControls = null;
+      break;
+    
+    case "loginSuccess":
+      loginControls = <span style={{color: "green"}}>Login successfull Redirecting...</span>
+      break;
+    
+    case "loginFailed":
+      loginControls = <span style={{color: "red"}}>Wrong email or password</span>
+      break;
+  }
 
   return (
     <div>
@@ -63,6 +97,7 @@ export default function LogInPage(props) {
           <p>Do not have account yet?</p>
           <Link to="/signup"><button  style={{width: 'auto'}}>Create account</button></Link>
         </div>
+        {loginControls}
       </form>
       <Footer />
     </div>
