@@ -4,11 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import BootstrapGlobals from './page_components/shared/BootstrapGlobals'
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
+
+const options = {
+  // you can also just use 'bottom center'
+  position: positions.BOTTOM_RIGHT,
+  timeout: 5000,
+  offset: '30px',
+  // you can also just use 'scale'
+  transition: transitions.SCALE
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <BootstrapGlobals/>
-    <App />
+    <AlertProvider template={AlertTemplate} {...options}>
+      <App />
+    </AlertProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
