@@ -29,6 +29,8 @@ export default function ShoppingCartPage(props)
                     <h1>Delivery: Free</h1>
                 </div>
             </div>
+            <Button >Back to menu</Button>
+            <Button type="submit">Pay</Button>
             <Footer />
         </div>
     )

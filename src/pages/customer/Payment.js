@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import NavigationBar from "../../page_components/customer/NavigationBar";
 import Footer from '../../page_components/customer/Footer';
 import axios from 'axios';
-import { Form, Button } from "react-bootstrap";
+import { Form, Button,} from "react-bootstrap";
 import styles from "./css_modules/Payment.module.scss"
 
 export default function Payment(props) 
@@ -35,6 +35,7 @@ export default function Payment(props)
                 <Button onClick={() => handleClick()} >
                     I will pick order myself
                 </Button>
+                <p>{props.RestaurantInfoBox}</p>
                 
                 <p>Check your delivery adress: {props.deliveryAddress}</p>
                 <Button>Confirm</Button>

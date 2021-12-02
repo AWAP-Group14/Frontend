@@ -9,7 +9,7 @@ export default function OrderHistory(props)
         <div >
             <NavigationBar/>
             <div>
-                <h1>Your previous choices</h1>
+                <h1>Your previous choices: </h1>
                 <HistoryCard />
                 <HistoryCard />
             </div>
