@@ -84,11 +84,9 @@ class App extends React.Component {
             <Route path="/signup" element={<SignUpPage/>} />
             <Route path="/login" element={<LogInPage login={this.login}/>} />
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
-            <Route path="/manager/signup" element={<RegistrationForm/>}/>
-            <Route path="/manager/login" element={<RestaurantLogIn/>}/>
-            
+            <Route path="/manager/signup" element={<RegistrationForm/>}/>          
             <Route path="/manager/login" element={<RestaurantLogIn login={this.login}/>}/>
-            <Route path="/restaurant/:restaurantName" element={<RestaurantMenuPage jwt={this.state.token}/>}/>
+            <Route path="/restaurant/:restaurantName" element={<RestaurantMenuPage jwt={this.state.token} logout={this.logout}/>}/>
     </>
 
     //logged in routes

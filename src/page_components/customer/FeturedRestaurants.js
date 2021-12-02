@@ -34,15 +34,3 @@ export default function FeaturedRestaurants(props)
     )
 }
 
-/*<div className={styles.headerContainer}>
-            <span className={styles.header}>Featured Restaurants</span>
-            <Link to="/browse"><button className={styles.seeAllButton}>See all</button></Link>
-        </div>
-        <div className={styles.cardContainer}>
-            {props.restaurants.slice(0,4).map(restaurant => <RestaurantCard key={restaurant.restaurant_name} {...restaurant} /> )}
-            { <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>}
-            
-        </div>*/
