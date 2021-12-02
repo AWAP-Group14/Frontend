@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.TotalPrice{
+    margin: 30px 50px;
+    font-size: 24px;
+}
+
+.Delivery {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    width: 350px;
+    height: 430px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+
+.Delivery input {
+    width: 300px;
+    margin-bottom: 10px
+}
+
+.Delivery p, Button, label {
+    margin-top: 10px;
+}
+
+.PaymentForm {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    position: relative;
+    width: 350px;
+    height: 430px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+
+.PaymentForm label{
+    margin-top: 10px;
+}
+
+.PaymentForm button{
+    margin-top: 25px;
+    position: absolute;
+    left: 90px;
+}

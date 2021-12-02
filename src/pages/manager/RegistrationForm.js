@@ -7,10 +7,6 @@ import Select from "react-dropdown-select";
 
 export default function RegistrationForm(props) {
 
-  const restaurantTypes = [
-    {label: "Buffet", value: "Buffet"}
-    ]
-
   const [SignupProcessState, setProcessState] = useState("idle");
 
   const [state, setState] = useState({
@@ -60,7 +56,8 @@ export default function RegistrationForm(props) {
 
       if (err.response.status == 400) {
         console.log(err.response.status)
-      setProcessState("signupFailed")
+        setProcessState("signupFailed")
+        
       }
       
     });
@@ -83,6 +80,7 @@ export default function RegistrationForm(props) {
     case "signupFailed":
       signupControls = <span style={{color: "red"}}>Fill all the columns</span>
       break;
+      
   }
 
 
@@ -160,7 +158,7 @@ export default function RegistrationForm(props) {
         <div>
           <label>Price level</label>
           <select name="priceRange" onChange={handleInputChange} value={state.priceRange}>
-            <option value={null} disabled>Select restaurant price level</option>
+            <option selected value={null} disabled hidden>Select restaurant price level</option>
             <option value={1}>€</option>
             <option value={2}>€€</option>
             <option value={3}>€€€</option>
@@ -170,7 +168,7 @@ export default function RegistrationForm(props) {
         <div>
           <label>Restaurant type</label>
           <select name="restaurantType" onChange={handleInputChange} value={state.restaurantType}>
-            <option value={null} disabled>Select restaurant type</option>
+            <option selected value={null} disabled hidden>Select restaurant type</option>
             <option value="buffet">Buffet</option>
             <option value="Fast food">Fast food</option>
             <option value="Fast casual">Fast casual</option>

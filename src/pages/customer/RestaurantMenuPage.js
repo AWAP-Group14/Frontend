@@ -25,7 +25,7 @@ export default function RestaurantMenuPage(props)
     const [info, setInfo] = useState({
         name: "",
         address: "",
-        operating_hours: "",
+        operating_hours: [],
         image: "",
         email: "",
         type: "", 
@@ -35,7 +35,7 @@ export default function RestaurantMenuPage(props)
     const [categories, setCategories] = useState([])
 
     const [items, setItems] = useState([{
-        name: "", description: "", image: "", category: "", price: 0}, {name: "", description: "", image: "", category: "", price: 0} ])
+        itemId: "", name: "", description: "", image: "", category: "", price: 0}, {name: "", description: "", image: "", category: "", price: 0} ])
 
     //This function returns an array of string with unique category from the input of array of object
     const filterCategory = (data) => {
@@ -48,7 +48,7 @@ export default function RestaurantMenuPage(props)
     const createMenuArray = (data) => {
         const itemArray = []
         data.forEach(item => { itemArray.push({
-            name: item.item_name, description: item.item_description, image: item.item_image, category: item.menu_name, price: item.item_price
+            itemId: item.id, name: item.item_name, description: item.item_description, image: item.item_image, category: item.menu_name, price: item.item_price
         })})
         return itemArray
     }
@@ -57,7 +57,7 @@ export default function RestaurantMenuPage(props)
         let path = 'https://voulutora-backend.herokuapp.com/restaurants/' + params.restaurantName
         axios.get(path)
         .then(response => {
-            setInfo({name: response.data[0].restaurant_name, type: response.data[0].restaurant_type, address: response.data[0].restaurant_address, email: response.data[0].restaurant_operating_hours, email: response.data[0].restaurant_email, image: response.data[0].restaurant_image, price_level: response.data[0].restaurant_price_level})
+            setInfo({name: response.data[0].restaurant_name, type: response.data[0].restaurant_type, address: response.data[0].restaurant_address, operating_hours: response.data[0].restaurant_operating_hours.split(";"), email: response.data[0].restaurant_email, image: response.data[0].restaurant_image, price_level: response.data[0].restaurant_price_level})
             setCategories(filterCategory(response.data))
             setItems(createMenuArray(response.data))
             console.log(response.data)
@@ -96,7 +96,7 @@ export default function RestaurantMenuPage(props)
 
                     <Col xs={6} sm={7} md={8} lg={9} xl={10}>
                         <Row className="g-4">
-                        {categories.map((cat) => <RestaurantItems category={cat} jwt={props.jwt} items={items.filter(item => item.category == cat)}/>)}
+                        {categories.map((cat) => <RestaurantItems category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)}
                         </Row>
                     </Col>
 

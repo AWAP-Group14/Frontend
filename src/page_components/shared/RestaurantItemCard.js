@@ -10,32 +10,39 @@ import { Image } from "react-bootstrap";
 import axios from 'axios'
 import jwt from 'jsonwebtoken';
 import { useParams } from "react-router-dom";
+import { useAlert } from 'react-alert'
 
 
 export default function RestaurantItemCard(props) 
 {
     let isManager = true;
     let params = useParams();
+    const alert = useAlert()
 
 
     // TODO: Add shoppingcart functionality
 
 
     const addToCart = () => {
+        console.log("Button clicked")
+        console.log(props.item.itemId)
+        console.log(props.jwt);
         const decodedToken = jwt.decode(props.jwt)
+        console.log(decodedToken);
         if(decodedToken != undefined) {
-            const path = 'https://voulutora-backend.herokuapp.com/order/shoppingCart/' + decodedToken.userId 
-            axios.post('https://voulutora-backend.herokuapp.com/order/shoppingCart', {
+            const path = 'https://voulutora-backend.herokuapp.com/orders/shoppingCart/' + decodedToken.userId 
+            console.log(decodedToken.userId)
+            axios.post(path, {
                 restaurantName: params.restaurantName,
-                //Not yet available in the item 
                 itemId: props.item.itemId,
                 amount: 1
               })
             .then(response => {
               console.log(response)
+              alert.show(props.item.name + " has been added to your shopping cart")
             })
             .catch(err => {
-                console.log(err)
+                console.log(err.response)
             })
         } else {
             console.log("User need to sign up")
@@ -53,7 +60,7 @@ export default function RestaurantItemCard(props)
                                     <Col className="">
                                         <Card.Title>{props.item.name}</Card.Title>
                                         <Card.Text>{props.item.description}</Card.Text>
-                                        <Card.Text>L,G,V</Card.Text>
+                                        {/* <Card.Text>L,G,V</Card.Text> */}
                                     </Col>
 
                                     <Col>
@@ -63,7 +70,7 @@ export default function RestaurantItemCard(props)
                                             </div>
                                             <div className="">
                                                 <Card.Title>{props.item.price} $</Card.Title>
-                                                <Button onClick={addToCart()}>Add to cart</Button>
+                                                <Button onClick={addToCart}>Add to cart</Button>
                                             </div>
                                         </div>
                                     </Col>
