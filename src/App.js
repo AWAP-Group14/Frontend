@@ -19,6 +19,8 @@ import SignInPage from './pages/customer/SignInPage';
 import Payment from './pages/customer/Payment';
 import CustomerProfile from './pages/customer/CustomerProfile';
 import OrderHistory from './pages/customer/OrderHistory';
+import OrderStatus from './pages/customer/OrderStatus';
+import ShoppingCartPage from './pages/customer/ShoppingCartPage'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LandingPageManager from './pages/manager/LandingPageManager';
@@ -78,6 +80,8 @@ class App extends React.Component {
             <Route path="/login" element={<LogInPage login={this.login}/>} />
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
             <Route path="/manager/signup" element={<RegistrationForm/>}/>
+            <Route path="/manager/login" element={<RestaurantLogIn/>}/>
+            
             <Route path="/manager/login" element={<RestaurantLogIn login={this.login}/>}/>
             <Route path="/restaurant/:restaurantName" element={<RestaurantMenuPage jwt={this.state.token}/>}/>
     </>
@@ -99,7 +103,13 @@ class App extends React.Component {
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants} jwt={this.state.token} logout={this.logout}/>} />
             <Route path="/profile" element={<CustomerProfile jwt={this.state.token} logout={this.logout}/>} />
             <Route path="/history" element={<OrderHistory/>} />
+            <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
+            <Route path="/status" element={<OrderStatus/>} />
+            <Route path="/manager/signup" element={<RegistrationForm/>}/>
+            <Route path="/payment" element={<Payment/>}/>
+            <Route path="/cart" element={<ShoppingCartPage/>}/>
             <Route path="/restaurant/:restaurantName" element={<RestaurantMenuPage/>}/>
+            <Route path="/restaurant/:restaurantName" element={<RestaurantMenuPage jwt={this.state.token} logout={this.logout}/> }/>
       </>
       }
 
