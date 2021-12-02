@@ -69,7 +69,8 @@ class App extends React.Component {
 
 
   render() {
-
+      
+    
     //what routes are in use without login
     let authRoutes = <>
             <Route path="/" element={<LandingPage  restaurants={this.state.restaurants} jwt={this.state.token}/>} />
@@ -82,6 +83,13 @@ class App extends React.Component {
 
     //logged in routes
     if (this.decodeToken() != null) {
+
+      if (this.decodeToken().isManager == undefined) {
+        authRoutes = <>
+            <Route path="/" element={<LandingPage  restaurants={this.state.restaurants} jwt={this.state.token} logout={this.logout}/>} />
+    </>
+        
+      }
 
       if (this.decodeToken().isManager == false) {
         authRoutes = <>
@@ -121,8 +129,8 @@ class App extends React.Component {
         { output }
       </>
     )
+  
   }
-
 }
 
 export default App;
