@@ -3,8 +3,13 @@ import NavigationBar from "../../page_components/customer/NavigationBar";
 import Footer from "../../page_components/customer/Footer";
 import styles from './css_modules/RegistrationForm.module.css';
 import axios from 'axios';
+import Select from "react-dropdown-select";
 
 export default function RegistrationForm(props) {
+
+  const restaurantTypes = [
+    {label: "Buffet", value: "Buffet"}
+    ]
 
   const [SignupProcessState, setProcessState] = useState("idle");
 
@@ -12,10 +17,10 @@ export default function RegistrationForm(props) {
       restaurantName: "",
       address: "",
       openingHour: "",
-      image:"",
+      image: null,
       email: "",
       password: "",
-      restaurantType: "",
+      restaurantType: null,
       priceRange: null
   });
 
@@ -25,6 +30,7 @@ export default function RegistrationForm(props) {
       [event.target.name]: event.target.value
     }));
   };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -150,23 +156,27 @@ export default function RegistrationForm(props) {
             onChange={handleInputChange}
           />
         </div>
-        <div>
-          <label>Restaurant type</label>
-          <input
-            type="text"
-            name="restaurantType"
-            value={state.restaurantType}
-            onChange={handleInputChange}
-          />
-        </div>
+        
         <div>
           <label>Price level</label>
-          <input min={1} max={4} value={1}
-            type="number"
-            name="priceRange"
-            value={state.priceRange}
-            onChange={handleInputChange}
-          />
+          <select name="priceRange" onChange={handleInputChange} value={state.priceRange}>
+            <option value={null} disabled>Select restaurant price level</option>
+            <option value={1}>€</option>
+            <option value={2}>€€</option>
+            <option value={3}>€€€</option>
+            <option value={4}>€€€€</option>
+          </select>
+        </div>
+        <div>
+          <label>Restaurant type</label>
+          <select name="restaurantType" onChange={handleInputChange} value={state.restaurantType}>
+            <option value={null} disabled>Select restaurant type</option>
+            <option value="buffet">Buffet</option>
+            <option value="Fast food">Fast food</option>
+            <option value="Fast casual">Fast casual</option>
+            <option value="Casual dining">Casual dining</option>
+            <option value="Fine dining">Fine dining</option>
+          </select>
         </div>
         <label></label>
         <button type="submit">Create account</button>

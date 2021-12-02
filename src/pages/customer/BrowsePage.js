@@ -4,6 +4,7 @@ import NavigationBar from "../../page_components/customer/NavigationBar";
 import RestaurantCard from '../../page_components/customer/RestaurantCard';
 import Footer from '../../page_components/customer/Footer';
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function BrowsePage(props) 
 {
@@ -31,7 +32,8 @@ export default function BrowsePage(props)
                  else if (val.restaurant_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                      return val
                  }
-             }).map(restaurant => <RestaurantCard key={restaurant.restaurant_name} {...restaurant} /> )
+             }).map(restaurant => 
+             <Link to={"/restaurant/"+restaurant.restaurant_name} style={{textDecoration: 'none'}}><RestaurantCard key={restaurant.restaurant_name} {...restaurant} /></Link> )
              }
             </div>
             <Footer jwt={props.jwt}/>

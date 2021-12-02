@@ -70,7 +70,7 @@ export default function RestaurantMenuPage(props)
 
     return(        
         <div className={styles.root}>
-            <NavigationBar/>
+            <NavigationBar jwt={props.jwt} logout={props.logout}/>
 
             <div className={styles.restaurantHeader}>
                 <div className={styles.restaurantBannerFader}>
