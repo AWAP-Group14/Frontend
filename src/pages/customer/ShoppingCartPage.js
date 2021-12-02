@@ -15,8 +15,7 @@ export default function ShoppingCartPage(props)
                     <h1>Your order</h1>
                 </div>
                 <div className={styles.bodyCol}>
-                    <div > <RestaurantItemCard /> </div>
-                    <div > <RestaurantItemCard /> </div>
+                    <div > resaturant item card </div>
                     <Form>
                         <Form.Group>
                           <Form.Label>Comment to restaurant:</Form.Label>
