@@ -1,8 +1,20 @@
 .root{
     background-color: #041f42;
     padding-top: 1px;
-    padding-bottom: 10px;
+    padding-bottom: 30px;
 }
+.sectionHeader{
+    display: flex;
+    align-items:center;
+}
+
+.headerText{
+    color: white;
+}
+
+
+//Legacy CSS below
+
 
 .headerContainer{
     padding-top: 20px;

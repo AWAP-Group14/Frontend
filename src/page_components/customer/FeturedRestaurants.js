@@ -1,28 +1,48 @@
 import React from "react";
-import styles from './css_modules/FeaturedRestaurants.module.css';
+import styles from './css_modules/FeaturedRestaurants.module.scss';
 import RestaurantCard from "./RestaurantCard";
 import { Link } from "react-router-dom";
+
+import { Container,Row,Col,Button } from "react-bootstrap";
 
 export default function FeaturedRestaurants(props)
 {
 
-    // TODO: Feed required props to restaurant cards
-
     return (
     <div className={styles.root}>
-        <div className={styles.headerContainer}>
+        <Container className={styles.sectionHeader}>
+                <div className="d-flex justify-content-start my-2">
+                    <h1 className={styles.headerText}>Featured Restaurants</h1>
+                </div>
+                <div className="d-flex justify-content-end ms-auto">
+                    <Link to="/browse" style={{textDecoration: 'inherit',color:'inherit'}}>
+                        <Button>Browse all</Button>
+                    </Link>
+                </div>
+        </Container>
+        <Container>
+            <Row className="g-3">
+                {props.restaurants.slice(0,4).map(restaurant => 
+                <RestaurantCard 
+                key={restaurant.restaurant_name} 
+                {...restaurant} 
+                /> )}
+            </Row>
+
+        </Container>        
+    </div>
+    )
+}
+
+/*<div className={styles.headerContainer}>
             <span className={styles.header}>Featured Restaurants</span>
             <Link to="/browse"><button className={styles.seeAllButton}>See all</button></Link>
         </div>
         <div className={styles.cardContainer}>
             {props.restaurants.slice(0,4).map(restaurant => <RestaurantCard key={restaurant.restaurant_name} {...restaurant} /> )}
-            {/* <RestaurantCard/>
+            { <RestaurantCard/>
             <RestaurantCard/>
             <RestaurantCard/>
-            <RestaurantCard/> */}
+            <RestaurantCard/>}
             
-        </div>
-        
-    </div>
-    )
-}
+        </div>*/
