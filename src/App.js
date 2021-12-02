@@ -37,7 +37,8 @@ class App extends React.Component {
     this.state = {
       restaurants: [],
       productSearchString: "",
-      token: jwtFromLocalStorage
+      token: jwtFromLocalStorage,
+      totalPrice: 0
     }
   }
 
@@ -61,6 +62,10 @@ class App extends React.Component {
     this.state.token = null
     window.localStorage.removeItem('appAuthData')
     window.location.replace("/")
+  }
+
+  setPrice = (price) => {
+    this.state.totalPrice = price
   }
 
   decodeToken = () => {
@@ -101,12 +106,11 @@ class App extends React.Component {
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants} jwt={this.state.token} logout={this.logout}/>} />
             <Route path="/profile" element={<CustomerProfile jwt={this.state.token} logout={this.logout}/>} />
             <Route path="/history" element={<OrderHistory/>} />
-            <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
             <Route path="/status" element={<OrderStatus/>} />
             <Route path="/manager/signup" element={<RegistrationForm/>}/>
-            <Route path="/payment" element={<Payment/>}/>
-            <Route path="/cart" element={<ShoppingCartPage/>}/>
-            <Route path="/restaurant/:restaurantName" element={<RestaurantMenuPage jwt={this.state.token} logout={this.logout}/> }/>
+            <Route path="/payment" element={<Payment price={this.state.totalPrice}/>}/>
+            <Route path="/cart" element={<ShoppingCartPage jwt={this.state.token} logout={this.logout} setPrice={this.setPrice}/>}/>
+            <Route path="/restaurant/:restaurantName" element={<RestaurantMenuPage jwt={this.state.token} logout={this.logout}/>}/>
       </>
       }
 

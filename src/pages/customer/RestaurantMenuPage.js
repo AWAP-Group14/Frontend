@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect,  useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './css_modules/RestaurantMenuPage.module.scss'
 
 import NavigationBar from "../../page_components/customer/NavigationBar";
