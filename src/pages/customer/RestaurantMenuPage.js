@@ -25,7 +25,7 @@ export default function RestaurantMenuPage(props)
     const [info, setInfo] = useState({
         name: "",
         address: "",
-        operating_hours: "",
+        operating_hours: [],
         image: "",
         email: "",
         type: "", 
@@ -57,7 +57,7 @@ export default function RestaurantMenuPage(props)
         let path = 'https://voulutora-backend.herokuapp.com/restaurants/' + params.restaurantName
         axios.get(path)
         .then(response => {
-            setInfo({name: response.data[0].restaurant_name, type: response.data[0].restaurant_type, address: response.data[0].restaurant_address, email: response.data[0].restaurant_operating_hours, email: response.data[0].restaurant_email, image: response.data[0].restaurant_image, price_level: response.data[0].restaurant_price_level})
+            setInfo({name: response.data[0].restaurant_name, type: response.data[0].restaurant_type, address: response.data[0].restaurant_address, operating_hours: response.data[0].restaurant_operating_hours.split(";"), email: response.data[0].restaurant_email, image: response.data[0].restaurant_image, price_level: response.data[0].restaurant_price_level})
             setCategories(filterCategory(response.data))
             setItems(createMenuArray(response.data))
             console.log(response.data)
