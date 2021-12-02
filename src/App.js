@@ -79,6 +79,7 @@ class App extends React.Component {
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
             <Route path="/manager/signup" element={<RegistrationForm/>}/>
             <Route path="/manager/login" element={<RestaurantLogIn login={this.login}/>}/>
+            <Route path="/restaurant/:restaurantName" element={<RestaurantMenuPage jwt={this.state.token}/>}/>
     </>
 
     //logged in routes
@@ -98,7 +99,7 @@ class App extends React.Component {
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants} jwt={this.state.token} logout={this.logout}/>} />
             <Route path="/profile" element={<CustomerProfile jwt={this.state.token} logout={this.logout}/>} />
             <Route path="/history" element={<OrderHistory/>} />
-            <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
+            <Route path="/restaurant/:restaurantName" element={<RestaurantMenuPage/>}/>
       </>
       }
 
