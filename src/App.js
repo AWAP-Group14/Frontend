@@ -19,6 +19,7 @@ import Payment from './pages/customer/Payment';
 import CustomerProfile from './pages/customer/CustomerProfile';
 import OrderHistory from './pages/customer/OrderHistory';
 import OrderStatus from './pages/customer/OrderStatus';
+import ShoppingCartPage from './pages/customer/ShoppingCartPage'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -64,6 +65,7 @@ class App extends React.Component {
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants}/>} />
             <Route path="/manager/signup" element={<RegistrationForm/>}/>
             <Route path="/manager/login" element={<RestaurantLogIn/>}/>
+            
     </>
 
     //logged in routes
@@ -95,6 +97,8 @@ class App extends React.Component {
             <Route path="/restaurant/test" element={<RestaurantMenuPage/>}/>
             <Route path="/status" element={<OrderStatus/>} />
             <Route path="/manager/signup" element={<RegistrationForm/>}/>
+            <Route path="/payment" element={<Payment/>}/>
+            <Route path="/cart" element={<ShoppingCartPage/>}/>
       </>
     }
     

@@ -19,7 +19,7 @@ export default function RestaurantItemCard(props)
     // TODO: Add shoppingcart functionality
     return(     
 
-        <Col sm={12} lg={6} xl={4}>
+        <Col >
             <Card classname="px-0">
                 <Card.Img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1920px-Good_Food_Display_-_NCI_Visuals_Online.jpg" />
                     <Card.Body className="g-0">
