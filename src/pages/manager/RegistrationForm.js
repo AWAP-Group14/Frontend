@@ -42,6 +42,9 @@ export default function RegistrationForm(props) {
     .then(response => {
       console.log(response);
       setProcessState("signupSuccess")
+      setTimeout(() => {
+        window.location.replace("/manager/login")
+      },1500)
     })
     .catch(err => {
       if (err.response.status == 409) {
@@ -141,7 +144,7 @@ export default function RegistrationForm(props) {
         <div>
           <label>Password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             value={state.password}
             onChange={handleInputChange}

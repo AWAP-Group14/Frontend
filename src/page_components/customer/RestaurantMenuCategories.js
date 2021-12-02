@@ -6,10 +6,7 @@ export default function RestaurantMenuCategories(props)
 {
     return(        
         <div className="">
-            <h2>Categories</h2>
-            <p>Category 1</p>
-            <p>Category 2</p>
-            <p>Category 3</p>
+            <p>{props.category}</p>
         </div>
     )
   }

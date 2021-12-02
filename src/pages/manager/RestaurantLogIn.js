@@ -31,30 +31,35 @@ export default function RestaurantLogIn(props) {
             }
           })
           .then(response => {
-            console.log(response.status)
             setProcessState("loginSuccess")
+            console.log(response);
+            const receivedJwt = response.data.token;
+            props.login(receivedJwt);
+            setTimeout(() => {
+            window.location.replace("/")
+            },1500)
           })
           .catch(err => {
-            if (err.response.status == 401) {
+           if (err.response.status == 401) {
               console.log(err.response.status)
             setProcessState("loginFailed")
-            }
-            
+            } 
+            console.log(err);
           });
         };
 
-        let signupControls = null;
+        let loginControls = null;
   switch (loginProcessState) {
     case "idle":
-      signupControls = null;
+      loginControls = null;
       break;
     
     case "loginSuccess":
-      signupControls = <span style={{color: "green"}}>Login successfull</span>
+      loginControls = <span style={{color: "green"}}>Login successfull Redirecting...</span>
       break;
     
     case "loginFailed":
-      signupControls = <span style={{color: "red"}}>Wrong email or password</span>
+      loginControls = <span style={{color: "red"}}>Wrong email or password</span>
       break;
   }
 
@@ -85,7 +90,7 @@ export default function RestaurantLogIn(props) {
           <button type="submit">Login</button>
         </div>
         
-        {signupControls}
+        {loginControls}
       </form>
       <div className={styles.SuggestionContainer}>
           <p>Are you a new restaurant?</p>
