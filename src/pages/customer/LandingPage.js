@@ -15,7 +15,7 @@ const LandingPage = props => {
             <NavigationBar jwt={props.jwt} logout={props.logout}/>
             <AdDisplay/>
             <FeaturedRestaurants  restaurants={props.restaurants}/>
-            <Footer/>
+            <Footer jwt={props.jwt}/>
             
 
         </div>

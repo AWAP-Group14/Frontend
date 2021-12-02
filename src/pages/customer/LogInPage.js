@@ -47,7 +47,7 @@ export default function LogInPage(props) {
         console.log(err.response.status)
       setProcessState("loginFailed")
       }
-      
+      console.log(err);
     });
     
   };
