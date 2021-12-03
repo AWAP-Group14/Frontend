@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import jwt from 'jsonwebtoken';
-import React from "react";
-import { Card, Button, Check } from "react-bootstrap";
+import { Card, Button, Check, Col } from "react-bootstrap";
 
 export default function HistoryCard (props)
 {
@@ -33,28 +32,28 @@ export default function HistoryCard (props)
     }
 
     return (
-        <div>
-            <img></img>
-            <h1>!{props.RestaurantName}</h1>
-            <p>!{history}</p>
-            <p>!{props.DishName}</p>
-            <p>!{props.TotalPrice}</p>
-            <p>!{props.deliveryStatus}</p>
-            <p>!{props.date}</p>
+        <Col xs={12}>
             
-            <Card style={{ width: '500px' }}>
+            <Card className="mx-auto" style={{ width: '500px' }}>
                 <Card.Body>
                      <Card.Title>RestaurantName{props.RestaurantName}</Card.Title>
                      <Card.Text>
                          <p>orderId{props.orderId}</p>
-                         <p>DishName{props.DishName}</p>
+                         <div>
+                            <p>Ordered items:</p>
+                            <div className="ms-3">
+                                <p>- MAPPED ITEM</p>
+                                <p>- MAPPED ITEM</p>
+                                <p>- MAPPED ITEM</p>
+                            </div>
+                        </div>
                          <p>TotalPrice{props.TotalPrice} €</p>
                          <p>deliveryStatus{props.deliveryStatus}</p>
                          <p>date{props.date}</p>
                      </Card.Text>
                  </Card.Body>
             </Card>
-        </div>
+        </Col>
     )
 
 }
