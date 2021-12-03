@@ -56,11 +56,11 @@ export default function Payment(props)
                 delivery_type: deliveryType,
                 delivery_address: state.address,
                 order_comment: location.state.comment,
+                restaurant_name: location.state.restaurantName
 
             })
             .then(response => {
-                console.log("This should navigate")
-                navigate("/")
+                navigate("/status", {state: {orderId: response.data[0].id}})
             })
             .catch(err => {
                 console.log(err);
@@ -81,8 +81,6 @@ export default function Payment(props)
             axios.get(path)
             .then(response => {
                 setRestaurantAddress(response.data[0].restaurant_address)
-                console.log(location.state.comment)
-                console.log(location.state.restaurantName)
             })
             .catch(err => {
                 console.log(err);
@@ -137,7 +135,7 @@ export default function Payment(props)
                         <Form.Control type="number" placeholder="XXX" />
                     </Form.Group>
                     <Button variant="primary" onClick={submitPayment}>
-                         Change address
+                         Confirm payment
                      </Button>
                 </Form>
             </div>

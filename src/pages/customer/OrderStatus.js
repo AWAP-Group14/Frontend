@@ -11,8 +11,7 @@ import {ListGroup} from 'react-bootstrap';
 
 export default function OrderStatus(props) 
 {
-    
-
+   
 
     return(
         <div >
