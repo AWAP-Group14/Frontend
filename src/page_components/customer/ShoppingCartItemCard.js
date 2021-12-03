@@ -42,7 +42,6 @@ export default function ShoppingCartItemCard(props)
 
     useEffect( () => {
         setAmount(props.item.amount)
-        console.log("ID" +props.item.id);
 
     }, [props]);
 
@@ -51,34 +50,28 @@ export default function ShoppingCartItemCard(props)
 
     return(     
 
-        <Col sm={12} lg={6} xl={4}>
-            <Card classname="px-0">
+        <Col xs={12} md={6}>
+            <Card classname="px-0" >
                 <Card.Img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1920px-Good_Food_Display_-_NCI_Visuals_Online.jpg" />
-                    <Card.Body className="g-0">
+                    <Card.Body className="pt-0">
                             
-                                <Row>
-                                    <Col className="">
-                                        <Card.Title>{props.item.item_name}</Card.Title>
-                                        <Card.Text>{props.item.item_description}</Card.Text>
-                                        {/* <Card.Text>L,G,V</Card.Text> */}
-                                    </Col>
-
-                                    <Col>
-                                        <div className={styles.alignContentRight}>
-                                            <div className="">
-                                                <Button variant="danger" onClick= {deleteItem}>Delete</Button>
-                                            </div>
-                                            <div className="">
-                                                <Card.Title>{props.item.item_price} $</Card.Title>
-                                                <Button onClick={plus}>+</Button>
-                                                <Card.Text>{amount}</Card.Text>
-                                                <Button onClick= {minus}>-</Button>
-                                            </div>
-                                        </div>
-                                    </Col>
-                                </Row>
-                           
-
+                        <div className="d-flex">
+                            <div>
+                                <Card.Title>{props.item.item_name}</Card.Title>
+                                <Card.Text>{props.item.item_description}</Card.Text>
+                            </div>
+                            <Button className="ms-auto mt-3" style={{height:'40px'}} variant="danger" onClick= {deleteItem}>Delete</Button>
+                        </div>                       
+                        {/* <Card.Text>L,G,V</Card.Text> */}
+  
+                                <div className="d-flex ">
+                                    <Card.Title className="">{props.item.item_price} €</Card.Title>
+                                    <div className="ms-auto d-flex">
+                                        <Button className="me-1" onClick= {minus}>-</Button>
+                                        <Card.Text className="my-auto me-1">{amount}</Card.Text>
+                                        <Button className="" onClick={plus}>+</Button>
+                                    </div>
+                                </div>
                     </Card.Body>
 
             </Card>

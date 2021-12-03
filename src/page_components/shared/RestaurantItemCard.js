@@ -20,8 +20,7 @@ export default function RestaurantItemCard(props)
     const alert = useAlert()
 
 
-    // TODO: Add shoppingcart functionality
-
+    // TODO: Add shoppingcart functionality 
 
     const addToCart = () => {
         console.log("Button clicked")
