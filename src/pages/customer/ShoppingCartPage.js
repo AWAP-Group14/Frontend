@@ -134,7 +134,7 @@ export default function ShoppingCartPage(props)
                         <h1>Delivery: Free</h1>
                     </div>
                 </div>
-                <Footer />
+                <Footer jwt={props.jwt}/>
             </div>
         )
     }

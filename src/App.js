@@ -108,7 +108,7 @@ class App extends React.Component {
             <Route path="/" element={<LandingPage  restaurants={this.state.restaurants} jwt={this.state.token} logout={this.logout}/>} />
             <Route path="/browse" element={<BrowsePage restaurants={this.state.restaurants} jwt={this.state.token} logout={this.logout}/>} />
             <Route path="/profile" element={<CustomerProfile jwt={this.state.token} logout={this.logout}/>} />
-            <Route path="/history" element={<OrderHistory/>} />
+            <Route path="/history" element={<OrderHistory jwt={this.state.token} logout={this.logout}/>} />
             <Route path="/status" element={<OrderStatus/>} />
             <Route path="/manager/signup" element={<RegistrationForm/>}/>
             <Route path="/payment" element={<Payment jwt={this.state.token}/>}/>

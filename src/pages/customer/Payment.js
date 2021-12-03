@@ -28,7 +28,7 @@ export default function Payment(props)
     
     return(
         <div >
-            <NavigationBar/>
+            <NavigationBar jwt={props.jwt}/>
             <div className={styles.TotalPrice}>
                     Total: {location.state.price} €
                 </div>
