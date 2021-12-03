@@ -20,6 +20,7 @@ export default function Payment(props)
     });
     const [restaurantAddress, setRestaurantAddress] = useState("");
     const [deliveryType, setDeliveryType] = useState(1);
+    var restaurantInfo
 
     function handleClick(props){
         if(restaurantAddress != undefined) {
@@ -60,7 +61,7 @@ export default function Payment(props)
 
             })
             .then(response => {
-                navigate("/status", {state: {orderId: response.data[0].id}})
+                navigate("/status", {state: {orderId: response.data[0].id, restaurantInfo: restaurantInfo}})
             })
             .catch(err => {
                 console.log(err);
@@ -77,10 +78,11 @@ export default function Payment(props)
         const decodedToken = jwt.decode(props.jwt)
         if(decodedToken != undefined) {
             setState({address: decodedToken.userInfo.customer_address, text: "Check your delivery adress:"})
-            let path = 'https://voulutora-backend.herokuapp.com/restaurants/' + location.state.restaurantName +'/address'
+            let path = 'https://voulutora-backend.herokuapp.com/restaurants/' + location.state.restaurantName +'/information'
             axios.get(path)
             .then(response => {
                 setRestaurantAddress(response.data[0].restaurant_address)
+                restaurantInfo = response.data[0]
             })
             .catch(err => {
                 console.log(err);
