@@ -19,7 +19,6 @@ export default function CustomerProfile(props)
                <p>adress {decodedToken.userInfo.customer_address}</p>
                <p>email {decodedToken.userInfo.customer_email}</p>
                <p>phone {decodedToken.userInfo.customer_phone_number}</p>
-               <button>Edit</button>
            </div>
            <button>My order history</button>
            <div>Active orders

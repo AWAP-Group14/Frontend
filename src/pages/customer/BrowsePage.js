@@ -4,8 +4,8 @@ import NavigationBar from "../../page_components/customer/NavigationBar";
 import RestaurantCard from '../../page_components/customer/RestaurantCard';
 import Footer from '../../page_components/customer/Footer';
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import PageFiller from "../../page_components/shared/PageFiller";
-
 import { Container, Row, Col, FormControl } from "react-bootstrap";
 
 
@@ -20,6 +20,7 @@ export default function BrowsePage(props)
     return(
         <div>
             <NavigationBar jwt={props.jwt} logout={props.logout}/>
+
             <div className={styles.filterSection}>
             <Container>
                 <h1 className={styles.headerText}>Browse all of our restaurants!</h1>

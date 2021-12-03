@@ -4,40 +4,44 @@ import Footer from '../../page_components/customer/Footer';
 import axios from 'axios';
 import { Form, Button,} from "react-bootstrap";
 import styles from "./css_modules/Payment.module.scss"
+import {Link, useLocation} from "react-router-dom";
+import jwt from 'jsonwebtoken';
 
 export default function Payment(props) 
 {
     
-    
+    let location = useLocation()
+    const [address, setAddress] = useState("")
+
     function handleClick(props){
-     console.log('restaurant adress');
+        setAddress("Restaurant address")
     }
 
     useEffect(() => {
-        axios.get('https://voulutora-backend.herokuapp.com/restaurants')
-        .then(response => {
-            console.log(response.data)
-            props.TotalPrice = response.data.TotalPrice
-        })
-        .catch(err => console.log(err));
+        const decodedToken = jwt.decode(props.jwt)
+        if(decodedToken != undefined) {
+            setAddress(decodedToken.userInfo.customer_address)
+        } else {
+            console.log("User need to log in")
+        }
     },[])
     
     return(
         <div >
             <NavigationBar/>
             <div className={styles.TotalPrice}>
-                    Total: {props.TotalPrice} €
+                    Total: {location.state.price} €
                 </div>
             <div className={styles.container}>
                 <div className={styles.Delivery}>
                 
-                <p>Delivery time: {props.deliveryTime}</p>
+                <p>Delivery time: 30 minutes</p>
                 <Button onClick={() => handleClick()} >
                     I will pick order myself
                 </Button>
                 <p>{props.RestaurantInfoBox}</p>
                 
-                <p>Check your delivery adress: {props.deliveryAddress}</p>
+                <p>Check your delivery adress: {address}</p>
                 <Button>Confirm</Button>
                 <Form.Group>
                         <Form.Label>Other adress</Form.Label>
