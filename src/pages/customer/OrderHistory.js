@@ -3,11 +3,15 @@ import NavigationBar from "../../page_components/customer/NavigationBar";
 import Footer from '../../page_components/customer/Footer';
 import HistoryCard from '../../page_components/customer/HistoryCard';
 import styles from './css_modules/OrderHistory.module.scss'
+import jwt from 'jsonwebtoken';
 
 import{ Container, Row } from "react-bootstrap";
 
 export default function OrderHistory(props) 
 {
+
+    const decodedToken = jwt.decode(props.jwt)
+    console.log("from "+decodedToken.userInfo.customer_first_name)
 
     console.log(props.jwt+" from orderhistory");
     return(
@@ -16,7 +20,7 @@ export default function OrderHistory(props)
 
             <div className={styles.orderHistoryHeader}> 
                 <div className="mx-auto">
-                    <h1>NAME's order history</h1>
+                    <h1>{decodedToken.userInfo.customer_first_name} {decodedToken.userInfo.customer_last_name} order history</h1>
                 </div>
             </div>
 
