@@ -13,9 +13,7 @@ import axios from 'axios';
 
 export default function OrderStatus(props) 
 {
-<<<<<<< HEAD
    
-=======
     
 let params = useParams();
 const [info, setInfo] = useState({
@@ -39,7 +37,6 @@ useEffect( () => {
 }, []);
 
 
->>>>>>> 8aa93b9cbac42a710c174ba9b6ee0899ac031833
 
     return(
         <div >
