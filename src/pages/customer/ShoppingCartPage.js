@@ -18,6 +18,7 @@ export default function ShoppingCartPage(props)
         {id: "", item_name: "", item_image: "", item_description: "", item_price: 0, amount: 0, menu_id: "" },{}
     ])
     const [isEmpty, setIsEmpty] = useState(true)
+    const [comment, setComment] = useState("")
     var itemArray = []
     const createItemArray = (data) => {
         data.forEach(item => { itemArray.push({
@@ -48,13 +49,36 @@ export default function ShoppingCartPage(props)
 
     const deleteItem = (itemToDelete) => {
         itemArray = cartItems
- 
         var index = itemArray.findIndex(item => item.id === itemToDelete)
         itemArray[index].amount += 0
         itemArray.splice(index, 1)
         console.log(itemArray)
         setCartItems(itemArray)
+
+        const decodedToken = jwt.decode(props.jwt)
+        if(decodedToken != undefined) {
+            let path = 'https://voulutora-backend.herokuapp.com/orders/shoppingCart/' + decodedToken.userId
+            axios.put(path, {
+                items: cartItems,
+                totalPrice: price
+            })
+            .then(response => {
+                console.log(price);
+                
+            })
+            .catch(err => {
+                console.log(cartItems)
+                console.log(err);
+            });
+        } else {
+            console.log("user need to log in")
+        }
     }
+
+    
+    const handleCommentChange = (event) => {
+        setComment(event.target.value)
+      };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -67,7 +91,7 @@ export default function ShoppingCartPage(props)
             })
             .then(response => {
                 console.log(price);
-                navigate( "/payment", {state: {price: price}})
+                navigate( "/payment", {state: {price: price, restaurantName: restaurantName, comment: comment }})
             })
             .catch(err => {
                 console.log(cartItems)
@@ -124,7 +148,7 @@ export default function ShoppingCartPage(props)
                         <Form onSubmit={handleSubmit}>
                             <Form.Group>
                             <Form.Label>Comment to restaurant:</Form.Label>
-                            <Form.Control type="text" placeholder="allergies, spice level, etc" />
+                            <Form.Control type="text" placeholder="allergies, spice level, etc" onChange={handleCommentChange} />
                             </Form.Group>
                             <Button type="submit">Send</Button>
                         </Form>
