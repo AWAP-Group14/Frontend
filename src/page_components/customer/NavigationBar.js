@@ -22,9 +22,9 @@ const NavigationBar = props => {
             <Navbar className={styles.navigationBar}>
                 <Container fluid>
                     
-                <Link to="/" style={{textDecoration: 'none'}}>
-                    <Navbar.Brand >Voulutora</Navbar.Brand>
-                </Link>
+                    <Link to="/" style={{textDecoration: 'none'}}>
+                        <Navbar.Brand >Voulutora</Navbar.Brand>
+                    </Link>
     
                     <Form className="d-flex ms-4 me-auto">
                         <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search"/>
@@ -38,7 +38,7 @@ const NavigationBar = props => {
                         <Link to="/profile" style={{textDecoration: 'none'}}>
                             <Button className="me-2" variant="secondary">profile</Button>
                         </Link>
-                            <Button variant="primary">Shopping Cart</Button>
+                            <Link to="/cart"><Button variant="primary">Shopping Cart</Button></Link>
                             <Button onClick={props.logout} variant="primary">Sign Out</Button>
                     </div>
     

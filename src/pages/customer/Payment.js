@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import NavigationBar from "../../page_components/customer/NavigationBar";
 import Footer from '../../page_components/customer/Footer';
 import axios from 'axios';
-import { Form, Button } from "react-bootstrap";
+import { Form, Button,} from "react-bootstrap";
 import styles from "./css_modules/Payment.module.scss"
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import jwt from 'jsonwebtoken';
@@ -92,7 +92,7 @@ export default function Payment(props)
     
     return(
         <div >
-            <NavigationBar/>
+            <NavigationBar jwt={props.jwt}/>
             <div className={styles.TotalPrice}>
                     Total: {location.state.price} €
                 </div>
@@ -103,6 +103,7 @@ export default function Payment(props)
                 <Button onClick={() => handleClick()} >
                     I will pick order myself
                 </Button>
+                <p>{props.RestaurantInfoBox}</p>
                 
                 <p>{state.text}</p>
                 <p>{state.address}</p>

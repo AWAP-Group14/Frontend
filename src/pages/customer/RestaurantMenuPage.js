@@ -103,7 +103,7 @@ export default function RestaurantMenuPage(props)
                 </Row>
 
             </Container>
-            <Footer/>
+            <Footer jwt={props.jwt}/>
         </div>
     )
   }
