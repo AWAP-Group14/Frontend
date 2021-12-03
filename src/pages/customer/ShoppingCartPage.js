@@ -143,7 +143,6 @@ export default function ShoppingCartPage(props)
             <div >
                 <NavigationBar jwt={props.jwt} logout={props.logout}/>
 
-
                     <Container fluid className="mt-3 mb-3">
                         <Row>
                             <Col xs={12} xl={3}>
