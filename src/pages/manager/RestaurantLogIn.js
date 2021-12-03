@@ -40,11 +40,15 @@ export default function RestaurantLogIn(props) {
             },1500)
           })
           .catch(err => {
-           if (err.response.status == 401) {
+          if (err) {
+
+            console.log(err);
+
+            if (err.response.status == 401) {
               console.log(err.response.status)
             setProcessState("loginFailed")
             } 
-            console.log(err);
+          }
           });
         };
 

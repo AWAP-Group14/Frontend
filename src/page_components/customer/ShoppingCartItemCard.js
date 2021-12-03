@@ -1,5 +1,5 @@
-import React from "react";
-import styles from './css_modules/RestaurantItemCard.module.scss'
+import React, {useEffect, useState} from 'react';
+import styles from './css_modules/ShoppingCartItemCard.module.scss'
 
 import { Card } from "react-bootstrap";
 import { Container } from "react-bootstrap";
@@ -13,41 +13,41 @@ import { useParams } from "react-router-dom";
 import { useAlert } from 'react-alert'
 
 
-export default function RestaurantItemCard(props) 
+export default function ShoppingCartItemCard(props) 
 {
     let isManager = true;
     let params = useParams();
     const alert = useAlert()
+    var [amount, setAmount] = useState(0)
+
+    const plus = () => {
+        //setAmount(amount + 1)
+        props.updateAmount(props.item.id, true)
+        props.updatePrice(props.item.item_price, true)
+    }
+
+    const minus = () => {
+        if(amount > 1) {
+            //setAmount(amount -1)
+            props.updateAmount(props.item.id,false)
+            props.updatePrice(props.item.item_price, false)
+        }
+        
+    }
+
+    const deleteItem = () => {
+        props.deleteItem(props.item.id)
+        props.updatePrice((props.item.item_price * props.item.amount), false)
+    }
+
+    useEffect( () => {
+        setAmount(props.item.amount)
+        console.log("ID" +props.item.id);
+
+    }, [props]);
 
 
     // TODO: Add shoppingcart functionality
-
-
-    const addToCart = () => {
-        console.log("Button clicked")
-        console.log(props.item.itemId)
-        console.log(props.jwt);
-        const decodedToken = jwt.decode(props.jwt)
-        console.log(decodedToken);
-        if(decodedToken != undefined) {
-            const path = 'https://voulutora-backend.herokuapp.com/orders/shoppingCart/' + decodedToken.userId 
-            console.log(decodedToken.userId)
-            axios.post(path, {
-                restaurantName: params.restaurantName,
-                itemId: props.item.itemId,
-                amount: 1
-              })
-            .then(response => {
-              console.log(response)
-              alert.show(props.item.name + " has been added to your shopping cart")
-            })
-            .catch(err => {
-                console.log(err.response)
-            })
-        } else {
-            console.log("User need to sign up")
-        }
-    }
 
     return(     
 
@@ -58,19 +58,21 @@ export default function RestaurantItemCard(props)
                             
                                 <Row>
                                     <Col className="">
-                                        <Card.Title>{props.item.name}</Card.Title>
-                                        <Card.Text>{props.item.description}</Card.Text>
+                                        <Card.Title>{props.item.item_name}</Card.Title>
+                                        <Card.Text>{props.item.item_description}</Card.Text>
                                         {/* <Card.Text>L,G,V</Card.Text> */}
                                     </Col>
 
                                     <Col>
                                         <div className={styles.alignContentRight}>
                                             <div className="">
-                                                {/* <Button variant="danger">Delete</Button> */}
+                                                <Button variant="danger" onClick= {deleteItem}>Delete</Button>
                                             </div>
                                             <div className="">
-                                                <Card.Title>{props.item.price} $</Card.Title>
-                                                <Button onClick={addToCart}>Add to cart</Button>
+                                                <Card.Title>{props.item.item_price} $</Card.Title>
+                                                <Button onClick={plus}>+</Button>
+                                                <Card.Text>{amount}</Card.Text>
+                                                <Button onClick= {minus}>-</Button>
                                             </div>
                                         </div>
                                     </Col>
