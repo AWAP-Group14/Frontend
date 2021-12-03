@@ -26,7 +26,9 @@ export default function RestaurantItemCard(props)
     const addToCart = () => {
         console.log("Button clicked")
         console.log(props.item.itemId)
+        console.log(props.jwt);
         const decodedToken = jwt.decode(props.jwt)
+        console.log(decodedToken);
         if(decodedToken != undefined) {
             const path = 'https://voulutora-backend.herokuapp.com/orders/shoppingCart/' + decodedToken.userId 
             console.log(decodedToken.userId)
