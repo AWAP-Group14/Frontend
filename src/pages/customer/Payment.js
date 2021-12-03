@@ -9,6 +9,7 @@ import jwt from 'jsonwebtoken';
 
 export default function Payment(props) 
 {
+
     //Delivery type: 1=delivery, 2=pickup
     let location = useLocation()
     let navigate = useNavigate()
@@ -69,11 +70,11 @@ export default function Payment(props)
             console.log(decodedToken)
         }
         
+
     }
 
     useEffect(() => {
         const decodedToken = jwt.decode(props.jwt)
-        console.log(props.jwt)
         if(decodedToken != undefined) {
             setState({address: decodedToken.userInfo.customer_address, text: "Check your delivery adress:"})
             let path = 'https://voulutora-backend.herokuapp.com/restaurants/' + location.state.restaurantName +'/address'
@@ -107,6 +108,7 @@ export default function Payment(props)
                 
                 <p>{state.text}</p>
                 <p>{state.address}</p>
+
                 <Form.Group>
                         <Form.Label>Deliver your order to another address</Form.Label>
                         <Form.Control type="text" placeholder="Other adress" name = "newAddress" value= {state.newAddress} onChange={handleInputChange} />
