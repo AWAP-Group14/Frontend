@@ -178,8 +178,36 @@ export default function ShoppingCartPage(props)
                         </Row>
                     </Container>
 
+                <div className={styles.container}>
+                    <div className={styles.headerCol}>
+                        <h1>Your order at {restaurantName}</h1>
+                        <div >
+                            {cartItems.map((item) => <ShoppingCartItemCard item = {item} updatePrice= {updatePrice} updateAmount={updateAmount} deleteItem= {deleteItem}/>)}
+                        </div>
+                        <Button >Back to menu</Button>
+                    </div>
+                    <div className={styles.priceCol}>
+                        <h1>Total: {price} €</h1>
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group>
+                            <Form.Label>Comment to restaurant:</Form.Label>
+                            <Form.Control type="text" placeholder="allergies, spice level, etc" />
+                            </Form.Group>
+                            <Button type="submit">Send</Button>
+                        </Form>
+                        <h1>Delivery: Free</h1>
+                        <Button type="submit">Pay</Button>
+                    </div>
+                    
+                </div>
+                
+            
+            
                 <Footer />
-            </div>
+            
+            
+        </div>
+    
         )
     }
   }
