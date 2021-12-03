@@ -50,8 +50,8 @@ export default function ShoppingCartItemCard(props)
 
     return(     
 
-        <Col xs={12} md={6}>
-            <Card classname="px-0" >
+        <Col >
+            <Card classname="px-0">
                 <Card.Img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1920px-Good_Food_Display_-_NCI_Visuals_Online.jpg" />
                     <Card.Body className="pt-0">
                             
