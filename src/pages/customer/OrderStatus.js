@@ -11,6 +11,9 @@ import {ListGroup} from 'react-bootstrap';
 
 export default function OrderStatus(props) 
 {
+    
+
+
     return(
         <div >
             <NavigationBar />
@@ -27,7 +30,6 @@ export default function OrderStatus(props)
                </ListGroup>
                <div className={styles.RestaurantInfoBox}>
                    <p>Something went wrong with your order?</p>
-                   <RestaurantInfoBox/>
                </div>
             </div>
 
