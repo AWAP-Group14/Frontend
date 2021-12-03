@@ -22,27 +22,27 @@ export default function ShoppingCartItemCard(props)
 
     const plus = () => {
         //setAmount(amount + 1)
-        props.updateAmount(props.item.itemId, true)
-        props.updatePrice(props.item.price, true)
+        props.updateAmount(props.item.id, true)
+        props.updatePrice(props.item.item_price, true)
     }
 
     const minus = () => {
         if(amount > 1) {
             //setAmount(amount -1)
-            props.updateAmount(props.item.itemId,false)
-            props.updatePrice(props.item.price, false)
+            props.updateAmount(props.item.id,false)
+            props.updatePrice(props.item.item_price, false)
         }
         
     }
 
     const deleteItem = () => {
-        props.deleteItem(props.item.itemId)
-        props.updatePrice((props.item.price * props.item.amount), false)
+        props.deleteItem(props.item.id)
+        props.updatePrice((props.item.item_price * props.item.amount), false)
     }
 
     useEffect( () => {
         setAmount(props.item.amount)
-        console.log("ID" +props.item.itemId);
+        console.log("ID" +props.item.id);
 
     }, [props]);
 
@@ -58,8 +58,8 @@ export default function ShoppingCartItemCard(props)
                             
                                 <Row>
                                     <Col className="">
-                                        <Card.Title>{props.item.name}</Card.Title>
-                                        <Card.Text>{props.item.description}</Card.Text>
+                                        <Card.Title>{props.item.item_name}</Card.Title>
+                                        <Card.Text>{props.item.item_description}</Card.Text>
                                         {/* <Card.Text>L,G,V</Card.Text> */}
                                     </Col>
 
@@ -69,7 +69,7 @@ export default function ShoppingCartItemCard(props)
                                                 <Button variant="danger" onClick= {deleteItem}>Delete</Button>
                                             </div>
                                             <div className="">
-                                                <Card.Title>{props.item.price} $</Card.Title>
+                                                <Card.Title>{props.item.item_price} $</Card.Title>
                                                 <Button onClick={plus}>+</Button>
                                                 <Card.Text>{amount}</Card.Text>
                                                 <Button onClick= {minus}>-</Button>

@@ -38,7 +38,10 @@ class App extends React.Component {
       restaurants: [],
       productSearchString: "",
       token: jwtFromLocalStorage,
-      totalPrice: 0
+      orderInfo: {
+        price: 0, 
+        comment: ""
+      }
     }
   }
 
@@ -64,8 +67,8 @@ class App extends React.Component {
     window.location.replace("/")
   }
 
-  setPrice = (price) => {
-    this.state.totalPrice = price
+  setPrice = (newPrice) => {
+    this.state.orderInfo.price = newPrice
   }
 
   decodeToken = () => {
@@ -110,7 +113,7 @@ class App extends React.Component {
             <Route path="/history" element={<OrderHistory/>} />
             <Route path="/status" element={<OrderStatus/>} />
             <Route path="/manager/signup" element={<RegistrationForm/>}/>
-            <Route path="/payment" element={<Payment price={this.state.totalPrice}/>}/>
+            <Route path="/payment" element={<Payment jwt={this.state.token}/>}/>
             <Route path="/cart" element={<ShoppingCartPage jwt={this.state.token} logout={this.logout} setPrice={this.setPrice}/>}/>
             <Route path="/restaurant/:restaurantName" element={<RestaurantMenuPage jwt={this.state.token} logout={this.logout}/>}/>
       </>
