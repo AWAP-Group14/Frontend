@@ -177,9 +177,14 @@ export default function ShoppingCartPage(props)
                             </Col>
                         </Row>
                     </Container>
-
+                
+            
+            
                 <Footer />
-            </div>
+            
+            
+        </div>
+    
         )
     }
   }

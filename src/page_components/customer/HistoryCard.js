@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import jwt from 'jsonwebtoken';
+import { Card, Button, Check, Col } from "react-bootstrap";
 
 export default function HistoryCard (props)
 {
     
 
     const [isLoading, setLoading] = useState(true);
-    const [history, setHistory] = useState([]);
+    const [history, setHistory] = useState([{restaurant_name: "", id: "", total_price:"", date:"", items:[]}]);
+    const [items, setItems] = useState([{items:""}]);
 
     const decodedToken = jwt.decode(props.jwt)
     console.log(decodedToken+" from the historypage")
@@ -18,8 +20,11 @@ export default function HistoryCard (props)
         axios.get(path)
         .then(response => {
             setHistory(response.data[0])
+            let orderItems = JSON.parse(response.data[0].items)
+            setItems(orderItems)
+            console.log("items as object "+orderItems);
             setLoading(false)
-            console.log(response.data[0].id);
+            console.log(response.data[0]);
         })
         .catch(err => {
             console.log(err);
@@ -32,21 +37,30 @@ export default function HistoryCard (props)
     }
 
     if (history != null) {
-
-        let orderItems = JSON.parse(history.items)
-        console.log(orderItems[0].item_name); 
-        return(
-        <div>
-            <img></img>
-            <h1>!{props.RestaurantName}</h1>
-            <p>!{history.id}</p>
-            <p>!{orderItems[0].item_name}</p>
-            <p>!{history.delivery_address}</p>
-            <p>!{history.total_price}</p>
-            <p>!{props.date}</p>
+    
+    return (
+        <Col xs={12}>
             
-        </div>
-        )
+            <Card className="mx-auto" style={{ width: '500px' }}>
+                <Card.Body>
+                     <Card.Title>RestaurantName {history.restaurant_name}</Card.Title>
+                     <Card.Text>
+                         <p>orderId {history.id}</p>
+                         <div>
+                            <p>Ordered items:</p>
+                            <div className="ms-3">
+                                <p>- {items[0].amount}x {items[0].item_name}</p>
+                            </div>
+                        </div>
+                         <p>Delivery address {history.delivery_address}</p>
+                         <p>TotalPrice {history.total_price} €</p>
+                         <p>deliveryStatus {props.deliveryStatus}</p>
+                         <p>date {history.date}</p>
+                     </Card.Text>
+                 </Card.Body>
+            </Card>
+        </Col>
+    )
     }
 
     if (history == null) {
@@ -55,6 +69,5 @@ export default function HistoryCard (props)
 
             )
     }
-    
 
 }

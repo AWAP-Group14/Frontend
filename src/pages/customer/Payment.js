@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import NavigationBar from "../../page_components/customer/NavigationBar";
 import Footer from '../../page_components/customer/Footer';
 import axios from 'axios';
-import { Form, Button } from "react-bootstrap";
+import { Form, Button,} from "react-bootstrap";
 import styles from "./css_modules/Payment.module.scss"
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import jwt from 'jsonwebtoken';
@@ -56,11 +56,11 @@ export default function Payment(props)
                 delivery_type: deliveryType,
                 delivery_address: state.address,
                 order_comment: location.state.comment,
+                restaurant_name: location.state.restaurantName
 
             })
             .then(response => {
-                console.log("This should navigate")
-                navigate("/")
+                navigate("/status", {state: {orderId: response.data[0].id}})
             })
             .catch(err => {
                 console.log(err);
@@ -81,8 +81,6 @@ export default function Payment(props)
             axios.get(path)
             .then(response => {
                 setRestaurantAddress(response.data[0].restaurant_address)
-                console.log(location.state.comment)
-                console.log(location.state.restaurantName)
             })
             .catch(err => {
                 console.log(err);
@@ -105,6 +103,7 @@ export default function Payment(props)
                 <Button onClick={() => handleClick()} >
                     I will pick order myself
                 </Button>
+                <p>{props.RestaurantInfoBox}</p>
                 
                 <p>{state.text}</p>
                 <p>{state.address}</p>
@@ -137,7 +136,7 @@ export default function Payment(props)
                         <Form.Control type="number" placeholder="XXX" />
                     </Form.Group>
                     <Button variant="primary" onClick={submitPayment}>
-                         Change address
+                         Confirm payment
                      </Button>
                 </Form>
             </div>
