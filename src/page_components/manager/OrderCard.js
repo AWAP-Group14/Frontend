@@ -1,34 +1,53 @@
 import React from "react";
-import {Card, Button, Form, Modal,   } from "react-bootstrap";
+import {Card, Button, Form, Modal, Col, Row, ButtonGroup  } from "react-bootstrap";
 import { useState } from "react";
+import styles from './css_modules/OrderCard.module.scss'
+
 export default function OrderCard(props) 
 {
-    const [show, setShow] = useState(false);
+    const [ConfirmShow, setConfirmShow] = useState(false);
+    const [CancelShow, setCancelShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
+    const handleConfirmClose = () => setConfirmShow(false);
+    const handleConfirmShow = () => setConfirmShow(true);
+
+    const handleCancelClose = () => setCancelShow(false);
+    const handleCancelShow = () => setCancelShow(true);
 
     return(
-        <div >
+        <div className={styles.cardContainer}>
             <Card>
                 <Card.Body>
-                    <Card.Title>Order {props.orderId}</Card.Title>
+                    <Card.Title>Order {props.orderId} </Card.Title>
                     <Card.Text>
+                        <Row>
+                        <Col>
                         <p>Customer: {props.customerName}</p>
                         <p>Order: {props.DishName} </p>
                         <p>Comments: {props.comment}</p>
-                        <p>Total price: {props.totalPrice}</p>
-                        <Button onClick={handleShow}>
+                        </Col>
+                        <Col>
+                        <p>Total price: {props.totalPrice} €</p>
+                        <Button onClick={handleConfirmShow} size="lg" variant="success" className="me-3">
                             Confirm
                         </Button>
-
-                        <Modal show={show} onHide={handleClose}>
+                        <Button onClick={handleCancelShow} size="lg" variant="danger">
+                            Cancel
+                        </Button>
+                        </Col>
+                        </Row>
+                        <Modal 
+                        show={ConfirmShow} 
+                        onHide={() => setConfirmShow(false)} >
                             <Modal.Header closeButton>
                                 <Modal.Title>Enter approximate delivery time:</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <Form>
-                                <Form.Select title="00">
+                                    <Row >
+                                        <Col>
+                                <Form.Select >
                                     <option>09</option>
                                     <option>10</option>
                                     <option>11</option>
@@ -42,7 +61,9 @@ export default function OrderCard(props)
                                     <option>19</option>
                                     <option>20</option>
                                 </Form.Select>
-                                <Form.Select title="00">
+                                </Col>
+                                <Col>
+                                <Form.Select >
                                     <option>00</option>
                                     <option>10</option>
                                     <option>20</option>
@@ -50,10 +71,31 @@ export default function OrderCard(props)
                                     <option>40</option>
                                     <option>50</option>
                                 </Form.Select>
+                                </Col>
+                                </Row>
                                 </Form>
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button onClick={handleClose}>
+                                <Button onClick={handleConfirmClose}>
+                                    Save Changes
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                        <Modal 
+                        show={CancelShow} 
+                        onHide={() => setCancelShow(false)} >
+                            <Modal.Header closeButton>
+                                <Modal.Title>Enter cancelation reason: </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form>
+                                    <Form.Group>
+                                        <Form.Control as="textarea"/>
+                                    </Form.Group>
+                                </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button onClick={handleCancelClose}>
                                     Save Changes
                                 </Button>
                             </Modal.Footer>

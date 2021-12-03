@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import jwt from 'jsonwebtoken';
-import React from "react";
 import { Card, Button, Check } from "react-bootstrap";
 
 export default function HistoryCard (props)
