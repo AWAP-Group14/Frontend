@@ -4,23 +4,88 @@ import Footer from '../../page_components/customer/Footer';
 import axios from 'axios';
 import { Form, Button } from "react-bootstrap";
 import styles from "./css_modules/Payment.module.scss"
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import jwt from 'jsonwebtoken';
 
 export default function Payment(props) 
 {
-    
+    //Delivery type: 1=delivery, 2=pickup
     let location = useLocation()
-    const [address, setAddress] = useState("")
+    let navigate = useNavigate()
+    const [state, setState] = useState({
+        address: "",
+        newAddress: "",
+        text: "Check your delivery adress:"
+    });
+    const [restaurantAddress, setRestaurantAddress] = useState("");
+    const [deliveryType, setDeliveryType] = useState(1);
 
     function handleClick(props){
-        setAddress("Restaurant address")
+        if(restaurantAddress != undefined) {
+            setState({address: restaurantAddress, text: "Restaurant address:"})
+            setDeliveryType(2)
+        }
+       
+    }
+
+    const handleInputChange = (event) => {
+        setState((prevProps) => ({
+          ...prevProps,
+          [event.target.name]: event.target.value
+        }));
+        setDeliveryType(1)
+      };
+
+    const handleChangeAddress= (props) => {
+        if(state.newAddress != undefined) {
+            setState({address: state.newAddress, text: "Check your delivery adress:"})
+            setDeliveryType(1)
+        }
+        
+    };
+
+    const submitPayment= () => {
+        console.log("the function is called");
+        const decodedToken = jwt.decode(props.jwt)
+        console.log(props.jwt)
+        if(decodedToken != undefined) {
+            axios.post('https://voulutora-backend.herokuapp.com/orders', {
+                customer_id: decodedToken.userId, 
+                order_status: 0,
+                delivery_type: deliveryType,
+                delivery_address: state.address,
+                order_comment: location.state.comment,
+
+            })
+            .then(response => {
+                console.log("This should navigate")
+                navigate("/")
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        } else {
+            console.log("User need to log in")
+            console.log(decodedToken)
+        }
+        
     }
 
     useEffect(() => {
         const decodedToken = jwt.decode(props.jwt)
+        console.log(props.jwt)
         if(decodedToken != undefined) {
-            setAddress(decodedToken.userInfo.customer_address)
+            setState({address: decodedToken.userInfo.customer_address, text: "Check your delivery adress:"})
+            let path = 'https://voulutora-backend.herokuapp.com/restaurants/' + location.state.restaurantName +'/address'
+            axios.get(path)
+            .then(response => {
+                setRestaurantAddress(response.data[0].restaurant_address)
+                console.log(location.state.comment)
+                console.log(location.state.restaurantName)
+            })
+            .catch(err => {
+                console.log(err);
+            })
         } else {
             console.log("User need to log in")
         }
@@ -40,14 +105,14 @@ export default function Payment(props)
                     I will pick order myself
                 </Button>
                 
-                <p>Check your delivery adress: {address}</p>
-                <Button>Confirm</Button>
+                <p>{state.text}</p>
+                <p>{state.address}</p>
                 <Form.Group>
-                        <Form.Label>Other adress</Form.Label>
-                        <Form.Control type="text" placeholder="Other adress" />
+                        <Form.Label>Deliver your order to another address</Form.Label>
+                        <Form.Control type="text" placeholder="Other adress" name = "newAddress" value= {state.newAddress} onChange={handleInputChange} />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
-                         Confirm new adress
+                    <Button variant="primary" type="submit" onClick={handleChangeAddress}>
+                         Change address
                      </Button>
             </div>
             
@@ -55,22 +120,22 @@ export default function Payment(props)
                 <Form>
                     <Form.Group>
                         <Form.Label>Card Owner</Form.Label>
-                        <Form.Control type="text" placeholder="Card Owner" />
+                        <Form.Control required type="text" placeholder="Card Owner" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Card Number</Form.Label>
-                        <Form.Control type="number" placeholder="Card Number" />
+                        <Form.Control required type="number" placeholder="Card Number" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Expiration Date</Form.Label>
-                        <Form.Control type="text" placeholder="MM/YY" />
+                        <Form.Control required type="text" placeholder="MM/YY" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>CVV</Form.Label>
                         <Form.Control type="number" placeholder="XXX" />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
-                         Confirm payment
+                    <Button variant="primary" onClick={submitPayment}>
+                         Change address
                      </Button>
                 </Form>
             </div>
