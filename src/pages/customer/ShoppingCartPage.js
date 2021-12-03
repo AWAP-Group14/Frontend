@@ -6,20 +6,22 @@ import { Form, Button } from "react-bootstrap";
 import styles from "./css_modules/ShoppingCartPage.module.scss"
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ShoppingCartPage(props) 
 {
 
+    let navigate = useNavigate()
     const [restaurantName, setRestaurantName] = useState("")
     const [price, setPrice] = useState(0)
     const [cartItems, setCartItems] = useState([
-        {itemId: "", name: "", image: "", description: "", price: 0, amount: 0, menuId: "" },{}
+        {id: "", item_name: "", item_image: "", item_description: "", item_price: 0, amount: 0, menu_id: "" },{}
     ])
     const [isEmpty, setIsEmpty] = useState(true)
     var itemArray = []
     const createItemArray = (data) => {
         data.forEach(item => { itemArray.push({
-            itemId: item.id, name: item.item_name, image: item.item_image, description: item.item_description, price: item.item_price, amount: item.amount, menuId: item.menu_id
+            id: item.id, item_name: item.item_name, item_image: item.item_image, item_description: item.item_description, item_price: item.item_price, amount: item.amount, menu_id: item.menu_id
         })})
         return itemArray
     }
@@ -33,7 +35,7 @@ export default function ShoppingCartPage(props)
     }
     const updateAmount = (itemToUpdate, add) => {
         itemArray = cartItems
-        var index = itemArray.findIndex(item => item.itemId == itemToUpdate)
+        var index = itemArray.findIndex(item => item.id == itemToUpdate)
         if(add) {
             itemArray[index].amount += 1
             console.log( itemArray[index].amount)
@@ -47,7 +49,7 @@ export default function ShoppingCartPage(props)
     const deleteItem = (itemToDelete) => {
         itemArray = cartItems
  
-        var index = itemArray.findIndex(item => item.itemId === itemToDelete)
+        var index = itemArray.findIndex(item => item.id === itemToDelete)
         itemArray[index].amount += 0
         itemArray.splice(index, 1)
         console.log(itemArray)
@@ -64,15 +66,17 @@ export default function ShoppingCartPage(props)
                 totalPrice: price
             })
             .then(response => {
-                props.setPrice(price);
-                window.location.replace("/payment")
+                console.log(price);
+                navigate( "/payment", {state: {price: price}})
             })
             .catch(err => {
+                console.log(cartItems)
                 console.log(err);
             });
         } else {
             console.log("user need to log in")
         }
+        props.setPrice(price);
         
       };
         
