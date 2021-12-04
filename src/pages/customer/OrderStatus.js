@@ -17,7 +17,17 @@ export default function OrderStatus(props)
     const[state, setState] = useState([false, false, false, false, false, false])
     const[danger, setDanger] = useState("")
     const[orderIdState, setOrderId] = useState("")
+    const [restaurantInfo, setRestaurantInfo] = useState({
+        restaurant_address: "",
+        restaurant_image: "",
+        restaurant_name: "",
+        restaurant_operating_hours: "",
+        restaurant_price_level: 0,
+        restaurant_type: ""
+    });
     var orderId
+
+
     const setStatus = (orderStatus) => {
         var falseArray = [false, false, false, false, false, false]
         if(orderStatus == 6) {
@@ -32,22 +42,20 @@ export default function OrderStatus(props)
         }
     }
 
-    useEffect(  () => {
-        if(location.state.orderId != undefined) {
+    useEffect(() => {
+        if(location.state != undefined) {
             orderId = location.state.orderId
             setOrderId(orderId)
+            setRestaurantInfo(location.state.restaurantInfo)
         } else {
             orderId = props.orderId
+            console.log(props.orderId)
             setOrderId(orderId)
+            setRestaurantInfo(props.restaurantInfo)
         }
-        console.log(location.state.restaurantInfo)
         let path = 'https://voulutora-backend.herokuapp.com/orders/' + orderId
         axios.get(path)
         .then(response => {
-            console.log(path)
-            console.log(response.data[0])
-
-            console.log(response.data[0].order_status)
             setStatus(response.data[0].order_status)
         })
         .catch(err => {
@@ -59,7 +67,7 @@ export default function OrderStatus(props)
 
     return(
         <div >
-            <NavigationBar />
+            <NavigationBar jwt={props.jwt} logout={props.logout}/>
             <div>
                 
                 <ListGroup className={styles.listGroup}>
@@ -73,10 +81,12 @@ export default function OrderStatus(props)
                    <ListGroup.Item as="li" active={state[5]}>Delivered <FaFlag /> </ListGroup.Item>
                    <ListGroup.Item as="li" variant={danger}>Canceled <FaTimes /> </ListGroup.Item>
                </ListGroup>
-               <div className={styles.RestaurantInfoBox}>
-                   <p>Something went wrong with your order?</p>
-                   
-               </div>
+               
+               {/* <div className={styles.RestaurantInfoBox}> */}
+                   {/* <p>Something went wrong with your order?</p> */}
+                   {/* <RestaurantInfoBox restaurantInfo= {restaurantInfo}/> */}
+               {/* </div> */}
+
             </div>
 
             <Footer />

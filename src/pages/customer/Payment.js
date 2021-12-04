@@ -20,7 +20,14 @@ export default function Payment(props)
     });
     const [restaurantAddress, setRestaurantAddress] = useState("");
     const [deliveryType, setDeliveryType] = useState(1);
-    var restaurantInfo
+    const [restaurantInfo, setRestaurantInfo] = useState({
+        restaurant_address: "",
+        restaurant_image: "",
+        restaurant_name: "",
+        restaurant_operating_hours: "",
+        restaurant_price_level: 0,
+        restaurant_type: ""
+    });
 
     function handleClick(props){
         if(restaurantAddress != undefined) {
@@ -82,7 +89,7 @@ export default function Payment(props)
             axios.get(path)
             .then(response => {
                 setRestaurantAddress(response.data[0].restaurant_address)
-                restaurantInfo = response.data[0]
+                setRestaurantInfo(response.data[0])
             })
             .catch(err => {
                 console.log(err);
