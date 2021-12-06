@@ -20,6 +20,14 @@ export default function Payment(props)
     });
     const [restaurantAddress, setRestaurantAddress] = useState("");
     const [deliveryType, setDeliveryType] = useState(1);
+    const [restaurantInfo, setRestaurantInfo] = useState({
+        restaurant_address: "",
+        restaurant_image: "",
+        restaurant_name: "",
+        restaurant_operating_hours: "",
+        restaurant_price_level: 0,
+        restaurant_type: ""
+    });
 
     function handleClick(props){
         if(restaurantAddress != undefined) {
@@ -56,11 +64,11 @@ export default function Payment(props)
                 delivery_type: deliveryType,
                 delivery_address: state.address,
                 order_comment: location.state.comment,
+                restaurant_name: location.state.restaurantName
 
             })
             .then(response => {
-                console.log("This should navigate")
-                navigate("/")
+                navigate("/status", {state: {orderId: response.data[0].id, restaurantInfo: restaurantInfo}})
             })
             .catch(err => {
                 console.log(err);
@@ -77,12 +85,11 @@ export default function Payment(props)
         const decodedToken = jwt.decode(props.jwt)
         if(decodedToken != undefined) {
             setState({address: decodedToken.userInfo.customer_address, text: "Check your delivery adress:"})
-            let path = 'https://voulutora-backend.herokuapp.com/restaurants/' + location.state.restaurantName +'/address'
+            let path = 'https://voulutora-backend.herokuapp.com/restaurants/' + location.state.restaurantName +'/information'
             axios.get(path)
             .then(response => {
                 setRestaurantAddress(response.data[0].restaurant_address)
-                console.log(location.state.comment)
-                console.log(location.state.restaurantName)
+                setRestaurantInfo(response.data[0])
             })
             .catch(err => {
                 console.log(err);
@@ -138,7 +145,7 @@ export default function Payment(props)
                         <Form.Control type="number" placeholder="XXX" />
                     </Form.Group>
                     <Button variant="primary" onClick={submitPayment}>
-                         Change address
+                         Confirm payment
                      </Button>
                 </Form>
             </div>
