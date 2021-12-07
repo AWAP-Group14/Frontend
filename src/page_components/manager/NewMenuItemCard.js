@@ -18,6 +18,11 @@ return(
                         <Card.Body className="g-0">
                                 
                                     <Row>
+                                        <Col xs={12}>
+                                            <Form.Group controlId="formFileSm" className="mb-2">
+                                                <Form.Control type="file" size="sm" />
+                                            </Form.Group>
+                                        </Col>
                                         <Col xs={6}>
                                             <Card.Title>
                                                     <Form.Group>
@@ -33,14 +38,14 @@ return(
                                         </Col>
     
                                         <Col xs={6}>
-                                            <div className={styles.alignContentRight}>
+                                            <div style={{textAlign:"right"}}>
                                                 <div className="">
                                                     {/* <Button variant="danger">Delete</Button> */}
                                                 </div>
                                                 <div className="">
                                                     <Card.Title>
                                                     <Form.Group>
-                                                        <Form.Control type="text" placeholder="Price (€)"></Form.Control>
+                                                        <Form.Control type="number" placeholder="Price (€)"></Form.Control>
                                                     </Form.Group>
                                                     </Card.Title>
                                                     <Button variant="success" onClick="" >Create</Button>
@@ -48,12 +53,7 @@ return(
                                             </div>
                                         </Col>
 
-                                        <Col xs={12}>
-                                            <Form.Group controlId="formFileSm" className="mb-3">
-                                                <Form.Label>Upload item image</Form.Label>
-                                                <Form.Control type="file" size="sm" />
-                                            </Form.Group>
-                                        </Col>
+
                                     </Row>
                                
     
