@@ -4,7 +4,7 @@ import Footer from '../../page_components/customer/Footer';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from './css_modules/CustomerProfile.module.scss';
 
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
@@ -46,7 +46,7 @@ export default function CustomerProfile(props)
         })
         .catch(err => {
             console.log(err);
-            setActiveOrder("No active orders")
+            setActiveOrder([])
         })
     },[])
 
