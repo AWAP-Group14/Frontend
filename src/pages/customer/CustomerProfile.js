@@ -10,7 +10,7 @@ import styles from './css_modules/CustomerProfile.module.scss';
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 
 export default function CustomerProfile(props) 
-{
+{ 
     const [isLoading, setLoading] = useState(true);
     const [activeOrder, setActiveOrder] = useState([]);
     const [orderId, setOrderId] = useState("")
@@ -19,7 +19,7 @@ export default function CustomerProfile(props)
     console.log(decodedToken)
     var orderIdTest
     let navigate = useNavigate()
-
+    
     const handleClick = (id) => {
         if(activeOrder != "No active orders" ) {
             navigate("/status", {state: {orderId: id}})
@@ -76,11 +76,8 @@ export default function CustomerProfile(props)
                     <Col xs={9}>
                         <div>
                             <h1>Active orders</h1>
-                     {activeOrder.map(item => <p onClick={e => handleClick(item.orderId)}>{item.text}</p>)}
-
-                            
-                        </div>
-                        
+                            {activeOrder.map(item => <Button variant="link" onClick={e => handleClick(item.orderId)}>{item.text}</Button>)}
+                        </div>  
                     </Col> 
                 </Row>
             </Container>
