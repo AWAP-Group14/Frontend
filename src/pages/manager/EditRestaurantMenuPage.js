@@ -79,7 +79,7 @@ export default function EditRestaurantMenuPage(props)
 
             <div className={styles.restaurantHeader}>
                 <div className={styles.restaurantBannerFader}>
-                    <Image className={styles.restaurantHeaderImage} src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Restaurant_N%C3%A4sinneula.jpg"/>
+                    <Image className={styles.restaurantHeaderImage} src={info.image}/>
                 </div>
                 <div className={styles.restaurantInfo}>
                     <RestaurantInfoBox restaurantInfo={info}/>
