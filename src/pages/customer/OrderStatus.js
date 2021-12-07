@@ -6,7 +6,7 @@ import { FaCheck, FaMortarPestle, FaCar, FaFlag, FaTimes } from "react-icons/fa"
 import Col from 'react-bootstrap/Col';
 import RestaurantInfoBox from "../../page_components/customer/RestaurantInfoBox";
 
-import {ListGroup} from 'react-bootstrap';
+import {ListGroup, Button} from 'react-bootstrap';
 
 import { useParams, useLocation } from "react-router-dom";
 import axios from 'axios';
@@ -17,6 +17,7 @@ export default function OrderStatus(props)
     let location = useLocation() 
     const[state, setState] = useState([false, false, false, false, false, false])
     const[danger, setDanger] = useState("")
+    const[disabled, setDisabled] = useState(true)
     const[orderIdState, setOrderId] = useState("")
     const [restaurantInfo, setRestaurantInfo] = useState({
         restaurant_address: "",
@@ -47,9 +48,20 @@ const [info, setInfo] = useState({
             for (let i = 0; i <= orderStatus; i++) { 
                 falseArray[i] = true
             }
-            console.log(falseArray)
             setState(falseArray)
         }
+    }
+
+    const handleReceived = () => {
+        let path = 'https://voulutora-backend.herokuapp.com/orders/changestatus/' + orderIdState +"?status=5"
+        axios.put(path)
+        .then(response => {
+            window.location.reload()
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        
     }
 
     useEffect(() => {
@@ -59,7 +71,6 @@ const [info, setInfo] = useState({
             setRestaurantInfo(location.state.restaurantInfo)
         } else {
             orderId = props.orderId
-            console.log(props.orderId)
             setOrderId(orderId)
             setRestaurantInfo(props.restaurantInfo)
         }
@@ -91,6 +102,8 @@ const [info, setInfo] = useState({
                    <ListGroup.Item as="li" active={state[5]}>Delivered <FaFlag /> </ListGroup.Item>
                    <ListGroup.Item as="li" variant={danger}>Canceled <FaTimes /> </ListGroup.Item>
                </ListGroup>
+               <Button onClick={handleReceived}>Confirm order received</Button>
+
                
                {/* <div className={styles.RestaurantInfoBox}> */}
                    {/* <p>Something went wrong with your order?</p> */}
@@ -99,7 +112,6 @@ const [info, setInfo] = useState({
 
             </div>
 
-            <Footer />
         </div>
     )
   }
