@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './css_modules/RestaurantMenuCategories.module.css'
-import { Jwt } from "jsonwebtoken";
+import  Jwt  from "jsonwebtoken";
 
 import { Button } from "react-bootstrap";
 

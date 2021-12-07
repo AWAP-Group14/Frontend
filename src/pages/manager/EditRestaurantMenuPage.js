@@ -36,6 +36,8 @@ export default function EditRestaurantMenuPage(props)
         price_level: 0
     });
 
+    const [newCategory, setNewCategory] = useState({newCategory: ""});
+
     const [categories, setCategories] = useState([])
 
     const [items, setItems] = useState([{
@@ -65,13 +67,56 @@ export default function EditRestaurantMenuPage(props)
             setInfo({name: response.data[0].restaurant_name, type: response.data[0].restaurant_type, address: response.data[0].restaurant_address, operating_hours: response.data[0].restaurant_operating_hours.split(";"), email: response.data[0].restaurant_email, image: response.data[0].restaurant_image, price_level: response.data[0].restaurant_price_level})
             setCategories(filterCategory(response.data))
             setItems(createMenuArray(response.data))
-            console.log(response.data)
+            console.log(JSON.stringify(response.data)+" response data")
         })
         .catch(err => {
             console.log(err);
         })
+
+        console.log(categories[0]+" testing categories");
+
+
     }, []);
 
+    const handleInputChange = (event) => {
+        setNewCategory((prevProps) => ({
+          ...prevProps,
+          [event.target.name]: event.target.value
+        }));
+      };
+
+    const addCategory = () => {
+        const decodedToken = jwt.decode(props.jwt)
+        let path = "https://voulutora-backend.herokuapp.com/restaurants/"+decodedToken.restaurantInfo+"/menu"
+        axios.post(path, {
+            menu_name: newCategory.newCategory,
+            restaurant_name: decodedToken.restaurantInfo
+
+        })
+        .then(response => {
+            console.log(response);
+            console.log("new category added");
+            window.location.reload();
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
+    const deleteCategory = () => {
+        const decodedToken = jwt.decode(props.jwt)
+        let path = "https://voulutora-backend.herokuapp.com/restaurants/"+decodedToken.restaurantInfo+"/menu/"
+        console.log(path);
+        axios.delete(path)
+        .then(response => {
+            console.log(response);
+            console.log("category deleted");
+            //window.location.reload();
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
 
     return(        
         <div className={styles.root}>
@@ -95,8 +140,14 @@ export default function EditRestaurantMenuPage(props)
                     <Col xs={6} sm={5} md={4} lg={3} xl={2}>
                        <div  className={styles.sidebarSticky}>
                             <h2>Categories</h2>
-                            {categories.map((cat) => <RestaurantMenuCategories category={cat}/>)}
-                            <Button>Add new catgegory</Button>
+                            {categories.map((cat) => <RestaurantMenuCategories deleteCategory={deleteCategory} category={cat}/>)}
+                            <input
+                            type="text"
+                            name="newCategory"
+                            value={newCategory.newCategory}
+                            onChange={handleInputChange}
+                            />
+                            <Button onClick={addCategory}>Add new catgegory</Button>
                         </div>
                     </Col>
 
