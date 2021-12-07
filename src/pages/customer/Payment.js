@@ -9,6 +9,7 @@ import jwt from 'jsonwebtoken';
 
 export default function Payment(props) 
 {
+    
 
     //Delivery type: 1=delivery, 2=pickup
     let location = useLocation()
