@@ -73,7 +73,6 @@ export default function EditRestaurantMenuPage(props)
             console.log(err);
         })
 
-        console.log(categories[0]+" testing categories");
 
 
     }, []);
@@ -103,15 +102,15 @@ export default function EditRestaurantMenuPage(props)
         })
     }
 
-    const deleteCategory = () => {
+    const deleteCategory = (menuName) => {
         const decodedToken = jwt.decode(props.jwt)
-        let path = "https://voulutora-backend.herokuapp.com/restaurants/"+decodedToken.restaurantInfo+"/menu/"
+        let path = "https://voulutora-backend.herokuapp.com/restaurants/"+decodedToken.restaurantInfo+"/menu/"+menuName
         console.log(path);
         axios.delete(path)
         .then(response => {
             console.log(response);
             console.log("category deleted");
-            //window.location.reload();
+            window.location.reload();
         })
         .catch(err => {
             console.log(err);
@@ -140,7 +139,7 @@ export default function EditRestaurantMenuPage(props)
                     <Col xs={6} sm={5} md={4} lg={3} xl={2}>
                        <div  className={styles.sidebarSticky}>
                             <h2>Categories</h2>
-                            {categories.map((cat) => <RestaurantMenuCategories deleteCategory={deleteCategory} category={cat}/>)}
+                            {categories.map((cat) => <RestaurantMenuCategories jwt={props.jwt} deleteCategory={deleteCategory} category={cat}/>)}
                             <input
                             type="text"
                             name="newCategory"
@@ -154,7 +153,7 @@ export default function EditRestaurantMenuPage(props)
                     <Col xs={6} sm={7} md={8} lg={9} xl={10}>
                         <Row className="g-4">
                         {categories.map((cat) => <RestaurantItems category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)}
-                        <NewMenuItemCard/>
+                        {categories.map((cat) => <NewMenuItemCard category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)}
                         </Row>
                     </Col>
 
