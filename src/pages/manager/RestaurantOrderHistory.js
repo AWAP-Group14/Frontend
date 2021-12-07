@@ -25,7 +25,7 @@ export default function RestaurantOrderHistory(props)
     }
 
     useEffect(() => {
-        let path = 
+        let path = "https://voulutora-backend.herokuapp.com/orders/restauranthistory/"+decodedToken.restaurantInfo
         axios.get(path)
         .then(response => {
             setHistory(createItemArray(response.data))
@@ -54,7 +54,7 @@ export default function RestaurantOrderHistory(props)
 
         <Container className="mb-3 mt-3">
              <Row className="g-(3">
-                <RestaurantHistoryCard />
+             {history.map((order) => <RestaurantHistoryCard history={order}/>)}
              </Row>
         </Container>
         <Footer />

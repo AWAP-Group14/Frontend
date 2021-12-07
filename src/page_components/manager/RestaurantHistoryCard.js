@@ -15,9 +15,9 @@ export default function RestaurantHistoryCard (props)
                 
                 <Card className="mx-auto" style={{ width: '500px' }}>
                     <Card.Body>
-                        <Card.Title>Customer name {props.history.customer_name}</Card.Title>
+                        <Card.Title>Order ID: {props.history.id}</Card.Title>
                         <Card.Text>
-                            <p>order ID {props.history.id}</p>
+                            
                             <div>
                                 <p>Ordered items:</p>
                                 <div className="ms-3">
