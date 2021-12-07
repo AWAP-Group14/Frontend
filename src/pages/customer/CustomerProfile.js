@@ -76,11 +76,8 @@ export default function CustomerProfile(props)
                     <Col xs={9}>
                         <div>
                             <h1>Active orders</h1>
-                     {activeOrder.map(item => <p onClick={e => handleClick(item.orderId)}>{item.text}</p>)}
-
-                            
-                        </div>
-                        
+                            {activeOrder.map(item => <Button variant="link" onClick={e => handleClick(item.orderId)}>{item.text}</Button>)}
+                        </div>  
                     </Col> 
                 </Row>
             </Container>
