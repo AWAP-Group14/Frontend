@@ -6,7 +6,7 @@ import styles from './css_modules/LandingPageManager.module.scss';
 import OrderCard from '../../page_components/manager/OrderCard';
 import {Button} from 'react-bootstrap';
 
-export default function LandingPageManager(props)
+export default function ManagerDashboardPage(props)
 {
     return(
         <div className={styles.App}>
