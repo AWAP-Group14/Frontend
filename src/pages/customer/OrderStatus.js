@@ -13,6 +13,7 @@ import axios from 'axios';
 
 export default function OrderStatus(props) 
 {
+
     let location = useLocation() 
     const[state, setState] = useState([false, false, false, false, false, false])
     const[danger, setDanger] = useState("")
@@ -26,6 +27,15 @@ export default function OrderStatus(props)
         restaurant_type: ""
     });
     var orderId
+
+    
+let params = useParams();
+const [info, setInfo] = useState({
+    name: "",
+    address: "",
+    operating_hours: [],
+    email: "",
+});
 
 
     const setStatus = (orderStatus) => {
