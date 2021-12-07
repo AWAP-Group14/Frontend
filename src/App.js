@@ -23,9 +23,10 @@ import OrderStatus from './pages/customer/OrderStatus';
 import ShoppingCartPage from './pages/customer/ShoppingCartPage'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LandingPageManager from './pages/manager/LandingPageManager';
 import RestaurantOrderHistory from './pages/manager/RestaurantOrderHistory';
 import RestaurantOrderStatus from './pages/manager/RestaurantOrderStatus';
+import ManagerDashboardPage from './pages/manager/ManagerDashboardPage';
+import EditRestaurantMenuPage from './pages/manager/EditRestaurantMenuPage';
 
 const jwtFromLocalStorage = window.localStorage.getItem('appAuthData')
 
@@ -125,8 +126,10 @@ class App extends React.Component {
       if (this.decodeToken().isManager == true) {
         authRoutes = <>
             
-            <Route path="/" element={<LandingPageManager jwt={this.state.token} logout={this.logout}/>} />
+            
             <Route path="/manager/restaurant_order_history" element={<RestaurantOrderHistory jwt={this.state.token} logout={this.logout}/>} />
+            <Route path="/" element={<ManagerDashboardPage jwt={this.state.token} logout={this.logout}/>} />
+            <Route path="/editMenu" element={<EditRestaurantMenuPage jwt={this.state.token} logout={this.logout}/>} />
       </>
       }
 
