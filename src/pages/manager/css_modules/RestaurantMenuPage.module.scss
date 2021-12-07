@@ -1,0 +1,63 @@
+
+.sidebarSticky{
+    position:sticky;
+    top:25px;
+}
+
+
+
+.restaurantHeader{
+    position: relative;
+}
+
+.restaurantHeaderImage{
+    max-height:300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.restaurantBannerFader{
+}
+
+.restaurantInfo{
+    color:white;
+    position: absolute;
+    top: 0px;
+    background-color: rgba(128, 128, 128, 0.521);
+    height: 100%;
+    width: 100%;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+
+
+
+// Leagecy CSS below
+.restaurantContent{
+    background-color: lightgray;
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+
+
+
+
+.restaurantCategories{
+    float: left;
+    height: 300px;
+    width: 150px;
+    background-color: gray;
+    margin-left: 20px;
+}
+
+.restaurantMenuCards{
+    background-color: gray;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
