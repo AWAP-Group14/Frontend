@@ -24,6 +24,7 @@ import ShoppingCartPage from './pages/customer/ShoppingCartPage'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LandingPageManager from './pages/manager/LandingPageManager';
+import RestaurantOrderHistory from './pages/manager/RestaurantOrderHistory';
 
 const jwtFromLocalStorage = window.localStorage.getItem('appAuthData')
 
@@ -90,6 +91,7 @@ class App extends React.Component {
             <Route path="/manager/signup" element={<RegistrationForm/>}/>          
             <Route path="/manager/login" element={<RestaurantLogIn login={this.login}/>}/>
             <Route path="/restaurant/:restaurantName" element={<RestaurantMenuPage jwt={this.state.token} logout={this.logout}/>}/>
+            <Route path="/manager/restaurant_order_history" element={<RestaurantOrderHistory />} />
     </>
 
     //logged in routes
@@ -97,7 +99,8 @@ class App extends React.Component {
 
       if (this.decodeToken().isManager == undefined) {
         authRoutes = <>
-            <Route path="/" element={<LandingPage  restaurants={this.state.restaurants} jwt={this.state.token} logout={this.logout}/>} />
+            <Route path="/dashboard" element={<LandingPage  restaurants={this.state.restaurants} jwt={this.state.token} logout={this.logout}/>} />
+            
     </>
         
       }
