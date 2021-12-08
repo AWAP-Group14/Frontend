@@ -71,6 +71,7 @@ export default function LogInPage(props) {
   return (
     <div>
       <NavigationBar/>
+      <div className={styles.bgContainer}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div >
           <label>Email</label>
@@ -94,12 +95,13 @@ export default function LogInPage(props) {
           <label></label>
           <button type="submit">Login</button>
         </div>
-        <div>
-          <p>Do not have account yet?</p>
-          <Link to="/signup"><button  style={{width: 'auto'}}>Create account</button></Link>
+        <div style={{marginTop: '50px'}}>Do not have account yet?</div>
+          <div>
+          <Link to="/signup"><button  >Create account</button></Link>
         </div>
         {loginControls}
       </form>
+      </div>
       <Footer />
     </div>
   );

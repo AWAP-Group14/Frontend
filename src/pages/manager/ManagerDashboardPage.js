@@ -20,8 +20,8 @@ export default function ManagerDashboardPage(props)
     const goToOrderHistory = () => {
         navigate("/manager/order_history", {state: {}})
     }
-    
-    const goToEditPage = () => {
+
+    const goToEditMenu = () => {
         navigate("/editMenu", {state: {}})
     }
 
@@ -63,10 +63,10 @@ export default function ManagerDashboardPage(props)
                 {activeOrder.map((order) => <OrderCard order={order} jwt={props.jwt}/>)}
                 <div className={styles.btnCont}>
                 <Button onClick={goToOrderHistory}>Order history</Button>
-                <Button onClick={goToEditPage}>Edit menu</Button>
+                <Button onClick={goToEditMenu}>Edit menu</Button>
                 </div>
                 <PageFiller/>
-                <Footer/>
+                <Footer jwt={props.jwt}/>
             </div>
         )
     } else {

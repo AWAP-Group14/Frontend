@@ -70,6 +70,7 @@ const [info, setInfo] = useState({
             orderId = location.state.orderId
             setOrderId(orderId)
             setRestaurantInfo(location.state.restaurantInfo)
+            console.log(restaurantInfo);
         } else {
             orderId = props.orderId
             setOrderId(orderId)

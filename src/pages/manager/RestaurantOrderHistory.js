@@ -53,7 +53,7 @@ export default function RestaurantOrderHistory(props)
              </Row>
         </Container>
         <PageFiller/>
-        <Footer />
+        <Footer jwt={props.jwt}/>
         </div>
     )
   }
