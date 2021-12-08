@@ -167,7 +167,7 @@ export default function ShoppingCartPage(props)
                                 <Form className="" onSubmit={handleSubmit}>
                                     <Form.Group>
                                         <Form.Label>Comment to restaurant:</Form.Label>
-                                        <Form.Control className="ms-auto mb-2" as="textarea" placeholder="allergies, spice level, etc" />
+                                        <Form.Control className="ms-auto mb-2" as="textarea" placeholder="allergies, spice level, etc" onChange={handleCommentChange}/>
                                     </Form.Group>
                                     <Button type="submit">Proceed to payment</Button>
                                 </Form>

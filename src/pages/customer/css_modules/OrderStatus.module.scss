@@ -23,6 +23,19 @@
     margin-left: 20px;
 }
 
+.listGroup Button {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 22px;
+    min-height: 80px;
+}
+
 .listGroup li.active {
     background-color: #198754;
     border-color: #198754;
