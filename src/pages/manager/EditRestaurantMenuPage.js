@@ -161,6 +161,7 @@ export default function EditRestaurantMenuPage(props)
                     <Col xs={6} sm={7} md={8} lg={9} xl={10}>
                         <Row className="g-4">
                         {categories.map((cat) => <RestaurantItems category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)}
+                        <h2>Add new item to category:</h2>
                         {categories.map((cat) => <NewMenuItemCard category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)}
                         </Row>
                     </Col>
