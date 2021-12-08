@@ -4,6 +4,7 @@ import Footer from "../../page_components/customer/Footer";
 import styles from './css_modules/RegistrationForm.module.css';
 import axios from 'axios';
 import Select from "react-dropdown-select";
+import PageFiller from "../../page_components/shared/PageFiller";
 
 export default function RegistrationForm(props) {
 
@@ -180,6 +181,7 @@ export default function RegistrationForm(props) {
         <button type="submit">Create account</button>
         {signupControls}
       </form>
+      <PageFiller/>
       <Footer />
     </div>
   );

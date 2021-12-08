@@ -8,6 +8,7 @@ import RestaurantMenuCategories from "../../page_components/customer/RestaurantM
 import RestaurantItems from "../../page_components/customer/RestaurantItems";
 import RestaurantItemCard from "../../page_components/shared/RestaurantItemCard";
 import NewMenuItemCard from '../../page_components/manager/NewMenuItemCard';
+import PageFiller from '../../page_components/shared/PageFiller';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -160,6 +161,7 @@ export default function EditRestaurantMenuPage(props)
                 </Row>
 
             </Container>
+            <PageFiller/>
             <Footer jwt={props.jwt}/>
         </div>
     )

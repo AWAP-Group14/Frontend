@@ -6,6 +6,7 @@ import { Form, Button,} from "react-bootstrap";
 import styles from "./css_modules/Payment.module.scss"
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import jwt from 'jsonwebtoken';
+import PageFiller from "../../page_components/shared/PageFiller";
 
 export default function Payment(props) 
 {
@@ -151,6 +152,7 @@ export default function Payment(props)
                 </Form>
             </div>
             </div>
+            <PageFiller/>
             <Footer/>
             
         </div>
