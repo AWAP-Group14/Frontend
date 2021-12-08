@@ -101,6 +101,7 @@ export default function RestaurantLogIn(props) {
           <p>Are you a new restaurant?</p>
           <Link to="/manager/signup"><button>Create restaurant account</button></Link>
         </div>
+        
         <PageFiller/>
       <Footer />
     </div>

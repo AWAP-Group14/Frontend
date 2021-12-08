@@ -83,9 +83,10 @@ export default function NewMenuItemCard(props)
 
 return(
     <Col sm={12} lg={6} xl={4}>
-                <Card classname="px-0">
-                    <h3>{props.category}</h3>
-                    <Card.Img src={newItem.item_image} />
+        <h3>Add new item to {props.category}</h3>
+                <Card style={{width:"300px",height:"450px"}}>
+                    
+                    <Card.Img className={styles.cardImage} src={newItem.item_image} />
                         <Card.Body className="g-0">
                                 
                                     <Row>
@@ -120,7 +121,7 @@ return(
                                                         <Form.Control type="number" placeholder="Price (€)" onChange={handleInputChange}></Form.Control>
                                                     </Form.Group>
                                                     </Card.Title>
-                                                    <Button variant="success" onClick={addItem} >Create</Button>
+                                                    <Button style={{width:"100%"}} variant="success" onClick={addItem} >Create</Button>
                                                 </div>
                                             </div>
                                         </Col>

@@ -1,7 +1,8 @@
-import React from "react";
+import {React, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from './css_modules/RestaurantItemCard.module.scss'
 
-import { Card } from "react-bootstrap";
+import { Card, Modal } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
@@ -50,7 +51,7 @@ export default function RestaurantItemCard(props)
             })
         } else {
             console.log("User need to sign up")
-            alert.show("Sign in to add items to shopping cart!")
+            handleShow();
         }
     }
 
@@ -89,32 +90,40 @@ export default function RestaurantItemCard(props)
         }
     }
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     if (isManager()) {
         return(     
                 
             <Col sm={12} lg={6} xl={4}>
-                <Card classname="px-0">
-                    <Card.Img src={props.item.image} width="150" height="250" />
+                <Card style={{width:"300px",height:"450px"}}>
+                    <Card.Img className={styles.cardImage} src={props.item.image}/>
                         <Card.Body className="g-0">
                                 
                                     <Row>
-                                        <Col className="">
+
+                                    <Col xs={12}>
                                             <Card.Title>{props.item.name}</Card.Title>
                                             <Card.Text>{props.item.description}</Card.Text>
                                             {/* <Card.Text>L,G,V</Card.Text> */}
                                         </Col>
-    
-                                        <Col>
-                                            <div className={styles.alignContentRight}>
+
+                                        <Col className="mt-atuo" xs={12}>
+                                            <div className="">
                                                 <div className="">
                                                     {/* <Button variant="danger">Delete</Button> */}
                                                 </div>
                                                 <div className="">
                                                     <Card.Title>{props.item.price} €</Card.Title>
-                                                    <Button variant="danger" onClick={deleteItem}>Delete</Button>
+                                                    <Button style={{width:"100%"}} className="" variant="danger" onClick={deleteItem}>Delete</Button>
                                                 </div>
                                             </div>
                                         </Col>
+
+
                                     </Row>
                                
     
@@ -130,25 +139,21 @@ export default function RestaurantItemCard(props)
         return(     
 
             <Col sm={12} lg={6} xl={4}>
-                <Card classname="px-0">
-                    <Card.Img src={props.item.image} width="150" height="250" />
+                <Card style={{width:"300px",height:"450px"}}>
+                    <Card.Img className={styles.cardImage} src={props.item.image} />
                         <Card.Body className="g-0">
                                 
                                     <Row>
-                                        <Col className="">
+                                    <Col xs={12}>
                                             <Card.Title>{props.item.name}</Card.Title>
                                             <Card.Text>{props.item.description}</Card.Text>
-                                            {/* <Card.Text>L,G,V</Card.Text> */}
                                         </Col>
-    
-                                        <Col>
-                                            <div className={styles.alignContentRight}>
-                                                <div className="">
-                                                    {/* <Button variant="danger">Delete</Button> */}
-                                                </div>
+
+                                        <Col className="mt-atuo" xs={12}>
+                                            <div className="">
                                                 <div className="">
                                                     <Card.Title>{props.item.price} €</Card.Title>
-                                                    <Button onClick={addToCart}>Add to cart</Button>
+                                                    <Button style={{width:"100%"}} onClick={addToCart}>Add to cart</Button>
                                                 </div>
                                             </div>
                                         </Col>
@@ -158,6 +163,24 @@ export default function RestaurantItemCard(props)
                         </Card.Body>
     
                 </Card>
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>You need to sign in to do that!</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>You need to first sign in or create a new account to add items to your shopping cart.</Modal.Body>
+                        <Modal.Footer>
+                        <Link to="/signup" style={{textDecoration: 'none'}}>
+                            <Button variant="primary" onClick={handleClose}>
+                                    Sign Up
+                            </Button>
+                        </Link>
+                        <Link to="/login" style={{textDecoration: 'none'}}>
+                            <Button variant="success" onClick={handleClose}>
+                                    Sign In
+                            </Button>
+                        </Link>
+                        </Modal.Footer>
+                     </Modal>
                 </Col>
         )
     }

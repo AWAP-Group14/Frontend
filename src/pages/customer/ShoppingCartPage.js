@@ -140,7 +140,13 @@ export default function ShoppingCartPage(props)
         return(
             <div >
                 <NavigationBar jwt={props.jwt} logout={props.logout}/>
-                <h3>SHOPPING CART IS EMPTY</h3>
+                <Container>
+                    <div className="mt-4" style={{textAlign:"center"}}>
+                        <h3>Your Shopping cart is currently empty!</h3>
+                        <p>Go browse some of our restaurants and add new items to the shopping cart.</p>
+                    </div>
+                </Container>
+                
                 <PageFiller/>
                 <Footer />
             </div>

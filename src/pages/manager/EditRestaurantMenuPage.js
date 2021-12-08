@@ -167,13 +167,13 @@ export default function EditRestaurantMenuPage(props)
                        <div  className={styles.sidebarSticky}>
                             <h2>Categories</h2>
                             {categories.map((cat) => <RestaurantMenuCategories jwt={props.jwt} deleteCategory={deleteCategory} category={cat}/>)}
-                            <input
+                            <input style={{width:"100%"}}
                             type="text"
                             name="newCategory"
                             value={newCategory.newCategory}
                             onChange={handleInputChange}
                             />
-                            <Button onClick={addCategory}>Add new catgegory</Button>
+                            <Button className="mt-2" style={{width:"100%"}} onClick={addCategory}>Add new catgegory</Button>
                         </div>
                     </Col>
 

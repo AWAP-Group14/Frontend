@@ -23,6 +23,13 @@ export default function NavigationBar(props) {
             
             const decodedToken = Jwt.decode(props.jwt);
     
+                    <Form className="d-flex ms-4 me-auto">
+                        <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search"/>
+                        <Button className="me-2" variant="success">Search</Button>
+                        <Link to="/browse" style={{textDecoration: 'none'}}>
+                            <Button >Browse</Button>
+                        </Link>
+                    </Form>
             if (decodedToken == null) {
                 return false;
             }

@@ -1,34 +1,31 @@
-.cardImage{
-    max-height: 100px;
-    object-fit:fill;
+
+.cardImage {
+     display: flex;
+   justify-content: center;
 }
 
-.cardCustom{
-    height: 350px;
-}
 
 .cardCustom p{
     color: black;
 }
 
 // Legacy CSS below
-.restCardContainer {
+.cardCustom{
    width: 225px;
-   height: 250px;
+   height: 350px;
    padding: 15px;
-   margin: 15px;
+   margin: 25px;
    background-color: #f3f3f3;
    border-radius: 5px;
+  
 }
 
-.restCardContainer img {
-    width: 150px;
-    height: 150px;
-    margin-left: 37px;
-    margin-right: auto;
+.cardCustom img {
+    width: auto;
+    height: 125px;
+    margin: 15px;
 }
 
 .restCardContainer p {
     margin: 7px;
 }
-
