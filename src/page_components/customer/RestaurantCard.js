@@ -31,10 +31,13 @@ export default function RestaurantCard(props)
         return (
             <Col xs={12} sm={6} md={4} lg={3} xl={2}>
                 <Link to={'/restaurant/' + props.restaurant_name} style={{textDecoration: 'inherit',color:'inherit'}}>
-                <Card classname={styles.cardCustom}>
-                    <Card.Img src={props.restaurant_image} className={styles.cardImage}/>
+                <div className={styles.cardCustom}>
+                <Card >
+                    <div className={styles.cardImage}>
+                    <Card.Img src={props.restaurant_image} />
+                        </div>
+                        
                         <Card.Body className="g-0">
-                                
                             <Card.Title>{props.restaurant_name}</Card.Title>
                             <Card.Text>{props.restaurant_type}</Card.Text>
                             <Card.Text>{price}</Card.Text>
@@ -42,6 +45,7 @@ export default function RestaurantCard(props)
 
                         </Card.Body>
                 </Card>
+                </div>
                 </Link>
             </Col>
         )
