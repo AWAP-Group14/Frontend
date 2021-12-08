@@ -12,7 +12,7 @@ import PageFiller from '../../page_components/shared/PageFiller';
 
 export default function ShoppingCartPage(props) 
 {
-
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     let navigate = useNavigate()
     const [restaurantName, setRestaurantName] = useState("")
     const [price, setPrice] = useState(0)
@@ -20,6 +20,7 @@ export default function ShoppingCartPage(props)
         {id: "", item_name: "", item_image: "", item_description: "", item_price: 0, amount: 0, menu_id: "" },{}
     ])
     const [isEmpty, setIsEmpty] = useState(true)
+    const [restaurantInfo, setRestaurantInfo] = useState({restaurant_address: "", restaurant_operating_hours: []})
     const [comment, setComment] = useState("")
     var itemArray = []
     const createItemArray = (data) => {
@@ -125,7 +126,15 @@ export default function ShoppingCartPage(props)
                 setRestaurantName(response.data.restaurantName)
                 setPrice(response.data.totalPrice)
                 setCartItems(createItemArray(response.data.items))
-                console.log(response.data)
+                let otherPath = 'https://voulutora-backend.herokuapp.com/restaurants/' + response.data.restaurantName + "/information"
+                axios.get(otherPath)
+                .then(res => {
+                    console.log(res.data)
+                    setRestaurantInfo({restaurant_address: res.data[0].restaurant_address, restaurant_operating_hours: res.data[0].restaurant_operating_hours.split(";")})
+                })
+                .catch(err => {
+                    console.log(err);
+                })
             })
             .catch(err => {
                 console.log(err);
@@ -162,9 +171,8 @@ export default function ShoppingCartPage(props)
                             <Col xs={12} xl={3}>
                                 <div className="">
                                     <h1>Your order at {restaurantName}</h1>
-                                    <p>Information about the restaurant here</p>
-                                    <p>Such as their operating hours</p>
-                                    <p>And their address</p>
+                                    <p>{restaurantInfo.restaurant_address}</p>
+                                    {restaurantInfo.restaurant_operating_hours.map((line) => <p>{line}</p>)}
                                 </div>
                             </Col>
 

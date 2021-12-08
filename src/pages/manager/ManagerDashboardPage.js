@@ -13,12 +13,14 @@ import PageFiller from "../../page_components/shared/PageFiller";
 
 export default function ManagerDashboardPage(props)
 {
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     const [loading, setLoading] = useState(true)
     const [activeOrder, setActiveOrder] = useState([{restaurant_name: "", id: "", total_price:"", date:"", items: [], delivery_address: "", order_comment: "", order_status: 0, order_delivery_type: 0, customer_id: "" }]);
     let navigate = useNavigate()
     const goToOrderHistory = () => {
         navigate("/manager/order_history", {state: {}})
     }
+
     const goToEditMenu = () => {
         navigate("/editMenu", {state: {}})
     }
@@ -58,7 +60,7 @@ export default function ManagerDashboardPage(props)
             <div className={styles.App}>
                 <NavigationBar jwt={props.jwt} logout={props.logout}/>
                 <h1>Orders</h1>
-                {activeOrder.map((order) => <OrderCard order={order}/>)}
+                {activeOrder.map((order) => <OrderCard order={order} jwt={props.jwt}/>)}
                 <div className={styles.btnCont}>
                 <Button onClick={goToOrderHistory}>Order history</Button>
                 <Button onClick={goToEditMenu}>Edit menu</Button>

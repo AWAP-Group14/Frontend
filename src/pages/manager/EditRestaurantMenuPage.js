@@ -30,6 +30,7 @@ import jwt from 'jsonwebtoken';
 
 export default function EditRestaurantMenuPage(props) 
 {
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     let params = useParams();
     const [info, setInfo] = useState({
         name: "",

@@ -10,6 +10,7 @@ import PageFiller from '../../page_components/shared/PageFiller';
 
 export default function RestaurantOrderStatus(props)
 {
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     const [CancelShow, setCancelShow] = useState(false);
     const handleCancelClose = () => setCancelShow(false);
     const handleCancelShow = () => setCancelShow(true);
@@ -34,7 +35,7 @@ export default function RestaurantOrderStatus(props)
             console.log(err);
         })
 
-        let otherPath = "https://voulutora-backend.herokuapp.com/orders/" + location.state.orderInfo.id
+        let otherPath = "https://voulutora-backend.herokuapp.com/orders/restaurant/" + location.state.orderInfo.id
         axios.get(otherPath)
         .then(response => {
             setOrderStatus(response.data[0].order_status);
@@ -81,8 +82,7 @@ export default function RestaurantOrderStatus(props)
 
     return (
         <div>
-        <NavigationBar/>
-
+        <NavigationBar jwt={props.jwt} logout={props.logout}/>
            <div>
                <Row>
                    <Col > 
