@@ -161,10 +161,7 @@ export default function ShoppingCartPage(props)
                         <Row>
                             <Col xs={12} xl={3}>
                                 <div className="">
-                                    <h1>Your order at {restaurantName}</h1>
-                                    <p>Information about the restaurant here</p>
-                                    <p>Such as their operating hours</p>
-                                    <p>And their address</p>
+                                    <h1>Your items from {restaurantName}</h1>
                                 </div>
                             </Col>
 

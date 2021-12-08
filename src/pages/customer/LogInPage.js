@@ -100,6 +100,7 @@ export default function LogInPage(props) {
         </div>
         {loginControls}
       </form>
+      <PageFiller/>
       <Footer />
     </div>
   );
