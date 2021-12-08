@@ -30,6 +30,7 @@
   justify-content: center;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
   }
 
   .LogInForm div {
@@ -62,33 +63,46 @@
  border: none;
  border-radius: 3px;
 
- background-color: #EB550A;
+ background-color: #eb550ae3;
  color: white;
 }  
 
 .SuggestionContainer {
     font-family: 'Roboto', sans-serif;
-    background-color: #EB550A;
     height: 200px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-content: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+    
 }
 
 .SuggestionContainer p {
     display: flex;
     width: 300px;
-    color: white;
     font-size: 24px;
 }
 
 .SuggestionContainer button {
-    width: 200px;
-    height: 70px;
+    width: 210px;
+    height: 50px;
     border: none;
-    border-radius: 3px;
-    background-color: white;
-    margin-left: auto;
-    margin-right: auto;
+    border-radius: 5px;
+    background-color: #eb550ae3;
+    color: white;
 }
+
+.bgContainer {
+  background-image: url("https://res.cloudinary.com/dmpgjexg4/image/upload/e_blur:150,o_50/v1638969432/pexels-ella-olsson-1640773_u3h8nw.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  min-height: 700px;
+  padding-top: 30px;
+}
+
