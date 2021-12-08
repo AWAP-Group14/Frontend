@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken';
 import { Link, useNavigate } from "react-router-dom";
 
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import PageFiller from '../../page_components/shared/PageFiller';
 
 export default function ShoppingCartPage(props) 
 {
@@ -131,6 +132,7 @@ export default function ShoppingCartPage(props)
             <div >
                 <NavigationBar jwt={props.jwt} logout={props.logout}/>
                 <h3>SHOPPING CART IS EMPTY</h3>
+                <PageFiller/>
                 <Footer />
             </div>
         )
@@ -140,7 +142,7 @@ export default function ShoppingCartPage(props)
                 <NavigationBar jwt={props.jwt} logout={props.logout}/>
 
 
-                <Container fluid className="mt-3 mb-3">
+                    <Container fluid className="mt-3 mb-3">
                         <Row>
                             <Col xs={12} xl={3}>
                                 <div className="">
@@ -175,7 +177,7 @@ export default function ShoppingCartPage(props)
                         </Row>
                     </Container>
 
-
+                <PageFiller/>
                 <Footer />
             </div>
         )

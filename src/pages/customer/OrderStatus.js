@@ -5,6 +5,7 @@ import styles from './css_modules/OrderStatus.module.scss';
 import { FaCheck, FaMortarPestle, FaCar, FaFlag, FaTimes } from "react-icons/fa";
 import Col from 'react-bootstrap/Col';
 import RestaurantInfoBox from "../../page_components/customer/RestaurantInfoBox";
+import PageFiller from "../../page_components/shared/PageFiller";
 
 import {ListGroup, Button} from 'react-bootstrap';
 

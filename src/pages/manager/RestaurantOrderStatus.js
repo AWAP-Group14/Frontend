@@ -4,6 +4,7 @@ import Footer from '../../page_components/customer/Footer';
 import { Row, Button, Col, Modal, Form } from "react-bootstrap";
 import styles from './css_modules/RestaurantOrderStatus.module.scss';
 import { useState } from "react";
+import PageFiller from '../../page_components/shared/PageFiller';
 
 export default function RestaurantOrderStatus(props)
 {
@@ -50,6 +51,7 @@ export default function RestaurantOrderStatus(props)
                 
                 
            </div>
+           <PageFiller/>
 
         <Footer/>
 

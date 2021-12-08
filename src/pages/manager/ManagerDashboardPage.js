@@ -6,6 +6,8 @@ import styles from './css_modules/LandingPageManager.module.scss';
 import OrderCard from '../../page_components/manager/OrderCard';
 import {Button} from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import PageFiller from "../../page_components/shared/PageFiller";
+
 
 export default function ManagerDashboardPage(props)
 {
@@ -18,6 +20,7 @@ export default function ManagerDashboardPage(props)
             <Button>Order history</Button>
             <Link to="/editMenu"><Button>Edit menu</Button></Link>
             </div>
+            <PageFiller/>
             <Footer/>
         </div>
     )

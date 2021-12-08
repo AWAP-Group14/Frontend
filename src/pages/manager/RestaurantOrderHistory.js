@@ -4,6 +4,7 @@ import Footer from '../../page_components/customer/Footer';
 import RestaurantHistoryCard from '../../page_components/manager/RestaurantHistoryCard';
 import jwt from 'jsonwebtoken';
 import axios from "axios";
+import PageFiller from "../../page_components/shared/PageFiller";
 
 import{ Container, Row } from "react-bootstrap";
 
@@ -57,6 +58,7 @@ export default function RestaurantOrderHistory(props)
              {history.map((order) => <RestaurantHistoryCard history={order}/>)}
              </Row>
         </Container>
+        <PageFiller/>
         <Footer />
         </div>
     )

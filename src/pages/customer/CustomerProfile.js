@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from './css_modules/CustomerProfile.module.scss';
 
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import PageFiller from "../../page_components/shared/PageFiller";
+
 
 export default function CustomerProfile(props) 
 { 
@@ -82,6 +84,7 @@ export default function CustomerProfile(props)
                 </Row>
             </Container>
 
+            <PageFiller/>
             <Footer jwt={props.jwt}/>
         </div>
     )
