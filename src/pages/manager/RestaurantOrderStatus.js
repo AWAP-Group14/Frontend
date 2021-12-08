@@ -104,7 +104,7 @@ export default function RestaurantOrderStatus(props)
                     <Button size="lg" variant={ButtonVariant[1]} disabled={ButtonDisabled[1]} onClick={() => handleStatusButtonClick(2)}>Cooking in progress</Button>
                     <Button size="lg" variant={ButtonVariant[2]} disabled={ButtonDisabled[2]} onClick={() => handleStatusButtonClick(3)}>Ready for delivery</Button>
                     <Button size="lg" variant={ButtonVariant[3]} disabled={ButtonDisabled[3]} onClick={() => handleStatusButtonClick(4)}>Sent to customer</Button>
-                    <Button size="lg" variant={ButtonVariant[4]} disabled={ButtonDisabled[4]} onClick={() => handleStatusButtonClick(5)}>Delivered</Button>
+                    <Button size="lg" variant={ButtonVariant[4]} disabled={ButtonDisabled[4]}>Delivered</Button>
                 </div>
                 <div className={styles.cancelBtn}>
                     <Button size="lg" variant="danger" onClick={handleCancelShow}>Cancel</Button>
