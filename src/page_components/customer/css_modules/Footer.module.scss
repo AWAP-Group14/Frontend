@@ -1,8 +1,7 @@
 .footerContainer {
-    background-color: #EB550A;
-    border: 0px solid #ccc;
+    
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     padding: 25px;
     width: 100%;
@@ -10,23 +9,30 @@
 }
 
 .footerLogo {
-
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    margin-left: 25px;
 }
 
 .ManagerPage {
     border-radius: 5px;
     border: none;
-    background-color: rgba(255, 255, 255, 0.023);
-    color: rgb(235, 235, 235);
+    background-color: rgba(255, 254, 254, 0.4);
+    color: rgb(50, 50, 50);
     padding: 10px;
     height: 50px;
+    margin-left: 20px;
 }
 
 .footerCopyright {
-    background-color: #EB550A;
     border: 0px solid #ccc;
     padding: 15px;
     padding-left: 50px;
     width: 100%;
 }
 
+.footerBackground {
+    background: rgb(255,202,162);
+    background: linear-gradient(0deg, rgba(255,202,162,1) 0%, rgba(255,255,255,1) 100%);
+}

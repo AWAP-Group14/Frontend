@@ -30,7 +30,7 @@ const NavigationBar = props => {
                         <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search"/>
                         <Button className="me-2" variant="success">Search</Button>
                         <Link to="/browse" style={{textDecoration: 'none'}}>
-                            <Button variant="primary">Browse</Button>
+                            <Button >Browse</Button>
                         </Link>
                     </Form>
     
@@ -60,7 +60,7 @@ const NavigationBar = props => {
                         <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search"/>
                         <Button className="me-2" variant="success">Search</Button>
                         <Link to="/browse" style={{textDecoration: 'none'}}>
-                            <Button variant="primary">Browse</Button>
+                            <Button className={styles.CustomBtn}>Browse</Button>
                         </Link>
                     </Form>
     
@@ -69,7 +69,7 @@ const NavigationBar = props => {
                             <Button className="me-2" variant="secondary">Sign Up</Button>
                         </Link>
                         <Link to="/login" style={{textDecoration: 'none'}}>
-                            <Button className="me-2" variant="primary">Sign In</Button>
+                            <Button className="me-2" variant="warning">Sign In</Button>
                         </Link>
                     </div>
     

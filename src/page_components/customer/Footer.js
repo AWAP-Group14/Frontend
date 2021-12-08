@@ -10,9 +10,11 @@ export default function Footer (props)
     if (props.jwt == null) {
         
     return (
-        <div >
+        <div className={styles.footerBackground}>
         <footer className={styles.footerContainer}>
-            <p className={styles.footerLogo}>LOGO</p>
+            <img className={styles.footerLogo}
+                src="http://res.cloudinary.com/dmpgjexg4/image/upload/c_crop,q_100,w_150/v1638954258/voulutora_logo_p1risu.png" >
+            </img>
             <Link to="/manager/login"><button className={styles.ManagerPage}>Restaurant mangement page</button></Link>
         </footer>
         <div className={styles.footerCopyright}><FaRegCopyright/> Group 14 Adwanced Web Development Project 2021 OAMK</div>
@@ -22,9 +24,11 @@ export default function Footer (props)
     if (props.jwt != null) {
         
         return (
-            <div >
+            <div className={styles.footerBackground}>
             <footer className={styles.footerContainer}>
-                <p className={styles.footerLogo}>LOGO</p>
+            <img className={styles.footerLogo}
+                src="http://res.cloudinary.com/dmpgjexg4/image/upload/c_crop,q_100,w_150/v1638954258/voulutora_logo_p1risu.png" >
+            </img>
                 <div><p>Contact us:</p>
                 <p>Yliopistokatu 9, Oulu</p>
                 <p>1234 4567 789</p>

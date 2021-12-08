@@ -28,6 +28,7 @@ import RestaurantOrderStatus from './pages/manager/RestaurantOrderStatus';
 import ManagerDashboardPage from './pages/manager/ManagerDashboardPage';
 import EditRestaurantMenuPage from './pages/manager/EditRestaurantMenuPage';
 
+
 const jwtFromLocalStorage = window.localStorage.getItem('appAuthData')
 
 

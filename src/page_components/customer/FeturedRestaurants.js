@@ -16,11 +16,11 @@ export default function FeaturedRestaurants(props)
                 </div>
                 <div className="d-flex justify-content-end ms-auto">
                     <Link to="/browse" style={{textDecoration: 'inherit',color:'inherit'}}>
-                        <Button>Browse all</Button>
+                        <Button variant="warning">Browse all</Button>
                     </Link>
                 </div>
         </Container>
-        <Container>
+        <Container >
             <Row className="g-3">
                 {props.restaurants.slice(0,4).map(restaurant => 
                 <RestaurantCard 

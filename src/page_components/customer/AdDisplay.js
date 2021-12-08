@@ -13,7 +13,7 @@ export default function AdDisplay(props)
             <Carousel.Item interval={4000}>
                 <img
                     className={styles.carouselImage}
-                    src="https://cdn.discordapp.com/attachments/908694823559634965/908698595669184552/IMG_20211104_130553.jpg"
+                    src="https://res.cloudinary.com/dmpgjexg4/image/upload/v1638953937/pexels-jonathan-borba-2983101_oqzlhj.jpg"
                     alt="First slide"
                 />
                 <Carousel.Caption>
@@ -25,7 +25,7 @@ export default function AdDisplay(props)
             <Carousel.Item interval={4000}>
                 <img
                     className={styles.carouselImage}
-                    src="https://cdn.discordapp.com/attachments/908694823559634965/915602687427489812/IMG_20211201_152923.jpg"
+                    src="https://res.cloudinary.com/dmpgjexg4/image/upload/v1638954076/pexels-pixabay-248444_bk1wfq.jpg"
                     alt="Second slide"
                 />
                 <Carousel.Caption>
@@ -37,7 +37,7 @@ export default function AdDisplay(props)
             <Carousel.Item interval={4000}>
                 <img
                     className={styles.carouselImage}
-                    src="https://cdn.discordapp.com/attachments/908694823559634965/908697819697786900/IMG_20211111_155440.jpg"
+                    src="https://res.cloudinary.com/dmpgjexg4/image/upload/v1638953952/pexels-laura-james-6102548_nosbjm.jpg"
                     alt="Third slide"
                 />
                 <Carousel.Caption>
