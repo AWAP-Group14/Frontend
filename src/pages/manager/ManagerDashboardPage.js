@@ -19,6 +19,9 @@ export default function ManagerDashboardPage(props)
     const goToOrderHistory = () => {
         navigate("/manager/order_history", {state: {}})
     }
+    const goToEditMenu = () => {
+        navigate("/editMenu", {state: {}})
+    }
 
     const createItemArray = (data) => {
         const itemArray = []
@@ -58,10 +61,10 @@ export default function ManagerDashboardPage(props)
                 {activeOrder.map((order) => <OrderCard order={order}/>)}
                 <div className={styles.btnCont}>
                 <Button onClick={goToOrderHistory}>Order history</Button>
-                <Link to="/editMenu"><Button>Edit menu</Button></Link>
+                <Button onClick={goToEditMenu}>Edit menu</Button>
                 </div>
                 <PageFiller/>
-                <Footer/>
+                <Footer jwt={props.jwt}/>
             </div>
         )
     } else {

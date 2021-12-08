@@ -118,7 +118,7 @@ return(
                                                 <div className="">
                                                     <Card.Title>
                                                     <Form.Group>
-                                                        <Form.Control type="number" placeholder="Price (€)" onChange={handleInputChange}></Form.Control>
+                                                        <Form.Control type="number" placeholder="Price (€)" name="item_price" onChange={handleInputChange}></Form.Control>
                                                     </Form.Group>
                                                     </Card.Title>
                                                     <Button style={{width:"100%"}} variant="success" onClick={addItem} >Create</Button>
