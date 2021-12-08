@@ -51,27 +51,31 @@ export default function ShoppingCartItemCard(props)
     return(     
 
         <Col >
-            <Card classname="px-0">
-                <Card.Img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1920px-Good_Food_Display_-_NCI_Visuals_Online.jpg" />
+            <Card classname="px-0" style={{width:"300px",height:"450px"}}>
+                <Card.Img className={styles.cardImage} src={props.item.item_image} />
                     <Card.Body className="pt-0">
-                            
-                        <div className="d-flex">
-                            <div>
-                                <Card.Title>{props.item.item_name}</Card.Title>
-                                <Card.Text>{props.item.item_description}</Card.Text>
-                            </div>
-                            <Button className="ms-auto mt-3" style={{height:'40px'}} variant="danger" onClick= {deleteItem}>Delete</Button>
-                        </div>                       
-                        {/* <Card.Text>L,G,V</Card.Text> */}
-  
-                                <div className="d-flex ">
-                                    <Card.Title className="">{props.item.item_price} €</Card.Title>
-                                    <div className="ms-auto d-flex">
-                                        <Button className="me-1" onClick= {minus}>-</Button>
+                        <Row>
+                            <Col xs={12}>
+                                
+                                    <Card.Title>{props.item.item_name}</Card.Title>
+                                    <Card.Text>{props.item.item_description}</Card.Text>
+                                
+                                
+                            </Col> 
+
+    
+                            <Col xs={12}>
+                                <Card.Title className="">{props.item.item_price} €</Card.Title>
+                                <div className="d-flex">
+                                    <Button className="" style={{width:"50%"}} variant="danger" onClick= {deleteItem}>Delete</Button>                            
+                                    <div className="d-flex ms-auto">
+                                        <Button style={{width:"35px",textAlign:"center"}} className="me-1" onClick= {minus}>-</Button>
                                         <Card.Text className="my-auto me-1">{amount}</Card.Text>
-                                        <Button className="" onClick={plus}>+</Button>
+                                        <Button style={{width:"35px",textAlign:"center"}} className="" onClick={plus}>+</Button>
                                     </div>
                                 </div>
+                            </Col>
+                        </Row>
                     </Card.Body>
 
             </Card>
