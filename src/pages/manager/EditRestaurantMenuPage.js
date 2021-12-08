@@ -77,6 +77,7 @@ export default function EditRestaurantMenuPage(props)
             console.log(err);
         })
 
+        console.log(categories+" lenght of the categories");
 
 
     }, []);
@@ -125,6 +126,14 @@ export default function EditRestaurantMenuPage(props)
         })
     }
 
+    console.log(categories.length+" lenght of the categories");
+
+    let itemAddCard = null;
+    if (categories.length != 0) {
+        
+       itemAddCard = categories.map((cat) => <NewMenuItemCard category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)
+    }
+
     return(        
         <div className={styles.root}>
             <NavigationBar jwt={props.jwt} logout={props.logout}/>
@@ -160,9 +169,9 @@ export default function EditRestaurantMenuPage(props)
 
                     <Col xs={6} sm={7} md={8} lg={9} xl={10}>
                         <Row className="g-4">
-                        {categories.map((cat) => <RestaurantItems category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)}
                         <h2>Add new item to category:</h2>
-                        {categories.map((cat) => <NewMenuItemCard category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)}
+                        {itemAddCard}
+                        {categories.map((cat) => <RestaurantItems category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)}
                         </Row>
                     </Col>
 
