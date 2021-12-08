@@ -53,6 +53,22 @@ export default function RestaurantItemCard(props)
         }
     }
 
+    const deleteItem = () => {
+        const decodedToken = Jwt.decode(props.jwt)
+        let path = "https://voulutora-backend.herokuapp.com/restaurants/"+decodedToken.restaurantInfo+"/item/"+props.item.itemId
+        console.log(path+" delete item path");
+        axios.delete(path)
+        .then((response) => {
+            console.log(response);
+            console.log("item deleted");
+            window.location.reload();
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+    
+
     // Checks from the passed jwt token wheter user is manager
     const isManager = function(){
         let userIsManager = false;
@@ -94,7 +110,7 @@ export default function RestaurantItemCard(props)
                                                 </div>
                                                 <div className="">
                                                     <Card.Title>{props.item.price} $</Card.Title>
-                                                    <Button variant="danger" onClick={addToCart}>Delete</Button>
+                                                    <Button variant="danger" onClick={deleteItem}>Delete</Button>
                                                 </div>
                                             </div>
                                         </Col>

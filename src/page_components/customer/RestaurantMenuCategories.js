@@ -13,6 +13,7 @@ export default function RestaurantMenuCategories(props)
         let userIsManager = false;
 
         const decodedToken = Jwt.decode(props.jwt);
+        console.log(decodedToken+ " token from resmencat");
 
         if (decodedToken == null) {
             return false;
@@ -32,7 +33,7 @@ export default function RestaurantMenuCategories(props)
             return(     
 
                 <div className="">
-                    <p>{props.category} <Button variant="danger">Delete</Button></p>
+                    <p>{props.category} <Button onClick={()=> {props.deleteCategory(props.category)}} variant="danger">Delete</Button></p>
                 </div>
             )
         }
