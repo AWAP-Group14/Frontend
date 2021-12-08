@@ -7,8 +7,9 @@ import OrderCard from '../../page_components/manager/OrderCard';
 import {Button} from 'react-bootstrap';
 import axios from 'axios'
 import jwt from 'jsonwebtoken';
+import { Link } from "react-router-dom";
 
-export default function LandingPageManager(props)
+export default function ManagerDashboardPage(props)
 {
     const [activeOrder, setActiveOrder] = useState([{restaurant_name: "", id: "", total_price:"", date:"", items: [], delivery_address: "", order_comment: "", order_status: 0}]);
     
@@ -46,7 +47,7 @@ export default function LandingPageManager(props)
             {activeOrder.slice(0).reverse().map((order) => <OrderCard order={order}/>)}
             <div className={styles.btnCont}>
             <Button>Order history</Button>
-            <Button>Edit menu</Button>
+            <Link to="/editMenu"><Button>Edit menu</Button></Link>
             </div>
             <Footer/>
         </div>
