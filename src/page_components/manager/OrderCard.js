@@ -10,6 +10,8 @@ export default function OrderCard(props)
     const [ConfirmShow, setConfirmShow] = useState(false);
     const [CancelShow, setCancelShow] = useState(false);
     const [orderConfirmed, setOrderConfirmed] = useState(false);
+    const [orderAddress, setOrderAddress] = useState("");
+    const [orderStatus, setOrderStatus] = useState(0)
     let navigate = useNavigate()
 
     const handleConfirmClose = () => {
@@ -25,20 +27,49 @@ export default function OrderCard(props)
         })
     }
 
+    
+    const handleCancel = () => {
+        setOrderConfirmed(true);
+        let path = 'https://voulutora-backend.herokuapp.com/orders/changestatus/' + props.order.id +"?status=6"
+        axios.put(path)
+        .then(response => {
+            window.location.reload()
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
     useEffect(() => {
-        if(props.order.order_status != 0) {
-            setOrderConfirmed(true);
+
+        let path = "https://voulutora-backend.herokuapp.com/orders/" + props.order.id
+        axios.get(path)
+        .then(response => {
+            setOrderStatus();
+            if(response.data[0].order_status != 0) {
+                setOrderConfirmed(true);
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+
+        if(props.order.order_delivery_type == 1) {
+            setOrderAddress("Address: " + props.order.delivery_address)
+        } else {
+            setOrderAddress("Take Away")
         }
+
     },[])
 
     const handleStatusButton = () => {
-        //navigate("/order_status", {state: {orderInfo: props.order}})
+        navigate("/manager/order_status", {state: {orderInfo: props.order}})
     }
 
     const handleConfirmShow = () => setConfirmShow(true);
 
     const handleCancelClose = () => setCancelShow(false);
-    const handleCancelShow = () => setCancelShow(true);
 
     if(!orderConfirmed) {
         return(
@@ -52,6 +83,7 @@ export default function OrderCard(props)
                             <Col>
                             <p>Order:</p>
                             {props.order.items.map(item => <p>{item.amount} x {item.item_name}</p>)}
+                            <p>{orderAddress}</p>
                             <p>Comments: {props.order.order_comment}</p>
                             </Col>
                             <Col>
@@ -59,7 +91,7 @@ export default function OrderCard(props)
                             <Button onClick={handleConfirmShow} size="lg" variant="success" className="me-3">
                                 Confirm
                             </Button>
-                            <Button onClick={handleCancelShow} size="lg" variant="danger">
+                            <Button onClick={handleCancel} size="lg" variant="danger">
                                 Cancel
                             </Button>
                             </Col>
@@ -108,25 +140,6 @@ export default function OrderCard(props)
                                     </Button>
                                 </Modal.Footer>
                             </Modal>
-                            <Modal 
-                            show={CancelShow} 
-                            onHide={() => setCancelShow(false)} >
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Enter cancelation reason: </Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    <Form>
-                                        <Form.Group>
-                                            <Form.Control as="textarea"/>
-                                        </Form.Group>
-                                    </Form>
-                                </Modal.Body>
-                                <Modal.Footer>
-                                    <Button onClick={handleCancelClose}>
-                                        Save Changes
-                                    </Button>
-                                </Modal.Footer>
-                            </Modal>
                         </Card.Text>
                     </Card.Body>
                 </Card>
@@ -146,6 +159,7 @@ export default function OrderCard(props)
                             <Col>
                             <p>Order:</p>
                             {props.order.items.map(item => <p>{item.amount} x {item.item_name}</p>)}
+                            <p>{orderAddress}</p>
                             <p>Comments: {props.order.order_comment}</p>
                             </Col>
                             <Col>

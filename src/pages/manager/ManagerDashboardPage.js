@@ -7,16 +7,20 @@ import OrderCard from '../../page_components/manager/OrderCard';
 import {Button} from 'react-bootstrap';
 import axios from 'axios'
 import jwt from 'jsonwebtoken';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ManagerDashboardPage(props)
 {
-    const [activeOrder, setActiveOrder] = useState([{restaurant_name: "", id: "", total_price:"", date:"", items: [], delivery_address: "", order_comment: "", order_status: 0}]);
-    
+    const [activeOrder, setActiveOrder] = useState([{restaurant_name: "", id: "", total_price:"", date:"", items: [], delivery_address: "", order_comment: "", order_status: 0, order_delivery_type: 0, customer_id: "" }]);
+    let navigate = useNavigate()
+    const goToOrderHistory = () => {
+        navigate("/manager/order_history", {state: {}})
+    }
+
     const createItemArray = (data) => {
         const itemArray = []
         data.forEach(item => { itemArray.push({
-            restaurant_name: item.restaurant_name, id: item.id, total_price:item.total_price, date: item.date, items: JSON.parse(item.items), delivery_address: item.delivery_address, order_comment: item.order_comment, order_status: item.order_status
+            restaurant_name: item.restaurant_name, id: item.id, total_price:item.total_price, date: item.date, items: JSON.parse(item.items), delivery_address: item.delivery_address, order_comment: item.order_comment, order_status: item.order_status, order_delivery_type: item.order_delivery_type, customer_id: item.customer_id
         })})
         return itemArray
     }
@@ -35,6 +39,7 @@ export default function ManagerDashboardPage(props)
                 console.log(err);
                 
             })
+            
         } else {
             console.log("User need to login")
         }
@@ -46,7 +51,7 @@ export default function ManagerDashboardPage(props)
             <h1>Orders</h1>
             {activeOrder.slice(0).reverse().map((order) => <OrderCard order={order}/>)}
             <div className={styles.btnCont}>
-            <Button>Order history</Button>
+            <Button onClick={goToOrderHistory}>Order history</Button>
             <Link to="/editMenu"><Button>Edit menu</Button></Link>
             </div>
             <Footer/>

@@ -3,13 +3,80 @@ import NavigationBar from "../../page_components/customer/NavigationBar";
 import Footer from '../../page_components/customer/Footer';
 import { Row, Button, Col, Modal, Form } from "react-bootstrap";
 import styles from './css_modules/RestaurantOrderStatus.module.scss';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios'
+import { useLocation } from "react-router-dom";
 
 export default function RestaurantOrderStatus(props)
 {
     const [CancelShow, setCancelShow] = useState(false);
     const handleCancelClose = () => setCancelShow(false);
     const handleCancelShow = () => setCancelShow(true);
+    const [custName, setCustName] = useState({
+        firstname: "", lastname: ""
+    });
+    const [orderStatus, setOrderStatus] = useState(0)
+    let location = useLocation()
+    const [ButtonVariant, setButtonVariant] = useState(["outline-success", "outline-success", "outline-success", "outline-success", "outline-success"])
+    const [ButtonDisabled, setButtonDisabled] = useState([false, false, false, false, false])
+
+
+    useEffect(() => {
+        console.log(location.state.orderInfo)
+        let path = "https://voulutora-backend.herokuapp.com/customer/" + location.state.orderInfo.customer_id
+        axios.get(path)
+        .then(response => {
+            setCustName({firstname: response.data[0].customer_first_name, lastname: response.data[0].customer_last_name})
+            
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+        let otherPath = "https://voulutora-backend.herokuapp.com/orders/" + location.state.orderInfo.id
+        axios.get(otherPath)
+        .then(response => {
+            setOrderStatus(response.data[0].order_status);
+            console.log(response.data[0].order_status)
+            checkStatus(response.data[0].order_status)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+
+
+
+    },[])
+
+
+
+    const handleStatusButtonClick = (status) => {
+        console.log(location.state.orderInfo.order_status)
+        let path = 'https://voulutora-backend.herokuapp.com/orders/changestatus/' + location.state.orderInfo.id +"?status=" + status
+        axios.put(path)
+        .then(response => {
+            window.location.reload()
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        
+    }
+    
+    const checkStatus = (order_status) => {
+        const statusArray = ["outline-success", "outline-success", "outline-success", "outline-success", "outline-success"]
+        const disabledArray = [false, false, false, false, false]
+        for (let i = 0; i < order_status; i++) { 
+            statusArray[i] = "success"
+            disabledArray[i] = true
+            
+        }
+        setButtonVariant(statusArray)
+        setButtonDisabled(disabledArray)
+    }
+
+
 
     return (
         <div>
@@ -19,25 +86,24 @@ export default function RestaurantOrderStatus(props)
                <Row>
                    <Col > 
                    <div className={styles.infoColumn}>
-               <p>Order: {props.orderId}</p>
-               <p>Ordered items:</p>
-                     <div className="ms-3">
-                       
-                     </div>
-                <p>Comment: </p>
-                <p>Customer: </p>
-                <p>{props.customer_name}</p>
-                <p>{props.customer_phone}</p>
-                </div>
+                        <p>Order ID: </p>
+                        <p>{location.state.orderInfo.id}</p>
+                        <p>Ordered items:</p>
+                        <div className="ms-3">
+                            {location.state.orderInfo.items.map(item => <p>{item.amount} x {item.item_name}</p>)}
+                        </div>
+                        <p>Comment: {location.state.orderInfo.order_comment}</p>
+                        <p>Customer: {custName.firstname} {custName.lastname}</p>
+                    </div>
                 </Col>
                 <Col >
                 <div className={styles.btnColumn} >
                     <h2>Order status:</h2>
-                    <Button size="lg" variant="outline-success">Confirm</Button>
-                    <Button size="lg" variant="outline-success">Cooking in progress</Button>
-                    <Button size="lg" variant="outline-success">Ready for delivery</Button>
-                    <Button size="lg" variant="outline-success">Sent to customer</Button>
-                    <Button size="lg" variant="outline-success">Delivered</Button>
+                    <Button size="lg" variant={ButtonVariant[0]} disabled={ButtonDisabled[0]} >Confirm</Button>
+                    <Button size="lg" variant={ButtonVariant[1]} disabled={ButtonDisabled[1]} onClick={() => handleStatusButtonClick(2)}>Cooking in progress</Button>
+                    <Button size="lg" variant={ButtonVariant[2]} disabled={ButtonDisabled[2]} onClick={() => handleStatusButtonClick(3)}>Ready for delivery</Button>
+                    <Button size="lg" variant={ButtonVariant[3]} disabled={ButtonDisabled[3]} onClick={() => handleStatusButtonClick(4)}>Sent to customer</Button>
+                    <Button size="lg" variant={ButtonVariant[4]} disabled={ButtonDisabled[4]} onClick={() => handleStatusButtonClick(5)}>Delivered</Button>
                 </div>
                 <div className={styles.cancelBtn}>
                     <Button size="lg" variant="danger" onClick={handleCancelShow}>Cancel</Button>
