@@ -11,6 +11,7 @@ import { set } from "react-hook-form";
 
 export default function NewMenuItemCard(props) 
 {
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     const [newItem, setNewItem] = useState({item_name: "", item_description: "",item_image: "",menu_name:"", item_price: null});
 
     const alert = useAlert()

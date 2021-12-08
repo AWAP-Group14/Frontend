@@ -7,6 +7,7 @@ import {useNavigate } from "react-router-dom";
 
 export default function OrderCard(props) 
 {
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     const [ConfirmShow, setConfirmShow] = useState(false);
     const [CancelShow, setCancelShow] = useState(false);
     const [orderConfirmed, setOrderConfirmed] = useState(false);
@@ -43,7 +44,7 @@ export default function OrderCard(props)
     useEffect(() => {
         console.log(props.order.id)
         if(props.order.id != "") {
-            let path = "https://voulutora-backend.herokuapp.com/orders/" + props.order.id
+            let path = "https://voulutora-backend.herokuapp.com/orders/restaurant/" + props.order.id
             axios.get(path)
             .then(response => {
                 if(response.data[0].order_status != 0) {

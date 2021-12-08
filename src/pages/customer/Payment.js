@@ -11,7 +11,7 @@ import PageFiller from "../../page_components/shared/PageFiller";
 export default function Payment(props) 
 {
     
-
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     //Delivery type: 1=delivery, 2=pickup
     let location = useLocation()
     let navigate = useNavigate()
