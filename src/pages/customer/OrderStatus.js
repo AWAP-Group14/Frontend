@@ -102,8 +102,9 @@ const [info, setInfo] = useState({
                    <ListGroup.Item as="li" active={state[4]}>Food is on the way <FaCar /> </ListGroup.Item>
                    <ListGroup.Item as="li" active={state[5]}>Delivered <FaFlag /> </ListGroup.Item>
                    <ListGroup.Item as="li" variant={danger}>Canceled <FaTimes /> </ListGroup.Item>
+                   <Button variant = "success" onClick={handleReceived}>Confirm order received</Button>
                </ListGroup>
-               <Button onClick={handleReceived}>Confirm order received</Button>
+                   
 
                
                {/* <div className={styles.RestaurantInfoBox}> */}
@@ -112,6 +113,7 @@ const [info, setInfo] = useState({
                {/* </div> */}
 
             </div>
+            <Footer/>
 
         </div>
     )
