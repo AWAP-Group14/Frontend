@@ -8,6 +8,8 @@ import {Button} from 'react-bootstrap';
 import axios from 'axios'
 import jwt from 'jsonwebtoken';
 import { Link, useNavigate } from "react-router-dom";
+import PageFiller from "../../page_components/shared/PageFiller";
+
 
 export default function ManagerDashboardPage(props)
 {
@@ -54,6 +56,7 @@ export default function ManagerDashboardPage(props)
             <Button onClick={goToOrderHistory}>Order history</Button>
             <Link to="/editMenu"><Button>Edit menu</Button></Link>
             </div>
+            <PageFiller/>
             <Footer/>
         </div>
     )

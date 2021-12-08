@@ -5,6 +5,7 @@ import HistoryCard from '../../page_components/customer/HistoryCard';
 import styles from './css_modules/OrderHistory.module.scss'
 import jwt from 'jsonwebtoken';
 import axios from "axios";
+import PageFiller from "../../page_components/shared/PageFiller";
 
 import{ Container, Row } from "react-bootstrap";
 
@@ -59,6 +60,7 @@ export default function OrderHistory(props)
                     
                 </Row>
             </Container>
+            <PageFiller/>
             <Footer />
         </div>
     )

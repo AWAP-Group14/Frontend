@@ -9,6 +9,11 @@ import RestaurantItems from "../../page_components/customer/RestaurantItems";
 import RestaurantItemCard from "../../page_components/shared/RestaurantItemCard";
 import NewMenuItemCard from '../../page_components/manager/NewMenuItemCard';
 
+import PageFiller from '../../page_components/shared/PageFiller';
+
+import { useAlert } from 'react-alert'
+
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -36,12 +41,15 @@ export default function EditRestaurantMenuPage(props)
         price_level: 0
     });
 
-    const [newCategory, setNewCategory] = useState({newCategory: ""});
+    const [newCategory, setNewCategory] = useState({newCategory: null});
 
     const [categories, setCategories] = useState([])
 
     const [items, setItems] = useState([{
         itemId: "", name: "", description: "", image: "", category: "", price: 0}, {name: "", description: "", image: "", category: "", price: 0} ])
+
+
+    const alert = useAlert()
 
     //This function returns an array of string with unique category from the input of array of object
     const filterCategory = (data) => {
@@ -85,21 +93,25 @@ export default function EditRestaurantMenuPage(props)
       };
 
     const addCategory = () => {
+        console.log(newCategory+" this is new category");
         const decodedToken = jwt.decode(props.jwt)
         let path = "https://voulutora-backend.herokuapp.com/restaurants/"+decodedToken.restaurantInfo+"/menu"
-        axios.post(path, {
-            menu_name: newCategory.newCategory,
-            restaurant_name: decodedToken.restaurantInfo
-
-        })
-        .then(response => {
-            console.log(response);
-            console.log("new category added");
-            window.location.reload();
-        })
-        .catch(err => {
-            console.log(err);
-        })
+            axios.post(path, {
+                menu_name: newCategory.newCategory,
+                restaurant_name: decodedToken.restaurantInfo
+    
+            })
+            .then(response => {
+                console.log(response);
+                console.log("new category added");
+                window.location.reload();
+            })
+            .catch(err => {
+                console.log(err);
+                alert.show("Can't add empty category!")
+            })
+        
+        
     }
 
     const deleteCategory = (menuName) => {
@@ -153,6 +165,7 @@ export default function EditRestaurantMenuPage(props)
                     <Col xs={6} sm={7} md={8} lg={9} xl={10}>
                         <Row className="g-4">
                         {categories.map((cat) => <RestaurantItems category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)}
+                        <h2>Add new item to category:</h2>
                         {categories.map((cat) => <NewMenuItemCard category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)}
                         </Row>
                     </Col>
@@ -160,6 +173,7 @@ export default function EditRestaurantMenuPage(props)
                 </Row>
 
             </Container>
+            <PageFiller/>
             <Footer jwt={props.jwt}/>
         </div>
     )

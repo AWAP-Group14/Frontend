@@ -1,12 +1,23 @@
+.footerMargin{
+    display: flex;
+    flex-direction: column;
+}
+
 .footerContainer {
+
+    display: flex;
+    align-self: flex-end;
+    margin-top: auto;
+    height: 180px;
+    clear: both;
+
     background-color: #EB550A;
     border: 0px solid #ccc;
-    display: flex;
+ 
     justify-content: space-around;
     align-items: center;
     padding: 25px;
     width: 100%;
-    margin-top: 25px;
 }
 
 .footerLogo {

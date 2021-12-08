@@ -93,7 +93,7 @@ export default function RestaurantItemCard(props)
                 
             <Col sm={12} lg={6} xl={4}>
                 <Card classname="px-0">
-                    <Card.Img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1920px-Good_Food_Display_-_NCI_Visuals_Online.jpg" />
+                    <Card.Img src={props.item.image} width="150" height="250" />
                         <Card.Body className="g-0">
                                 
                                     <Row>
@@ -109,7 +109,7 @@ export default function RestaurantItemCard(props)
                                                     {/* <Button variant="danger">Delete</Button> */}
                                                 </div>
                                                 <div className="">
-                                                    <Card.Title>{props.item.price} $</Card.Title>
+                                                    <Card.Title>{props.item.price} €</Card.Title>
                                                     <Button variant="danger" onClick={deleteItem}>Delete</Button>
                                                 </div>
                                             </div>

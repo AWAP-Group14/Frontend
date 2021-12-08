@@ -3,6 +3,7 @@ import NavigationBar from "../../page_components/customer/NavigationBar";
 import Footer from "../../page_components/customer/Footer";
 import styles from './css_modules/SignUpPage.module.css';
 import axios from 'axios';
+import PageFiller from "../../page_components/shared/PageFiller";
 
 export default function SignUpPage(props) {
 
@@ -136,6 +137,7 @@ export default function SignUpPage(props) {
         <button type="submit">Create account</button>
         {signupControls}
       </form>
+      <PageFiller/>
       <Footer />
     </div>
   );

@@ -4,8 +4,9 @@ import Footer from '../../page_components/customer/Footer';
 import { Row, Button, Col, Modal, Form } from "react-bootstrap";
 import styles from './css_modules/RestaurantOrderStatus.module.scss';
 import { useState, useEffect } from "react";
-import axios from 'axios'
+import axios from 'axios' 
 import { useLocation } from "react-router-dom";
+import PageFiller from '../../page_components/shared/PageFiller';
 
 export default function RestaurantOrderStatus(props)
 {
@@ -116,6 +117,7 @@ export default function RestaurantOrderStatus(props)
                 
                 
            </div>
+           <PageFiller/>
 
         <Footer/>
 
