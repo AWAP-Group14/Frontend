@@ -79,6 +79,7 @@ export default function SignUpPage(props) {
   return (
     <div>
       <NavigationBar/>
+      <div className={styles.bgContainer}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div>
           <label>Firstname</label>
@@ -137,7 +138,8 @@ export default function SignUpPage(props) {
         <button type="submit">Create account</button>
         {signupControls}
       </form>
-      <PageFiller/>
+      </div>
+      
       <Footer />
     </div>
   );

@@ -101,6 +101,7 @@ export default function RegistrationForm(props) {
   return (
     <div>
       <NavigationBar/>
+      <div className={styles.bgContainer}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div>
           <label>Restaurant name</label>
@@ -181,7 +182,8 @@ export default function RegistrationForm(props) {
         <button type="submit">Create account</button>
         {signupControls}
       </form>
-      <PageFiller/>
+      
+      </div>
       <Footer />
     </div>
   );
