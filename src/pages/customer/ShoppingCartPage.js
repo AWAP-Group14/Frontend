@@ -54,6 +54,13 @@ export default function ShoppingCartPage(props)
         var index = itemArray.findIndex(item => item.id === itemToDelete)
         itemArray[index].amount += 0
         itemArray.splice(index, 1)
+        var tempPrice = price
+        if(itemArray.length == 0) {
+            setIsEmpty(true)
+            setPrice(0)
+            tempPrice = 0
+        }
+        
         console.log(itemArray)
         setCartItems(itemArray)
 
@@ -62,7 +69,7 @@ export default function ShoppingCartPage(props)
             let path = 'https://voulutora-backend.herokuapp.com/orders/shoppingCart/' + decodedToken.userId
             axios.put(path, {
                 items: cartItems,
-                totalPrice: price
+                totalPrice: tempPrice
             })
             .then(response => {
                 console.log(price);
@@ -112,7 +119,9 @@ export default function ShoppingCartPage(props)
             let path = 'https://voulutora-backend.herokuapp.com/orders/shoppingCart/' + decodedToken.userId
             axios.get(path)
             .then(response => {
-                setIsEmpty(false)
+                if(response.data.items.length != 0) {
+                    setIsEmpty(false)
+                }
                 setRestaurantName(response.data.restaurantName)
                 setPrice(response.data.totalPrice)
                 setCartItems(createItemArray(response.data.items))
@@ -169,7 +178,7 @@ export default function ShoppingCartPage(props)
                                 <Form className="" onSubmit={handleSubmit}>
                                     <Form.Group>
                                         <Form.Label>Comment to restaurant:</Form.Label>
-                                        <Form.Control className="ms-auto mb-2" as="textarea" placeholder="allergies, spice level, etc" />
+                                        <Form.Control className="ms-auto mb-2" as="textarea" placeholder="allergies, spice level, etc" onChange={handleCommentChange}/>
                                     </Form.Group>
                                     <Button type="submit">Proceed to payment</Button>
                                 </Form>

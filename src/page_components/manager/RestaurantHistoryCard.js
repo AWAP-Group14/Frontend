@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import axios from "axios";
-import jwt from 'jsonwebtoken';
+
 import { Card, Button, Check, Col } from "react-bootstrap";
 
 export default function RestaurantHistoryCard (props)
 {
-    
+    const [orderStatus, setOrderStatus] = useState("Delivered");
+    useEffect(() => {
+        if(props.history.order_status == 6) {
+            setOrderStatus("Cancelled")
+        }
+    },[])
     if (props.history != null) {
         
         console.log(props.history)
@@ -26,7 +29,7 @@ export default function RestaurantHistoryCard (props)
                             </div>
                             <p>Delivery address: {props.history.delivery_address}</p>
                             <p>Total price: {props.history.total_price} €</p>
-                            <p>Delivery status: Delivered</p>
+                            <p>Delivery status: {orderStatus}</p>
                             <p>Date of order: {props.history.date}</p>
                         </Card.Text>
                     </Card.Body>
