@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './css_modules/RestaurantMenuCategories.module.css'
-import { Jwt } from "jsonwebtoken";
+import  Jwt  from "jsonwebtoken";
 
 import { Button } from "react-bootstrap";
 
@@ -13,6 +13,7 @@ export default function RestaurantMenuCategories(props)
         let userIsManager = false;
 
         const decodedToken = Jwt.decode(props.jwt);
+        console.log(decodedToken+ " token from resmencat");
 
         if (decodedToken == null) {
             return false;
@@ -28,11 +29,11 @@ export default function RestaurantMenuCategories(props)
     }
 
             // If user is manager show advanced fetures
-        if (isManager) {
+        if (isManager()) {
             return(     
 
                 <div className="">
-                    <p>{props.category} <Button variant="danger">Delete</Button></p>
+                    <p>{props.category} <Button onClick={()=> {props.deleteCategory(props.category)}} variant="danger">Delete</Button></p>
                 </div>
             )
         }

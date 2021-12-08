@@ -127,8 +127,8 @@ class App extends React.Component {
       if (this.decodeToken().isManager == true) {
         authRoutes = <>
             
-            
-            <Route path="/manager/restaurant_order_history" element={<RestaurantOrderHistory jwt={this.state.token} logout={this.logout}/>} />
+            <Route path="/manager/order_status" element={<RestaurantOrderStatus jwt={this.state.token} logout={this.logout}/>}/>
+            <Route path="/manager/order_history" element={<RestaurantOrderHistory jwt={this.state.token} logout={this.logout}/>} />
             <Route path="/" element={<ManagerDashboardPage jwt={this.state.token} logout={this.logout}/>} />
             <Route path="/editMenu" element={<EditRestaurantMenuPage jwt={this.state.token} logout={this.logout}/>} />
       </>

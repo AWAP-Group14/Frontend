@@ -4,6 +4,7 @@ import Footer from "../../page_components/customer/Footer";
 import styles from './css_modules/LogInPage.module.css';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import PageFiller from "../../page_components/shared/PageFiller";
 
 
 export default function LogInPage(props) {

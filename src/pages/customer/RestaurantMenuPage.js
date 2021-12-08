@@ -7,6 +7,7 @@ import RestaurantInfoBox from "../../page_components/customer/RestaurantInfoBox"
 import RestaurantMenuCategories from "../../page_components/customer/RestaurantMenuCategories";
 import RestaurantItems from "../../page_components/customer/RestaurantItems";
 import RestaurantItemCard from "../../page_components/shared/RestaurantItemCard";
+import PageFiller from '../../page_components/shared/PageFiller';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -74,7 +75,7 @@ export default function RestaurantMenuPage(props)
 
             <div className={styles.restaurantHeader}>
                 <div className={styles.restaurantBannerFader}>
-                    <Image className={styles.restaurantHeaderImage} src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Restaurant_N%C3%A4sinneula.jpg"/>
+                    <Image className={styles.restaurantHeaderImage} src={info.image}/>
                 </div>
                 <div className={styles.restaurantInfo}>
                     <RestaurantInfoBox restaurantInfo={info}/>
@@ -103,6 +104,7 @@ export default function RestaurantMenuPage(props)
                 </Row>
 
             </Container>
+            <PageFiller/>
             <Footer jwt={props.jwt}/>
         </div>
     )

@@ -1,11 +1,24 @@
+.footerMargin{
+    display: flex;
+    flex-direction: column;
+}
+
 .footerContainer {
     
-    display: flex;
+
     justify-content: flex-start;
+
+    display: flex;
+
+    margin-top: auto;
+    height: 180px;
+    clear: both;
+
+
+    border: 0px solid #ccc;
     align-items: center;
     padding: 25px;
     width: 100%;
-    margin-top: 25px;
 }
 
 .footerLogo {

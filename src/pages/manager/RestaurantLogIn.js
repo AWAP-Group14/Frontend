@@ -4,6 +4,7 @@ import Footer from "../../page_components/customer/Footer";
 import styles from './css_modules/RestaurantLogIn.module.css';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import PageFiller from "../../page_components/shared/PageFiller";
 
 export default function RestaurantLogIn(props) {
 
@@ -100,6 +101,8 @@ export default function RestaurantLogIn(props) {
           <p>Are you a new restaurant?</p>
           <Link to="/manager/signup"><button>Create restaurant account</button></Link>
         </div>
+        
+        <PageFiller/>
       <Footer />
     </div>
   );

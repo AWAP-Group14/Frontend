@@ -5,6 +5,7 @@ import styles from './css_modules/OrderStatus.module.scss';
 import { FaCheck, FaMortarPestle, FaCar, FaFlag, FaTimes } from "react-icons/fa";
 import Col from 'react-bootstrap/Col';
 import RestaurantInfoBox from "../../page_components/customer/RestaurantInfoBox";
+import PageFiller from "../../page_components/shared/PageFiller";
 
 import {ListGroup, Button} from 'react-bootstrap';
 
@@ -101,8 +102,9 @@ const [info, setInfo] = useState({
                    <ListGroup.Item as="li" active={state[4]}>Food is on the way <FaCar /> </ListGroup.Item>
                    <ListGroup.Item as="li" active={state[5]}>Delivered <FaFlag /> </ListGroup.Item>
                    <ListGroup.Item as="li" variant={danger}>Canceled <FaTimes /> </ListGroup.Item>
+                   <Button variant = "success" onClick={handleReceived}>Confirm order received</Button>
                </ListGroup>
-               <Button onClick={handleReceived}>Confirm order received</Button>
+                   
 
                
                {/* <div className={styles.RestaurantInfoBox}> */}
@@ -111,6 +113,7 @@ const [info, setInfo] = useState({
                {/* </div> */}
 
             </div>
+            <Footer/>
 
         </div>
     )
