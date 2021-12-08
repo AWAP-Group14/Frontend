@@ -29,7 +29,8 @@ export default function NewMenuItemCard(props)
       };
 
       const getMenuId = () => {
-          let path = "https://voulutora-backend.herokuapp.com/restaurants/"+props.category+"/menu/id"
+        const decodedToken = jwt.decode(props.jwt)
+          let path = "https://voulutora-backend.herokuapp.com/restaurants/"+props.category+"/menu/"+decodedToken.restaurantInfo
           console.log(path+" path");
           axios.get(path)
           .then((response) => {
