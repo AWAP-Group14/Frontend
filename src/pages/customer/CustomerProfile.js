@@ -18,6 +18,7 @@ export default function CustomerProfile(props)
     const [isLoading, setLoading] = useState(true);
     const [activeOrder, setActiveOrder] = useState([]);
     const [orderId, setOrderId] = useState("")
+    const [activeOrderData, setActiveOrderData] =useState([]) 
 
     const decodedToken = jwt.decode(props.jwt)
     console.log(decodedToken)
@@ -43,10 +44,14 @@ export default function CustomerProfile(props)
         let path = "https://voulutora-backend.herokuapp.com/orders/active/"+decodedToken.userId
         axios.get(path)
         .then(response => {
+            console.log("response from the active orders "+JSON.stringify(response.data[0]));
+            setActiveOrderData(response.data)
             setActiveOrder(createOrderArray(response.data))
-            setOrderId(response.data[0].id)
+            setOrderId(response.data[0].id) 
             orderIdTest = response.data[0].id
             setLoading(false)
+
+            //console.log(response.data[0].id+ " activeorderdata");
         })
         .catch(err => {
             console.log(err);
@@ -80,12 +85,8 @@ export default function CustomerProfile(props)
                     <Col xs={9}>
                         <div>
                             <h1>Active orders</h1>
-                            {activeOrder.map(item => <Button variant="link" onClick={e => handleClick(item.orderId)}>{item.text}</Button>)}
                             <Row className="g-4">
-                                <ActiveOrder/>
-                                <ActiveOrder/>
-                                <ActiveOrder/>
-                                <ActiveOrder/>
+                            {activeOrderData.map(activeOrderData => <Button variant="" onClick={e => handleClick(activeOrderData.id)}><ActiveOrder handleClick={handleClick} activeOrderData={activeOrderData}/></Button>)}
                             </Row>
                         </div>  
                     </Col> 

@@ -9,7 +9,7 @@ export default function HistoryCard (props)
     
     if (props.history != null) {
         
-        console.log(props.history)
+        console.log(JSON.stringify(props.history.items)+" historyData")
         return (
             <Col xs={12}>
                 
