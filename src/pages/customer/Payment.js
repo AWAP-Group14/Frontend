@@ -71,7 +71,7 @@ export default function Payment(props)
 
             })
             .then(response => {
-                navigate("/status", {state: {orderId: response.data[0].id, restaurantInfo: restaurantInfo}})
+                navigate("/status", {state: {orderId: response.data[0].id, restaurantInfo: restaurantInfo}, replace: true})
             })
             .catch(err => {
                 console.log(err);
