@@ -83,6 +83,7 @@ export default function RestaurantOrderStatus(props)
     return (
         <div>
         <NavigationBar jwt={props.jwt} logout={props.logout}/>
+        
            <div>
                <Row>
                    <Col > 
