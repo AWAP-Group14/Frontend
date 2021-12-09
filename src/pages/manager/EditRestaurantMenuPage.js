@@ -18,7 +18,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import { Card, Button } from "react-bootstrap";s
+import { Card, Button } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
