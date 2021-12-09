@@ -101,6 +101,7 @@ export default function RegistrationForm(props) {
           <label>Restaurant name</label>
           <input
             type="text"
+            placeholder="Name"
             name="restaurantName"
             value={state.restaurantName}
             onChange={handleInputChange}
@@ -110,6 +111,7 @@ export default function RegistrationForm(props) {
           <label>Address</label>
           <input
             type="text"
+            placeholder="Address"
             name="address"
             value={state.address}
             onChange={handleInputChange}
@@ -119,6 +121,7 @@ export default function RegistrationForm(props) {
           <label>Operating hours</label>
           <input
             type="text"
+            placeholder="Mon-Fri: -:- ;Sat-Sun: -:-"
             name="openingHour"
             value={state.openingHour}
             onChange={handleInputChange}
@@ -136,6 +139,7 @@ export default function RegistrationForm(props) {
           <label>email</label>
           <input
             type="text"
+            placeholder="email"
             name="email"
             value={state.email}
             onChange={handleInputChange}
