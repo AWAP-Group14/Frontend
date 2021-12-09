@@ -13,7 +13,7 @@ export default function OrderCard(props)
     const [orderConfirmed, setOrderConfirmed] = useState(false);
     const [orderAddress, setOrderAddress] = useState("");
     const [orderStatus, setOrderStatus] = useState(0)
-    const [time, setTime] = useState({hour: "", minute: ""})
+    const [time, setTime] = useState({hour: "09", minute: "00"})
     let navigate = useNavigate()
 
     const handleConfirmClose = () => {
@@ -47,19 +47,14 @@ export default function OrderCard(props)
           ...prevProps,
           [event.target.name]: event.target.value
         }));
-        console.log(time)
       };
 
     useEffect(() => {
-        console.log(props.order.id)
         if(props.order.id != "") {
             let path = "https://voulutora-backend.herokuapp.com/orders/restaurant/" + props.order.id
             axios.get(path)
             .then(response => {
                 if(response.data[0].order_status != 0) {
-                    console.log(response.data)
-                    console.log("ID " + props.order.id) 
-                    console.log("STATUS" + response.data[0].order_status)
                     setOrderConfirmed(true);
                 }
             })
@@ -67,7 +62,6 @@ export default function OrderCard(props)
                 console.log(err);
             })
         } else {
-            console.log("Im here");
         }
         
 

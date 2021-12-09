@@ -30,7 +30,6 @@ export default function ManagerDashboardPage(props)
         data.forEach(item => { itemArray.push({
             restaurant_name: item.restaurant_name, id: item.id, total_price:item.total_price, date: item.date, items: JSON.parse(item.items), delivery_address: item.delivery_address, order_comment: item.order_comment, order_status: item.order_status, order_delivery_type: item.order_delivery_type, customer_id: item.customer_id
         })})
-        console.log(itemArray)
         return itemArray
     }
     
@@ -41,8 +40,6 @@ export default function ManagerDashboardPage(props)
             axios.get(path)
             .then(response => {
                 setActiveOrder(createItemArray(response.data))
-                console.log(activeOrder)
-                console.log(response.data)
                 setLoading(false)
             })
             .catch(err => {
