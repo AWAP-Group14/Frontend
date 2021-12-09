@@ -20,14 +20,11 @@ export default function BrowsePage(props)
     return(
         <div>
             <NavigationBar jwt={props.jwt} logout={props.logout}/>
-
+            
             <div className={styles.filterSection}>
-            <Container>
-                <h1 className={styles.headerText}>Browse all of our restaurants!</h1>
+            <Container className={styles.filterSectionContainer}>
+                <Row className="mt-5"><h1 className={styles.headerText}>Browse all of our restaurants!</h1></Row>
                 <Row className="mt-5">
-                    <Col xs={12} sm={12} md={4} lg={5} xl={4}>
-                        <h3 className={styles.headerText}>Filter from all restaurants:</h3>
-                    </Col>
                     <Col xs={12} sm={12} md={8} lg={7} xl={4} className="justify-content-start">
                         <FormControl 
                             type="text" 
@@ -60,7 +57,9 @@ export default function BrowsePage(props)
                 }
                 </Row>
             </Container>
+            
             <PageFiller fill={"200px"}/>
+            
             <Footer jwt={props.jwt}/>
         </div>
     )

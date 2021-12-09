@@ -11,18 +11,16 @@ import PageFiller from '../../page_components/shared/PageFiller';
 export default function RestaurantOrderStatus(props)
 {
     axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
-    const [CancelShow, setCancelShow] = useState(false);
-    const handleCancelClose = () => setCancelShow(false);
-    const handleCancelShow = () => setCancelShow(true);
+    const [status, setStatus] = useState("")
     const [custName, setCustName] = useState({
         firstname: "", lastname: ""
     });
-    const [orderStatus, setOrderStatus] = useState(0)
-    let location = useLocation()
     const [ButtonVariant, setButtonVariant] = useState(["outline-success", "outline-success", "outline-success", "outline-success", "outline-success"])
     const [ButtonDisabled, setButtonDisabled] = useState([false, false, false, false, false])
+    const [time, setTime] = useState("")
+    const [cancelButtonDisabled, setCancelButtonDisabled] = useState(false)
 
-
+    let location = useLocation()
     useEffect(() => {
         console.log(location.state.orderInfo)
         let path = "https://voulutora-backend.herokuapp.com/customer/" + location.state.orderInfo.customer_id
@@ -38,9 +36,15 @@ export default function RestaurantOrderStatus(props)
         let otherPath = "https://voulutora-backend.herokuapp.com/orders/restaurant/" + location.state.orderInfo.id
         axios.get(otherPath)
         .then(response => {
-            setOrderStatus(response.data[0].order_status);
-            console.log(response.data[0].order_status)
             checkStatus(response.data[0].order_status)
+            if(response.data[0].order_status == 6) {
+                setStatus("CANCELLED")
+                setCancelButtonDisabled(true)
+            } else if(response.data[0].order_status == 5) {
+                setStatus("DELIVERED")
+                setCancelButtonDisabled(true)
+            }
+            setTime(response.data[0].estimated_time)
         })
         .catch(err => {
             console.log(err);
@@ -65,6 +69,18 @@ export default function RestaurantOrderStatus(props)
         })
         
     }
+
+    const handleCancel = () => {
+        let path = 'https://voulutora-backend.herokuapp.com/orders/changestatus/' + location.state.orderInfo.id +"?status=6"
+        axios.put(path)
+        .then(response => {
+            window.location.reload()
+            setStatus("CANCELLED")
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
     
     const checkStatus = (order_status) => {
         const statusArray = ["outline-success", "outline-success", "outline-success", "outline-success", "outline-success"]
@@ -83,6 +99,7 @@ export default function RestaurantOrderStatus(props)
     return (
         <div>
         <NavigationBar jwt={props.jwt} logout={props.logout}/>
+        
            <div>
                <Row>
                    <Col > 
@@ -95,11 +112,12 @@ export default function RestaurantOrderStatus(props)
                         </div>
                         <p>Comment: {location.state.orderInfo.order_comment}</p>
                         <p>Customer: {custName.firstname} {custName.lastname}</p>
+                        <p>Time of Delivery: {time}</p>
                     </div>
                 </Col>
                 <Col >
                 <div className={styles.btnColumn} >
-                    <h2>Order status:</h2>
+                    <h2>Order status: {status}</h2>
                     <Button size="lg" variant={ButtonVariant[0]} disabled={ButtonDisabled[0]} >Confirm</Button>
                     <Button size="lg" variant={ButtonVariant[1]} disabled={ButtonDisabled[1]} onClick={() => handleStatusButtonClick(2)}>Cooking in progress</Button>
                     <Button size="lg" variant={ButtonVariant[2]} disabled={ButtonDisabled[2]} onClick={() => handleStatusButtonClick(3)}>Ready for delivery</Button>
@@ -107,39 +125,14 @@ export default function RestaurantOrderStatus(props)
                     <Button size="lg" variant={ButtonVariant[4]} disabled={ButtonDisabled[4]}>Delivered</Button>
                 </div>
                 <div className={styles.cancelBtn}>
-                    <Button size="lg" variant="danger" onClick={handleCancelShow}>Cancel</Button>
+                    <Button size="lg" variant="danger" disabled={cancelButtonDisabled} onClick={handleCancel}>Cancel</Button>
                 </div>
                 </Col>
-                </Row>
-                
-                
-                    
-                
-                
+                </Row> 
            </div>
            <PageFiller/>
 
         <Footer/>
-
-        <Modal 
-                        show={CancelShow} 
-                        onHide={() => setCancelShow(false)} >
-                            <Modal.Header closeButton>
-                                <Modal.Title>Enter cancelation reason: </Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form>
-                                    <Form.Group>
-                                        <Form.Control as="textarea"/>
-                                    </Form.Group>
-                                </Form>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button onClick={handleCancelClose}>
-                                    Save Changes
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
         </div>
     )
 }

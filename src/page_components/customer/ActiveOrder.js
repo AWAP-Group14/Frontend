@@ -13,6 +13,7 @@ import { Container, Row, Col, Button, Card } from "react-bootstrap";
 export default function ActiveOrder(props) 
 { 
 
+
     let orderStatus = "";
 
      if (props.activeOrderData.order_status == 0) {
@@ -34,6 +35,7 @@ export default function ActiveOrder(props)
     // Restarurant name, address, items, time remaining, status
 
     console.log(props.activeOrderData.items+" data from activeorder");
+
     
     return(
         <Col xs={12}>
