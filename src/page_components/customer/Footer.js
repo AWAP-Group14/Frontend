@@ -21,9 +21,9 @@ export default function Footer (props)
             <img className={styles.footerLogo}
                 src="http://res.cloudinary.com/dmpgjexg4/image/upload/c_crop,q_100,w_150/v1638954258/voulutora_logo_p1risu.png" >
             </img>
-            <Link to="/manager/login"><button className={styles.ManagerPage}>Restaurant mangement page</button></Link>
+            <Link to="/manager/login"><button className={styles.ManagerPage}>Restaurant management page</button></Link>
         </footer>
-        <div className={styles.footerCopyright}><FaRegCopyright/> Group 14 Adwanced Web Development Project 2021 OAMK</div>
+        <div className={styles.footerCopyright}><FaRegCopyright/> Group 14 Advanced Web Development Project 2021 OAMK</div>
         </div>
 
           
@@ -35,7 +35,6 @@ export default function Footer (props)
         
         return (
             <div className={styles.footerBackground}>
-
             <footer className={styles.footerContainer}>
             <img className={styles.footerLogo}
                 src="http://res.cloudinary.com/dmpgjexg4/image/upload/c_crop,q_100,w_150/v1638954258/voulutora_logo_p1risu.png" >
@@ -44,7 +43,7 @@ export default function Footer (props)
                 <p>Yliopistokatu 9, Oulu</p>
                 <p>1234 4567 789</p>
                 <p>contact@voulutora.com</p></div>
-                <div className={styles.footerCopyright}><FaRegCopyright/> Group 14 Adwanced Web Development Project 2021 OAMK</div>
+                <div className={styles.footerCopyright}><FaRegCopyright/> Group 14 Advanced Web Development Project 2021 OAMK</div>
             </footer>
             </div>
         )}

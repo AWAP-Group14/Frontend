@@ -44,25 +44,41 @@ export default function OrderHistory(props)
         })
     },[])
 
-    return(
-        <div >
-            <NavigationBar jwt={props.jwt} logout={props.logout}/>
+    if(!isLoading) {
+        return(
+            <div >
+                <NavigationBar jwt={props.jwt} logout={props.logout}/>
 
-            <div className={styles.orderHistoryHeader}> 
-                <div className="mx-auto">
-                    <h1>{decodedToken.userInfo.customer_first_name} {decodedToken.userInfo.customer_last_name} order history</h1>
+                <div className={styles.orderHistoryHeader}> 
+                    <div className="mx-auto">
+                        <h1>{decodedToken.userInfo.customer_first_name} {decodedToken.userInfo.customer_last_name} order history</h1>
+                    </div>
                 </div>
-            </div>
 
-            <Container className="mb-3 mt-3">
-                <Row className="g-(3">
-                    {history.map((order) => <HistoryCard history={order}/>)}
-                    
-                </Row>
-            </Container>
-            <PageFiller/>
-            <Footer />
-        </div>
-    )
+                <Container className="mb-3 mt-3">
+                    <Row className="g-(3">
+                        {history.map((order) => <HistoryCard history={order}/>)}
+                        
+                    </Row>
+                </Container>
+                <PageFiller/>
+                <Footer />
+            </div>
+        )
+    } else {
+        return(
+            <div >
+                <NavigationBar jwt={props.jwt} logout={props.logout}/>
+
+                <div className={styles.orderHistoryHeader}> 
+                    <div className="mx-auto">
+                        <h1>{decodedToken.userInfo.customer_first_name} {decodedToken.userInfo.customer_last_name} order history</h1>
+                    </div>
+                </div>
+                <PageFiller/>
+                <Footer />
+            </div>
+        )
+    }
   }
   
