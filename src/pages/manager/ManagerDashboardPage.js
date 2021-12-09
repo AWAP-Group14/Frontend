@@ -67,7 +67,7 @@ export default function ManagerDashboardPage(props)
                 </div>
                 <PageFiller/>
                 <Footer jwt={props.jwt}/>
-            </div>
+            </div> 
         )
     } else {
         return(
