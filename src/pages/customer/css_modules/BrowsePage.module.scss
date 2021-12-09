@@ -1,9 +1,16 @@
 
 
 .filterSection{
-    background-color: #041f42;
+    background-image: url("https://res.cloudinary.com/dmpgjexg4/image/upload/e_blur:450,o_65/v1639038538/pexels-eneida-nieves-905847_bnz7kc.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    min-height: 350px;
     padding-top: 40px;
     padding-bottom: 20px;
+    
 }
 
 .headerText{
@@ -26,4 +33,20 @@
     justify-content: center;
     margin-top: 20px;
     flex-wrap: wrap;
+}
+
+.filterSectionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.35);
+    width: 50%;
+
+
+    input {
+        width: 250px;
+        margin-left: 25px;
+        margin-bottom: 40px;
+    }
 }
