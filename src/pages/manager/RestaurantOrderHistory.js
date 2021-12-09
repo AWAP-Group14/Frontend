@@ -11,7 +11,7 @@ import{ Container, Row } from "react-bootstrap";
 export default function RestaurantOrderHistory(props) 
 {
     const [history, setHistory] = useState([{restaurant_name: "", id: "", total_price:"", date:"", items: [], delivery_address: "", order_status: 0}]);
-
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     const decodedToken = jwt.decode(props.jwt)
     console.log(decodedToken+" from the historypage")
 
@@ -53,7 +53,7 @@ export default function RestaurantOrderHistory(props)
              </Row>
         </Container>
         <PageFiller/>
-        <Footer />
+        <Footer jwt={props.jwt}/>
         </div>
     )
   }

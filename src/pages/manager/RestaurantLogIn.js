@@ -71,6 +71,9 @@ export default function RestaurantLogIn(props) {
   return (
     <div>
       <NavigationBar/>
+      <div className={styles.bgContainer}>
+      
+        
       <form onSubmit={handleSubmit} className={styles.LogInForm}>
         <div >
           <label>Email</label>
@@ -98,11 +101,10 @@ export default function RestaurantLogIn(props) {
         {loginControls}
       </form>
       <div className={styles.SuggestionContainer}>
-          <p>Are you a new restaurant?</p>
+          <p>Are you a new restaurant?</p> 
           <Link to="/manager/signup"><button>Create restaurant account</button></Link>
         </div>
-        
-        <PageFiller/>
+        </div>
       <Footer />
     </div>
   );
