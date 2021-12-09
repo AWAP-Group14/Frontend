@@ -24,7 +24,6 @@ export default function RestaurantLogIn(props) {
       
         const handleSubmit = (event) => {
           event.preventDefault();
-          console.log(state);
           axios.post('https://voulutora-backend.herokuapp.com/manager/login', {}, {
             auth: {
               username: state.email,
@@ -33,7 +32,6 @@ export default function RestaurantLogIn(props) {
           })
           .then(response => {
             setProcessState("loginSuccess")
-            console.log(response);
             const receivedJwt = response.data.token;
             props.login(receivedJwt);
             setTimeout(() => {
@@ -46,7 +44,6 @@ export default function RestaurantLogIn(props) {
             console.log(err);
 
             if (err.response.status == 401) {
-              console.log(err.response.status)
             setProcessState("loginFailed")
             } 
           }

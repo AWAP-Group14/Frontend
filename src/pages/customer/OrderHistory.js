@@ -13,7 +13,7 @@ export default function OrderHistory(props)
 {
     axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     const [isLoading, setLoading] = useState(true);
-    const [history, setHistory] = useState([{restaurant_name: "", id: "", total_price:"", date:"", items: [], delivery_address: ""}]);
+    const [history, setHistory] = useState([{restaurant_name: "", id: "", total_price:"", date:"", items: [], delivery_address: "", order_status: 0}]);
     const [items, setItems] = useState([{items:""}]);
 
     const decodedToken = jwt.decode(props.jwt)
@@ -22,7 +22,7 @@ export default function OrderHistory(props)
     const createItemArray = (data) => {
         const itemArray = []
         data.forEach(item => { itemArray.push({
-            restaurant_name: item.restaurant_name, id: item.id, total_price:item.total_price, date: item.date, items: JSON.parse(item.items), delivery_address: item.delivery_address
+            restaurant_name: item.restaurant_name, id: item.id, total_price:item.total_price, date: item.date, items: JSON.parse(item.items), delivery_address: item.delivery_address, order_status: item.order_status
         })})
         return itemArray
     }

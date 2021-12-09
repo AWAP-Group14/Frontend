@@ -12,7 +12,7 @@ export default function RestaurantHistoryCard (props)
     },[])
     if (props.history != null) {
         
-        console.log(props.history)
+
         return (
             <Col xs={12}>
                 
