@@ -101,30 +101,20 @@ export default function RestaurantItemCard(props)
             <Col sm={12} lg={6} xl={4}>
                 <Card className="ms-auto me-auto" style={{width:"300px",height:"470px"}}>
                     <Card.Img className={styles.cardImage} src={props.item.image}/>
-                        <Card.Body className="g-0">
+                        <Card.Body className="g-0 d-flex flex-column">
                                 
-                                    <Row>
-
-                                    <Col xs={12}>
+                                            <div>
                                             <Card.Title>{props.item.name}</Card.Title>
                                             <Card.Text>{props.item.description}</Card.Text>
-                                            {/* <Card.Text>L,G,V</Card.Text> */}
-                                        </Col>
+                                            </div>
 
-                                        <Col className="mt-atuo" xs={12}>
-                                            <div className="">
-                                                <div className="">
-                                                    {/* <Button variant="danger">Delete</Button> */}
-                                                </div>
-                                                <div className="">
+
+                                                <div className="d-flex flex-column mt-auto">
                                                     <Card.Title>{props.item.price} €</Card.Title>
                                                     <Button style={{width:"100%"}} className="" variant="danger" onClick={deleteItem}>Delete</Button>
                                                 </div>
-                                            </div>
-                                        </Col>
 
 
-                                    </Row>
                                
     
                         </Card.Body>
@@ -141,23 +131,21 @@ export default function RestaurantItemCard(props)
             <Col sm={12} lg={6} xl={4}>
                 <Card className="ms-auto me-auto" style={{width:"300px",height:"470px"}}>
                     <Card.Img className={styles.cardImage} src={props.item.image} />
-                        <Card.Body className="g-0">
+                        <Card.Body className="g-0 d-flex flex-column">
                                 
-                                    <Row>
-                                    <Col xs={12}>
+                                            <div>
                                             <Card.Title>{props.item.name}</Card.Title>
                                             <Card.Text>{props.item.description}</Card.Text>
-                                        </Col>
+                                            </div>
 
-                                        <Col className="mt-atuo" xs={12}>
-                                            <div className="">
-                                                <div className="">
+                                    
+                                            <div className="d-flex flex-column mt-auto">
+                                                <div className="mt-auto">
                                                     <Card.Title>{props.item.price} €</Card.Title>
                                                     <Button style={{width:"100%"}} onClick={addToCart}>Add to cart</Button>
                                                 </div>
                                             </div>
-                                        </Col>
-                                    </Row>
+                               
                                
     
                         </Card.Body>
