@@ -30,6 +30,7 @@ import jwt from 'jsonwebtoken';
 
 export default function EditRestaurantMenuPage(props) 
 {
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     let params = useParams();
     const [info, setInfo] = useState({
         name: "",
@@ -54,7 +55,12 @@ export default function EditRestaurantMenuPage(props)
     //This function returns an array of string with unique category from the input of array of object
     const filterCategory = (data) => {
         const categoryArray = []
-        data.forEach(item => { categoryArray.push(item.menu_name)})
+        
+        data.forEach(item => { 
+            if(item.menu_name != null) {
+                categoryArray.push(item.menu_name)
+            }}
+        )
         const nonDuplicateArray = Array.from(new Set(categoryArray));
         return nonDuplicateArray
     }
@@ -68,6 +74,7 @@ export default function EditRestaurantMenuPage(props)
     }
 
     useEffect( () => {
+        console.log(categories.length+" length of the categories in the beginning");
         const decodedToken = jwt.decode(props.jwt)
         let path = 'https://voulutora-backend.herokuapp.com/restaurants/' + decodedToken.restaurantInfo
         axios.get(path)
@@ -134,7 +141,7 @@ export default function EditRestaurantMenuPage(props)
 
     let itemAddCard = null;
     if (categories.length != 0) {
-        
+        console.log(categories)
        itemAddCard = categories.map((cat) => <NewMenuItemCard category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)
     }
 
