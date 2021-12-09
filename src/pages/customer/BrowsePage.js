@@ -20,7 +20,7 @@ export default function BrowsePage(props)
     return(
         <div>
             <NavigationBar jwt={props.jwt} logout={props.logout}/>
-
+            
             <div className={styles.filterSection}>
             <Container>
                 <h1 className={styles.headerText}>Browse all of our restaurants!</h1>
@@ -60,7 +60,9 @@ export default function BrowsePage(props)
                 }
                 </Row>
             </Container>
+            
             <PageFiller fill={"200px"}/>
+            
             <Footer jwt={props.jwt}/>
         </div>
     )
