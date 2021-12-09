@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 import axios from 'axios' 
 import { useLocation } from "react-router-dom";
 import PageFiller from '../../page_components/shared/PageFiller';
+import { Container, Card, Alert } from 'react-bootstrap';
+
 
 export default function RestaurantOrderStatus(props)
 {
@@ -99,37 +101,62 @@ export default function RestaurantOrderStatus(props)
     return (
         <div>
         <NavigationBar jwt={props.jwt} logout={props.logout}/>
+        <div className="text-center py-4 mb-4" style={{backgroundColor:"#041f42",color:"white"}}>
+                <h1>MANAGE ORDER</h1>
+            </div>
+            <Container>
+                    
+                    <Row className="g-4">
+                    
+                    <Col xs={12} md={6}>
+                        <Card>
+                            <Card.Header className="text-center">
+                                <Card.Title>
+                                Order Information
+                                </Card.Title>
+                            </Card.Header>
+                            <Card.Body>
+                            <div className="">
+                                <Card.Title>Customer: {custName.firstname} {custName.lastname}</Card.Title>
+                                <p>Ordered items:</p>
+                                <div className="ms-3">
+                                    {location.state.orderInfo.items.map(item => <p>{item.amount} x {item.item_name}</p>)}
+                                </div>
+                                <p>Comment: {location.state.orderInfo.order_comment}</p>
 
-           <div>
-               <Row>
-                   <Col > 
-                   <div className={styles.infoColumn}>
-                        <p>Order ID: </p>
-                        <p>{location.state.orderInfo.id}</p>
-                        <p>Ordered items:</p>
-                        <div className="ms-3">
-                            {location.state.orderInfo.items.map(item => <p>{item.amount} x {item.item_name}</p>)}
-                        </div>
-                        <p>Comment: {location.state.orderInfo.order_comment}</p>
-                        <p>Customer: {custName.firstname} {custName.lastname}</p>
-                        <p>Time of Delivery: {time}</p>
-                    </div>
+                                <p>Time of Delivery: {time}</p>
+                            </div>
+                            </Card.Body>
+                            <Card.Footer>
+                                <Card.Text>Order ID: {location.state.orderInfo.id}</Card.Text>
+                            </Card.Footer>
+                        </Card>
                 </Col>
-                <Col >
-                <div className={styles.btnColumn} >
-                    <h2>Order status: {status}</h2>
-                    <Button size="lg" variant={ButtonVariant[0]} disabled={ButtonDisabled[0]} >Confirm</Button>
-                    <Button size="lg" variant={ButtonVariant[1]} disabled={ButtonDisabled[1]} onClick={() => handleStatusButtonClick(2)}>Cooking in progress</Button>
-                    <Button size="lg" variant={ButtonVariant[2]} disabled={ButtonDisabled[2]} onClick={() => handleStatusButtonClick(3)}>Ready for delivery</Button>
-                    <Button size="lg" variant={ButtonVariant[3]} disabled={ButtonDisabled[3]} onClick={() => handleStatusButtonClick(4)}>Sent to customer</Button>
-                    <Button size="lg" variant={ButtonVariant[4]} disabled={ButtonDisabled[4]}>Delivered</Button>
-                </div>
-                <div className={styles.cancelBtn}>
-                    <Button size="lg" variant="danger" disabled={cancelButtonDisabled} onClick={handleCancel}>Cancel</Button>
-                </div>
+
+                    <Col xs={12} md={6}>
+                        <Card>
+                            <Card.Header className="text-center">
+                                <Card.Title>Status Manager</Card.Title>
+                            </Card.Header>
+                            <Card.Body>
+                                <Alert variant="info">
+                                    <Alert.Heading>Interactive</Alert.Heading>
+                                    <p>Click the button that matches the order's current status to advance order.</p>
+                                </Alert>
+                                <div className="d-flex flex-column">
+                                    <Button size="lg" variant={ButtonVariant[0]} disabled={ButtonDisabled[0]} >Confirm</Button>
+                                    <Button size="lg" variant={ButtonVariant[1]} disabled={ButtonDisabled[1]} onClick={() => handleStatusButtonClick(2)}>Cooking in progress</Button>
+                                    <Button size="lg" variant={ButtonVariant[2]} disabled={ButtonDisabled[2]} onClick={() => handleStatusButtonClick(3)}>Ready for delivery</Button>
+                                    <Button size="lg" variant={ButtonVariant[3]} disabled={ButtonDisabled[3]} onClick={() => handleStatusButtonClick(4)}>Sent to customer</Button>
+                                    <Button size="lg" variant={ButtonVariant[4]} disabled={ButtonDisabled[4]}>Delivered</Button>
+                                    <Button size="lg" variant="danger" disabled={cancelButtonDisabled} onClick={handleCancel}>Cancel</Button>
+                                </div>
+                            </Card.Body>
+                        </Card>
                 </Col>
-                </Row> 
-           </div>
+                    </Row>
+                </Container>
+         
            <PageFiller/>
 
         <Footer/>
