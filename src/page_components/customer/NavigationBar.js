@@ -47,7 +47,7 @@ export default function NavigationBar(props) {
     if (props.jwt == null) {
 
         return(
-            <Navbar bg="dark" variant="dark" className={styles.navigationBar}>
+            <Navbar bg="warning" variant="light" className={styles.navigationBar}>
             <Container fluid>
                 
             <Link to="/" style={{textDecoration: 'none'}}>
@@ -106,7 +106,7 @@ export default function NavigationBar(props) {
         const decodedToken = Jwt.decode(props.jwt);
 
         return(
-            <Navbar bg="dark" variant="dark" className={styles.navigationBar}>
+            <Navbar bg="warning" variant="light" className={styles.navigationBar}>
             <Container fluid>
                 
                 <Link to="/" style={{textDecoration: 'none'}}>
@@ -137,7 +137,7 @@ export default function NavigationBar(props) {
 
     // If all other checks fail, show this view
     else{
-        <Navbar bg="dark" variant="dark" className={styles.navigationBar}>
+        <Navbar bg="light"className={styles.navigationBar}>
             <h1>Something went wrong trying to load navigation bar!</h1>
         </Navbar>
     }

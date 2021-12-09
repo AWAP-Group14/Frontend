@@ -29,23 +29,19 @@ export default function RestaurantCard(props)
         
 
         return (
-            <Col xs={12} sm={6} md={4} lg={3} xl={2}>
+            <Col xs={12} sm={12} md={6} lg={4} xl={3}>
                 <Link to={'/restaurant/' + props.restaurant_name} style={{textDecoration: 'inherit',color:'inherit'}}>
-                <div className={styles.cardCustom}>
-                <Card >
-                    <div className={styles.cardImage}>
-                    <Card.Img src={props.restaurant_image} />
-                        </div>
+                    <Card lassName="ms-auto me-auto" style={{width:"250px",height:"400px"}}>
                         
-                        <Card.Body className="g-0">
-                            <Card.Title>{props.restaurant_name}</Card.Title>
-                            <Card.Text>{props.restaurant_type}</Card.Text>
-                            <Card.Text>{price}</Card.Text>
-                            <Card.Text>Delivery: XXX€</Card.Text>
+                        <Card.Img style={{width:"245px",height:"245px"}} src={props.restaurant_image} />
+                            
+                            <Card.Body className="g-0">
+                                <Card.Title>{props.restaurant_name}</Card.Title>
+                                <Card.Text>{props.restaurant_type}</Card.Text>
+                                <Card.Text>{price}</Card.Text>
 
-                        </Card.Body>
-                </Card>
-                </div>
+                            </Card.Body>
+                    </Card>
                 </Link>
             </Col>
         )

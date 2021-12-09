@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {Card, Button, Form, Modal, Col, Row, ButtonGroup  } from "react-bootstrap";
+import {Card, Button, Form, Modal, Col, Row, ButtonGroup, Alert  } from "react-bootstrap";
 import styles from './css_modules/OrderCard.module.scss'
 import axios from 'axios'
 import {useNavigate } from "react-router-dom";
@@ -91,28 +91,42 @@ export default function OrderCard(props)
     if(!orderConfirmed) {
         return(
             
-            <div className={styles.cardContainer}>
+                <Col xs={12}>
                 <Card>
+                <Card.Header><Card.Title>Order ID: {props.order.id} </Card.Title></Card.Header>
                     <Card.Body>
-                        <Card.Title>Order ID: {props.order.id} </Card.Title>
-                        <Card.Text>
                             <Row>
-                            <Col>
-                            <p>Order:</p>
-                            {props.order.items.map(item => <p>{item.amount} x {item.item_name}</p>)}
-                            <p>{orderAddress}</p>
-                            <p>Comments: {props.order.order_comment}</p>
-                            </Col>
-                            <Col>
-                            <p>Total price: {props.order.total_price} €</p>
-                            <Button onClick={handleConfirmShow} size="lg" variant="success" className="me-3">
-                                Confirm
-                            </Button>
-                            <Button onClick={handleCancel} size="lg" variant="danger">
-                                Cancel
-                            </Button>
-                            </Col>
+                                <Col xs={12} lg={6} xl={8}>
+                                    <Card.Text>Order:</Card.Text>
+                                    <div className="ms-3">
+                                        {props.order.items.map(item => <p>{item.amount} x {item.item_name}</p>)}
+                                    </div>
+                                    <p>{orderAddress}</p>
+                                    <p>Comments: {props.order.order_comment}</p>
+                                    <Card.Title>Total price: {props.order.total_price} €</Card.Title>
+                                    </Col>
+
+                                    <Col xs={12} lg={6} xl={4} className="">
+                                        <Alert variant="warning" className="text-center d-flex flex-column" style={{height:"100%"}}>
+                                            <div>
+                                            <Alert.Heading>Action needed!</Alert.Heading>
+                                            <p>A new order needs your actions to proceed.</p>
+                                            </div>
+                                            <div className="d-flex" style={{marginTop:"auto", width:"100%"}}>
+                                                <Button style={{width:"50%"}} onClick={handleConfirmShow} size="lg" variant="success" className="me-3">
+                                                    Confirm
+                                                </Button>
+                                                <Button style={{width:"50%"}} onClick={handleCancel} size="lg" variant="danger">
+                                                    Cancel
+                                                </Button>
+                                            </div>
+                                            
+                                        </Alert>
+
+                                </Col>
                             </Row>
+                            
+                            
                             <Modal 
                             show={ConfirmShow} 
                             onHide={() => setConfirmShow(false)} >
@@ -158,45 +172,61 @@ export default function OrderCard(props)
                                     </Form>
                                 </Modal.Body>
                                 <Modal.Footer>
-                                    <Button onClick={handleConfirmClose}>
-                                        Save Changes
+                                    <Button variant="success" onClick={handleConfirmClose}>
+                                        Confirm
                                     </Button>
                                 </Modal.Footer>
                             </Modal>
-                        </Card.Text>
                     </Card.Body>
                 </Card>
 
-            </div>
+            </Col>
         )
 
     } else {
         return(
             
-            <div className={styles.cardContainer}>
+            <Col xs={12}>
                 <Card>
+                    <Card.Header><Card.Title>Order ID: {props.order.id} </Card.Title></Card.Header>
                     <Card.Body>
-                        <Card.Title>Order ID: {props.order.id} </Card.Title>
-                        <Card.Text>
+                        
+
+
+
                             <Row>
-                            <Col>
-                            <p>Order:</p>
-                            {props.order.items.map(item => <p>{item.amount} x {item.item_name}</p>)}
-                            <p>{orderAddress}</p>
-                            <p>Comments: {props.order.order_comment}</p>
-                            </Col>
-                            <Col>
-                            <p>Total price: {props.order.total_price} €</p>
-                            <Button onClick={handleStatusButton} size="lg" className="me-3">
-                                Status
-                            </Button>
-                            </Col>
+                                <Col xs={12} lg={6} xl={8}>
+                                    <Card.Text>Order:</Card.Text>
+                                    <div className="ms-3">
+                                        {props.order.items.map(item => <p>{item.amount} x {item.item_name}</p>)}
+                                    </div>
+                                    <p>{orderAddress}</p>
+                                    <p>Comments: {props.order.order_comment}</p>
+                                    <Card.Title>Total price: {props.order.total_price} €</Card.Title>
+                                    </Col>
+
+                                    <Col xs={12} lg={6} xl={4} className="">
+                                    <Alert variant="info" className="text-center d-flex flex-column" style={{height:"100%"}}>
+                                        <div>
+                                            <Alert.Heading>Order has been accepted!</Alert.Heading>
+                                            <p>This order has been accepted by the restaurant and is being currently processed. You can manage the order from the button below.</p>
+                                            </div>
+                                            <div className="d-flex" style={{marginTop:"auto", width:"100%"}}>
+                                            <Button style={{width:"100%"}} onClick={handleStatusButton} size="lg" variant="primary">
+                                                Manage
+                                            </Button>
+                                        </div>
+                                            
+                                        </Alert>
+
+                                </Col>
                             </Row>
-                        </Card.Text>
+
+
                     </Card.Body>
                 </Card>
 
-            </div>
+            </Col>
         )
         
     }
