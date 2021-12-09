@@ -48,7 +48,7 @@ export default function RestaurantOrderHistory(props)
          </div>
 
         <Container className="mb-3 mt-3">
-             <Row className="g-(3">
+             <Row className="g-3">
              {history.map((order) => <RestaurantHistoryCard history={order}/>)}
              </Row>
         </Container>

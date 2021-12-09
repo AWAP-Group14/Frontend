@@ -47,7 +47,7 @@ export default function NavigationBar(props) {
     if (props.jwt == null) {
 
         return(
-            <Navbar bg="warning" variant="light" className={styles.navigationBar}>
+            <Navbar variant="light" className={styles.navigationBar} style={{backgroundColor:"#d79a6c"}}>
             <Container fluid>
                 
             <Link to="/" style={{textDecoration: 'none'}}>
@@ -106,7 +106,7 @@ export default function NavigationBar(props) {
         const decodedToken = Jwt.decode(props.jwt);
 
         return(
-            <Navbar bg="warning" variant="light" className={styles.navigationBar}>
+            <Navbar variant="light" className={styles.navigationBar} style={{backgroundColor:"#d79a6c"}}>
             <Container fluid>
                 
                 <Link to="/" style={{textDecoration: 'none'}}>
