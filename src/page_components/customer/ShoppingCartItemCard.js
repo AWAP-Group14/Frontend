@@ -48,7 +48,7 @@ export default function ShoppingCartItemCard(props)
 
     // TODO: Add shoppingcart functionality
 
-    return(     
+    return(      
 
         <Col >
             <Card className="ms-auto me-auto" style={{width:"300px",height:"450px"}}>

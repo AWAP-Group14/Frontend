@@ -9,6 +9,7 @@ import styles from './css_modules/CustomerProfile.module.scss';
 
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import PageFiller from "../../page_components/shared/PageFiller";
+import ActiveOrder from "../../page_components/customer/ActiveOrder";
 
 
 export default function CustomerProfile(props) 
@@ -80,6 +81,12 @@ export default function CustomerProfile(props)
                         <div>
                             <h1>Active orders</h1>
                             {activeOrder.map(item => <Button variant="link" onClick={e => handleClick(item.orderId)}>{item.text}</Button>)}
+                            <Row className="g-4">
+                                <ActiveOrder/>
+                                <ActiveOrder/>
+                                <ActiveOrder/>
+                                <ActiveOrder/>
+                            </Row>
                         </div>  
                     </Col> 
                 </Row>
