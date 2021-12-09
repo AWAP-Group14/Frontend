@@ -13,6 +13,7 @@ import PageFiller from "../../page_components/shared/PageFiller";
 
 export default function CustomerProfile(props) 
 { 
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     const [isLoading, setLoading] = useState(true);
     const [activeOrder, setActiveOrder] = useState([]);
     const [orderId, setOrderId] = useState("")

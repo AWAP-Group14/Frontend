@@ -51,7 +51,7 @@ export default function ShoppingCartItemCard(props)
     return(     
 
         <Col >
-            <Card classname="px-0" style={{width:"300px",height:"450px"}}>
+            <Card className="ms-auto me-auto" style={{width:"300px",height:"450px"}}>
                 <Card.Img className={styles.cardImage} src={props.item.item_image} />
                     <Card.Body className="pt-0">
                         <Row>

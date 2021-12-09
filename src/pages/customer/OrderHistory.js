@@ -11,7 +11,7 @@ import{ Container, Row } from "react-bootstrap";
 
 export default function OrderHistory(props) 
 {
-
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     const [isLoading, setLoading] = useState(true);
     const [history, setHistory] = useState([{restaurant_name: "", id: "", total_price:"", date:"", items: [], delivery_address: ""}]);
     const [items, setItems] = useState([{items:""}]);

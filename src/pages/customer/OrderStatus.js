@@ -14,7 +14,7 @@ import axios from 'axios';
 
 export default function OrderStatus(props) 
 {
-
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     let location = useLocation() 
     const[state, setState] = useState([false, false, false, false, false, false])
     const[danger, setDanger] = useState("")
@@ -70,6 +70,7 @@ const [info, setInfo] = useState({
             orderId = location.state.orderId
             setOrderId(orderId)
             setRestaurantInfo(location.state.restaurantInfo)
+            console.log(restaurantInfo);
         } else {
             orderId = props.orderId
             setOrderId(orderId)

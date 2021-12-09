@@ -20,10 +20,7 @@ export default function RestaurantItemCard(props)
     let params = useParams();
     const alert = useAlert()
 
-    useLayoutEffect( () => {
-      
-
-    }, []);
+    axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
 
     // TODO: Add shoppingcart functionality 
 
@@ -99,7 +96,7 @@ export default function RestaurantItemCard(props)
         return(     
                 
             <Col sm={12} lg={6} xl={4}>
-                <Card style={{width:"300px",height:"450px"}}>
+                <Card className="ms-auto me-auto" style={{width:"300px",height:"450px"}}>
                     <Card.Img className={styles.cardImage} src={props.item.image}/>
                         <Card.Body className="g-0">
                                 
@@ -139,7 +136,7 @@ export default function RestaurantItemCard(props)
         return(     
 
             <Col sm={12} lg={6} xl={4}>
-                <Card style={{width:"300px",height:"450px"}}>
+                <Card className="ms-auto me-auto" style={{width:"300px",height:"450px"}}>
                     <Card.Img className={styles.cardImage} src={props.item.image} />
                         <Card.Body className="g-0">
                                 
