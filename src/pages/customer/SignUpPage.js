@@ -82,7 +82,7 @@ export default function SignUpPage(props) {
       <div className={styles.bgContainer}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div>
-          <label>Firstname</label>
+          <label>First name</label>
           <input
             type="text"
             name="firstname"
@@ -91,7 +91,7 @@ export default function SignUpPage(props) {
           />
         </div>
         <div>
-          <label>Lastname</label>
+          <label>Last name</label>
           <input
             type="text"
             name="lastname"
@@ -109,7 +109,7 @@ export default function SignUpPage(props) {
           />
         </div>
         <div>
-          <label>Phone</label>
+          <label>Phone number</label>
           <input
             type="text"
             name="phone"
