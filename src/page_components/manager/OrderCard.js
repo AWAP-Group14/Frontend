@@ -13,7 +13,7 @@ export default function OrderCard(props)
     const [orderConfirmed, setOrderConfirmed] = useState(false);
     const [orderAddress, setOrderAddress] = useState("");
     const [orderStatus, setOrderStatus] = useState(0)
-    const [time, setTime] = useState({hour: "", minute: ""})
+    const [time, setTime] = useState({hour: "09", minute: "00"})
     let navigate = useNavigate()
 
     const handleConfirmClose = () => {
