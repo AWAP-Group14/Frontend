@@ -13,7 +13,6 @@ import { Container, Row, Col, Button, Card } from "react-bootstrap";
 export default function ActiveOrder(props) 
 { 
 
-    // Restarurant name, address, items, time remaining, status
     
     return(
         <Col xs={12}>
