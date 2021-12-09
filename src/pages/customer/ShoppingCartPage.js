@@ -73,11 +73,9 @@ export default function ShoppingCartPage(props)
                 totalPrice: tempPrice
             })
             .then(response => {
-                console.log(price);
                 
             })
             .catch(err => {
-                console.log(cartItems)
                 console.log(err);
             });
         } else {

@@ -25,11 +25,7 @@ export default function RestaurantItemCard(props)
     // TODO: Add shoppingcart functionality 
 
     const addToCart = () => {
-        console.log("Button clicked")
-        console.log(props.item.itemId)
-        console.log(props.jwt);
         const decodedToken = Jwt.decode(props.jwt)
-        console.log(decodedToken);
         if(decodedToken != undefined) {
             const path = 'https://voulutora-backend.herokuapp.com/orders/shoppingCart/' + decodedToken.userId 
             console.log(decodedToken.userId)
@@ -44,7 +40,14 @@ export default function RestaurantItemCard(props)
               
             })
             .catch(err => {
-                console.log(err.response)
+                if(err){
+                    if(err.response.status == 409) {
+                        alert.show("Cart is currently filled with item from another restaurant. Please empty your cart first")
+                    } else {
+                        console.log(err.response)
+                    }
+                }
+                 
             })
         } else {
             console.log("User need to sign up")

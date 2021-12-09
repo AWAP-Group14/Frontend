@@ -16,16 +16,12 @@ export default function OrderStatus(props)
     let location = useLocation() 
     const[state, setState] = useState([false, false, false, false, false, false])
     const[danger, setDanger] = useState("")
-    const[disabled, setDisabled] = useState(true)
+    const[orderInfo, setOrderInfo]= useState({
+        restaurant_name: "", id: "", total_price:"", date:"", items: [], delivery_address: "", order_comment: "", order_status: 0, order_delivery_type: 0, customer_id: "", estimated_time: "", order_delivery_type: 0 
+    })
+    const[items, setItems] = useState([])
+    const[timeOfDeliveryText, setTimeOfDeliveryText] = useState("")
     const[orderIdState, setOrderId] = useState("")
-    const [restaurantInfo, setRestaurantInfo] = useState({
-        restaurant_address: "",
-        restaurant_image: "",
-        restaurant_name: "",
-        restaurant_operating_hours: "",
-        restaurant_price_level: 0,
-        restaurant_type: ""
-    });
     var orderId
 
     
@@ -67,17 +63,19 @@ const [info, setInfo] = useState({
         if(location.state != undefined) {
             orderId = location.state.orderId
             setOrderId(orderId)
-            setRestaurantInfo(location.state.restaurantInfo)
-            console.log(restaurantInfo);
         } else {
             orderId = props.orderId
             setOrderId(orderId)
-            setRestaurantInfo(props.restaurantInfo)
         }
         let path = 'https://voulutora-backend.herokuapp.com/orders/' + orderId
         axios.get(path)
         .then(response => {
             setStatus(response.data[0].order_status)
+            if(response.data[0].order_status > 0) {
+                setTimeOfDeliveryText("Estimated time of delivery: " + response.data[0].estimated_time)
+            }
+            setOrderInfo(response.data[0])
+            setItems(JSON.parse(response.data[0].items))
         })
         .catch(err => {
             console.log(err);
@@ -104,11 +102,11 @@ const [info, setInfo] = useState({
                         </Card.Header>
                         <Card.Body>
                             <div>
-                                <Card.Title>RESTAURANT NAME</Card.Title>
-                                <Card.Text>Delivery address: ADDRESS</Card.Text>
+                                <Card.Title>{orderInfo.restaurant_name}</Card.Title>
+                                <Card.Text>Delivery address: {orderInfo.delivery_address}</Card.Text>
                                 <Card.Text>Ordered items:</Card.Text>
                                 <div className="ms-3">
-                                    MAP ITEMS HERE
+                                    {items.map(item => <p>{item.amount} x {item.item_name} </p>)}
                                 </div>
                             </div>  
                         </Card.Body>
@@ -126,7 +124,7 @@ const [info, setInfo] = useState({
                         <Card.Body>
                             <Card.Text className="text-center">
                                 <Card.Title>
-                                ESTIMATED TIME
+                                {timeOfDeliveryText}
                                 </Card.Title>
                             </Card.Text>
                         <ListGroup className="text-center" numbered>
@@ -143,13 +141,6 @@ const [info, setInfo] = useState({
                         </Card.Body>
                     </Card>
                </Col>
-
-
-                   
-
-               
-               
-
                 </Row>
             </Container>
             <PageFiller/>

@@ -13,12 +13,13 @@ export default function OrderCard(props)
     const [orderConfirmed, setOrderConfirmed] = useState(false);
     const [orderAddress, setOrderAddress] = useState("");
     const [orderStatus, setOrderStatus] = useState(0)
+    const [time, setTime] = useState({hour: "", minute: ""})
     let navigate = useNavigate()
 
     const handleConfirmClose = () => {
         setConfirmShow(false);
         setOrderConfirmed(true);
-        let path = 'https://voulutora-backend.herokuapp.com/orders/changestatus/' + props.order.id +"?status=1"
+        let path = 'https://voulutora-backend.herokuapp.com/orders/changestatus/' + props.order.id +"?status=1&time=" + time.hour + ":" + time.minute
         axios.put(path)
         .then(response => {
             
@@ -40,6 +41,14 @@ export default function OrderCard(props)
             console.log(err);
         })
     }
+
+    const handleInputChange = (event) => {
+        setTime((prevProps) => ({
+          ...prevProps,
+          [event.target.name]: event.target.value
+        }));
+        console.log(time)
+      };
 
     useEffect(() => {
         console.log(props.order.id)
@@ -72,7 +81,7 @@ export default function OrderCard(props)
     },[])
 
     const handleStatusButton = () => {
-        navigate("/manager/order_status", {state: {orderInfo: props.order}})
+        navigate("/manager/order_status", {state: {orderInfo: props.order, time: time}})
     }
 
     const handleConfirmShow = () => setConfirmShow(true);
@@ -114,7 +123,10 @@ export default function OrderCard(props)
                                     <Form>
                                         <Row >
                                             <Col>
-                                    <Form.Select >
+                                    <Form.Select 
+                                    name="hour"
+                                    value={time.hour}
+                                    onChange={handleInputChange}>
                                         <option>09</option>
                                         <option>10</option>
                                         <option>11</option>
@@ -130,7 +142,10 @@ export default function OrderCard(props)
                                     </Form.Select>
                                     </Col>
                                     <Col>
-                                    <Form.Select >
+                                    <Form.Select 
+                                     name="minute"
+                                     value={time.minute}
+                                     onChange= {handleInputChange}>
                                         <option>00</option>
                                         <option>10</option>
                                         <option>20</option>
