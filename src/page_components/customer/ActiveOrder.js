@@ -39,7 +39,6 @@ export default function ActiveOrder(props)
     
     return(
         <Col xs={12}>
-            <Link to={'/status/'} style={{textDecoration: 'inherit',color:'inherit'}}>
                 <Card className={styles.card}>                     
                     <Card.Header>
                         <div className="d-flex">
@@ -59,7 +58,6 @@ export default function ActiveOrder(props)
                     <Card.Body></Card.Body>
                     <Card.Footer>Estimated delivery time: {props.activeOrderData.estimated_time}</Card.Footer>
                 </Card>
-            </Link>
         </Col>
     )
   }
