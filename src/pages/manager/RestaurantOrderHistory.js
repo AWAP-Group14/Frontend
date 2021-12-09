@@ -13,7 +13,6 @@ export default function RestaurantOrderHistory(props)
     const [history, setHistory] = useState([{restaurant_name: "", id: "", total_price:"", date:"", items: [], delivery_address: "", order_status: 0}]);
     axios.defaults.headers.common = {'Authorization': `bearer ${props.jwt}`}
     const decodedToken = jwt.decode(props.jwt)
-    console.log(decodedToken+" from the historypage")
 
     const createItemArray = (data) => {
         const itemArray = []
@@ -28,7 +27,6 @@ export default function RestaurantOrderHistory(props)
         axios.get(path)
         .then(response => {
             setHistory(createItemArray(response.data))
-            console.log(response.data)
         })
         .catch(err => {
             console.log(err);
@@ -48,7 +46,7 @@ export default function RestaurantOrderHistory(props)
          </div>
 
         <Container className="mb-3 mt-3">
-             <Row className="g-3">
+             <Row className="g-(3">
              {history.map((order) => <RestaurantHistoryCard history={order}/>)}
              </Row>
         </Container>
