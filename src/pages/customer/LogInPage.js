@@ -105,5 +105,6 @@ export default function LogInPage(props) {
       <Footer />
     </div>
     </div>
+
   );
 }

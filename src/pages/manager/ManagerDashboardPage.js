@@ -4,7 +4,7 @@ import NavigationBar from "../../page_components/customer/NavigationBar";
 import Footer from "../../page_components/customer/Footer";
 import styles from './css_modules/LandingPageManager.module.scss';
 import OrderCard from '../../page_components/manager/OrderCard';
-import {Button, InputGroup} from 'react-bootstrap';
+import {Button, Container, InputGroup, Row} from 'react-bootstrap';
 import axios from 'axios'
 import jwt from 'jsonwebtoken';
 import { Link, useNavigate } from "react-router-dom";
@@ -57,17 +57,31 @@ export default function ManagerDashboardPage(props)
     
     if(!loading) {
         return(
-            <div className={styles.App}>
-                <NavigationBar jwt={props.jwt} logout={props.logout}/>
-                <h1>Orders</h1>
-                {activeOrder.map((order) => <OrderCard order={order} jwt={props.jwt}/>)}
-                <div className={styles.btnCont}>
-                <Button onClick={goToOrderHistory}>Order history</Button>
-                <Button onClick={goToEditMenu}>Edit menu</Button>
+            <div>
+            <NavigationBar jwt={props.jwt} logout={props.logout}/>
+            <div className="text-center py-4" style={{backgroundColor:"rgb(4, 31, 66)",color:"white"}}>
+                <h1>DASHBOARD</h1>
+            </div>
+
+            <Container className="">
+                <div className="text-center my-3">
+                    <h2>Manage your restaurant</h2>
+                    <div className={styles.btnCont}>
+                        <Button onClick={goToOrderHistory}>Order history</Button>
+                        <Button onClick={goToEditMenu}>Edit menu</Button>
+                    </div>
                 </div>
+                <hr/>
+                <h2 className="mb-4 mt-2" >Open Orders</h2>
+                <Row className="g-4">
+                    {activeOrder.map((order) => <OrderCard order={order} jwt={props.jwt}/>)}
+                </Row>
+
                 <PageFiller/>
-                <Footer jwt={props.jwt}/>
-            </div> 
+                
+            </Container> 
+            <Footer jwt={props.jwt}/>
+            </div>
         )
     } else {
         return(
