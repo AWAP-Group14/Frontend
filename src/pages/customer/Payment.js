@@ -55,7 +55,8 @@ export default function Payment(props)
         
     };
 
-    const submitPayment= () => {
+    const submitPayment= (event) => {
+        event.preventDefault()
         console.log("the function is called");
         const decodedToken = jwt.decode(props.jwt)
         console.log(props.jwt)
@@ -129,7 +130,7 @@ export default function Payment(props)
             </div>
             
             <div className={styles.PaymentForm}>
-                <Form>
+                <Form onSubmit={submitPayment}>
                     <Form.Group>
                         <Form.Label>Card Owner</Form.Label>
                         <Form.Control required type="text" placeholder="Card Owner" />
@@ -144,9 +145,9 @@ export default function Payment(props)
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>CVV</Form.Label>
-                        <Form.Control type="number" placeholder="XXX" />
+                        <Form.Control required type="number" placeholder="XXX" />
                     </Form.Group>
-                    <Button variant="primary" onClick={submitPayment}>
+                    <Button variant="primary" type="submit">
                          Confirm payment
                      </Button>
                 </Form>
