@@ -111,7 +111,7 @@ export default function OrderCard(props)
                                                     Confirm
                                                 </Button>
                                                 <Button style={{width:"50%"}} onClick={handleCancel} size="lg" variant="danger">
-                                                    Cancel
+                                                    Reject
                                                 </Button>
                                             </div>
                                             
