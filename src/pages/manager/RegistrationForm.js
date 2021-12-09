@@ -31,7 +31,6 @@ export default function RegistrationForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(state);
     axios.post('https://voulutora-backend.herokuapp.com/manager/signup', {
       restaurantName: state.restaurantName,
       address: state.address,
@@ -43,7 +42,6 @@ export default function RegistrationForm(props) {
       priceRange: parseInt(state.priceRange)
       })
     .then(response => {
-      console.log(response);
       setProcessState("signupSuccess")
       setTimeout(() => {
         window.location.replace("/manager/login")
@@ -51,12 +49,10 @@ export default function RegistrationForm(props) {
     })
     .catch(err => {
       if (err.response.status == 409) {
-        console.log(err.response.status)
       setProcessState("emailInUse")
       }
 
       if (err.response.status == 400) {
-        console.log(err.response.status)
         setProcessState("signupFailed")
         
       }
@@ -91,10 +87,8 @@ export default function RegistrationForm(props) {
     axios.post('https://voulutora-backend.herokuapp.com/manager/upload', formData
     )
     .then((response) => {
-      console.log(response.data)
       state.image = response.data;
     })
-    console.log(files[0]);
     
   }
 
@@ -107,6 +101,7 @@ export default function RegistrationForm(props) {
           <label>Restaurant name</label>
           <input
             type="text"
+            placeholder="Name"
             name="restaurantName"
             value={state.restaurantName}
             onChange={handleInputChange}
@@ -116,6 +111,7 @@ export default function RegistrationForm(props) {
           <label>Address</label>
           <input
             type="text"
+            placeholder="Address"
             name="address"
             value={state.address}
             onChange={handleInputChange}
@@ -125,6 +121,7 @@ export default function RegistrationForm(props) {
           <label>Operating hours</label>
           <input
             type="text"
+            placeholder="Mon-Fri: -:- ;Sat-Sun: -:-"
             name="openingHour"
             value={state.openingHour}
             onChange={handleInputChange}
@@ -142,6 +139,7 @@ export default function RegistrationForm(props) {
           <label>email</label>
           <input
             type="text"
+            placeholder="email"
             name="email"
             value={state.email}
             onChange={handleInputChange}

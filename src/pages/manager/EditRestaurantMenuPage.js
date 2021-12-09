@@ -74,7 +74,6 @@ export default function EditRestaurantMenuPage(props)
     }
 
     useEffect( () => {
-        console.log(categories.length+" length of the categories in the beginning");
         const decodedToken = jwt.decode(props.jwt)
         let path = 'https://voulutora-backend.herokuapp.com/restaurants/' + decodedToken.restaurantInfo
         axios.get(path)
@@ -82,15 +81,10 @@ export default function EditRestaurantMenuPage(props)
             setInfo({name: response.data[0].restaurant_name, type: response.data[0].restaurant_type, address: response.data[0].restaurant_address, operating_hours: response.data[0].restaurant_operating_hours.split(";"), email: response.data[0].restaurant_email, image: response.data[0].restaurant_image, price_level: response.data[0].restaurant_price_level})
             setCategories(filterCategory(response.data))
             setItems(createMenuArray(response.data))
-            console.log(JSON.stringify(response.data)+" response data")
         })
         .catch(err => {
             console.log(err);
         })
-
-        console.log(categories+" lenght of the categories");
-
-
     }, []);
 
     const handleInputChange = (event) => {
@@ -101,7 +95,6 @@ export default function EditRestaurantMenuPage(props)
       };
 
     const addCategory = () => {
-        console.log(newCategory+" this is new category");
         const decodedToken = jwt.decode(props.jwt)
         let path = "https://voulutora-backend.herokuapp.com/restaurants/"+decodedToken.restaurantInfo+"/menu"
             axios.post(path, {
@@ -110,8 +103,6 @@ export default function EditRestaurantMenuPage(props)
     
             })
             .then(response => {
-                console.log(response);
-                console.log("new category added");
                 window.location.reload();
             })
             .catch(err => {
@@ -125,11 +116,8 @@ export default function EditRestaurantMenuPage(props)
     const deleteCategory = (menuName) => {
         const decodedToken = jwt.decode(props.jwt)
         let path = "https://voulutora-backend.herokuapp.com/restaurants/"+decodedToken.restaurantInfo+"/menu/"+menuName
-        console.log(path);
         axios.delete(path)
         .then(response => {
-            console.log(response);
-            console.log("category deleted");
             window.location.reload();
         })
         .catch(err => {
@@ -137,11 +125,8 @@ export default function EditRestaurantMenuPage(props)
         })
     }
 
-    console.log(categories.length+" lenght of the categories");
-
     let itemAddCard = null;
     if (categories.length != 0) {
-        console.log(categories)
        itemAddCard = categories.map((cat) => <NewMenuItemCard category={cat} jwt={props.jwt} items={items.filter(item => (item.category == cat && item.name != null))}/>)
     }
 
